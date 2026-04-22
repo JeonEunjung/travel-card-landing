@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>韓国トラベルカード — 手数料ゼロの韓国決済カード</title>
+<meta name="description" content="日本の口座から直接チャージ。韓国全国で決済。手数料ゼロ。">
+<meta property="og:title" content="韓国トラベルカード — 手数料ゼロの韓国決済カード">
+<meta property="og:description" content="日本の口座から直接チャージ。韓国全国で決済。交通カード付き。">
+<meta property="og:image" content="https://picsum.photos/seed/moin-og/1200/630">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><text x='50%25' y='55%25' dominant-baseline='central' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='18'>M</text></svg>">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+function track(n,p){gtag('event',n,p||{})}
+</script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Pretendard', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Pretendard', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        accent: { DEFAULT: '#0284c7', light: '#38bdf8', soft: '#f0f9ff', dark: '#0369a1' },
+        warm: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0' },
+        ink: { DEFAULT: '#1a1a2e', light: '#4a4a5a', muted: '#8a8a9a' },
+      },
+    },
+  },
+}
+</script>
+
+<style>
+  /* Spring easing */
+  .spring { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+    filter: blur(4px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Stagger */
+  .stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+  .stagger > .reveal:nth-child(2) { transition-delay: 100ms; }
+  .stagger > .reveal:nth-child(3) { transition-delay: 200ms; }
+  .stagger > .reveal:nth-child(4) { transition-delay: 300ms; }
+
+  /* Parallax layer */
+  .parallax { will-change: transform; }
+
+  /* Float */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* 3D Card */
+  .card-scene {
+    perspective: 1000px;
+  }
+  .card-3d {
+    transform: rotateY(0deg) rotateX(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Holographic card */
+  .holo-card {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 25%, #f0fdfa 50%, #fdf4ff 75%, #eef2ff 100%);
+    box-shadow:
+      0 25px 50px -12px rgba(0,0,0,0.15),
+      0 0 0 1px rgba(255,255,255,0.4) inset;
+  }
+  /* Rainbow sheen layer */
+  .holo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      var(--holo-angle, 135deg),
+      rgba(255,100,200,0.15),
+      rgba(100,200,255,0.2),
+      rgba(100,255,200,0.15),
+      rgba(255,200,100,0.2),
+      rgba(200,100,255,0.15)
+    );
+    mix-blend-mode: color-dodge;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  /* Moving light reflection */
+  .holo-card::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: var(--light-y, -50%);
+    left: var(--light-x, -50%);
+    background: radial-gradient(circle at center, rgba(255,255,255,0.35) 0%, transparent 50%);
+    z-index: 3;
+    pointer-events: none;
+    transition: top 0.3s, left 0.3s;
+  }
+  .holo-card .card-inner {
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Language switching */
+  [data-l] { display: none; }
+  [lang="ja"] [data-l="ja"] { display: block; }
+  [lang="ko"] [data-l="ko"] { display: block; }
+  [lang="en"] [data-l="en"] { display: block; }
+  span[data-l] { display: none; }
+  [lang="ja"] span[data-l="ja"] { display: inline; }
+  [lang="ko"] span[data-l="ko"] { display: inline; }
+  [lang="en"] span[data-l="en"] { display: inline; }
+
+  html { scroll-behavior: smooth; }
+  h1, h2, h3 { text-wrap: balance; }
+</style>
+</head>
+
+<body class="bg-warm-50 text-ink antialiased overflow-x-hidden">
+
+<!-- SVG noise filter definition (hidden, zero-size) -->
+<!-- Main content wrapper -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+    <feColorMatrix type="saturate" values="0" />
+  </filter>
+</svg>
+
+<!-- ===== FLOATING GLASS NAV ===== -->
+<nav class="fixed top-5 right-5 z-40 flex items-center gap-1 px-1.5 py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
+  <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-4 py-2 rounded-full spring">JP</button>
+  <button data-lang="ko" class="lang-btn font-display text-xs font-bold px-4 py-2 rounded-full spring">KR</button>
+  <button data-lang="en" class="lang-btn font-display text-xs font-bold px-4 py-2 rounded-full spring">EN</button>
+</nav>
+
+
+<main class="overflow-x-hidden">
+<!-- ===== HERO — Bright gradient + grain texture ===== -->
+<section class="relative min-h-[100dvh] flex items-center overflow-hidden">
+  <!-- Gradient background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-400 via-sky-400 to-teal-300"></div>
+  <!-- Curved bottom edge — asymmetric organic shape -->
+  <div class="absolute bottom-0 left-0 right-0 translate-y-[1px]">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block" preserveAspectRatio="none">
+      <path d="M0,40 C240,110 480,120 720,80 C960,40 1200,90 1440,60 L1440,120 L0,120 Z" fill="#f8fafc"/>
+    </svg>
+  </div>
+  <!-- Grain texture overlay (Nstock-style) -->
+  <div class="absolute inset-0 pointer-events-none" style="filter: url(#grain); opacity: 0.45; mix-blend-mode: screen;"></div>
+  <!-- Soft decorative shapes -->
+  <div class="parallax absolute top-20 right-[10%] w-72 h-72 rounded-full bg-white/10 blur-3xl" data-speed="0.3" style="animation: float 8s ease-in-out infinite;"></div>
+  <div class="parallax absolute bottom-32 left-[5%] w-96 h-96 rounded-full bg-sky-300/10 blur-3xl" data-speed="0.15" style="animation: float 10s ease-in-out infinite; animation-delay: -3s;"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-52 md:pt-0 md:pb-44">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+      <!-- Left: Text -->
+      <div class="lg:col-span-7 text-white">
+        <div class="reveal">
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/15 border border-white/20 mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            Coming Soon
+          </span>
+        </div>
+
+        <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight font-bold mb-8 break-keep-all" style="transition-delay: 80ms;">
+          <span data-l="ja">韓国での支払い、<br><span class="bg-white/15 px-1.5 rounded">手数料で損</span>していませんか？</span>
+          <span data-l="ko">한국에서의 결제,<br><span class="bg-white/15 px-1.5 rounded">수수료로 손해</span>보고 있지 않나요?</span>
+          <span data-l="en">Paying in Korea?<br>You're losing <span class="bg-white/15 px-1.5 rounded">thousands in fees</span>.</span>
+        </h1>
+
+        <p class="reveal text-lg md:text-xl text-white/75 leading-relaxed max-w-[52ch] mb-10 break-keep-all" style="transition-delay: 160ms;">
+          <span data-l="ja">クリニックで20万円払ったのに、手数料で7,700円も取られてた — そんな経験ありませんか？ このカードなら手数料ゼロ。アプリでサクッとチャージして、韓国どこでも使えます。</span>
+          <span data-l="ko">클리닉에서 20만엔 결제했는데 수수료로 7,700엔이나 빠져나간 적 없어요? 이 카드는 수수료 제로. 앱에서 바로 충전하고 한국 어디서든 쓸 수 있어요.</span>
+          <span data-l="en">Paid ¥200,000 at a clinic only to find ¥7,700 gone in hidden fees? With this card, fees are zero. Top up via app and pay anywhere in Korea.</span>
+        </p>
+
+        <!-- CTA -->
+        <div class="reveal flex flex-wrap gap-4" style="transition-delay: 240ms;">
+          <a href="https://forms.gle/PLACEHOLDER" target="_blank" onclick="track('preregister_click_hero')" class="group inline-flex items-center gap-3 bg-white text-accent font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+            <span data-l="ja">事前登録する（無料）</span><span data-l="ko">사전등록하기 (무료)</span><span data-l="en">Pre-register (free)</span>
+            <span class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center spring group-hover:translate-x-1">
+              <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+            </span>
+          </a>
+          <a href="#benefits" class="inline-flex items-center gap-2 text-white/80 hover:text-white font-display font-bold text-lg px-6 py-4 rounded-full border border-white/25 hover:border-white/50 spring hover:scale-[1.02] active:scale-[0.98]">
+            <span data-l="ja">詳しく見る</span><span data-l="ko">자세히 보기</span><span data-l="en">Learn more</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Holographic 3D Card -->
+      <div class="lg:col-span-5 reveal" style="transition-delay: 320ms;">
+        <div class="card-scene w-full max-w-[420px] mx-auto" id="holoScene">
+          <div class="card-3d" id="holoTilt">
+            <div class="holo-card aspect-[1.586/1]" id="holoCard" style="padding: clamp(1.5rem, 4vw, 2.25rem);">
+              <div class="card-inner flex flex-col justify-between h-full">
+
+                <!-- Top: logo + NFC -->
+                <div class="flex items-start justify-between">
+                  <div>
+                    <p class="font-display font-black text-slate-700 text-xl tracking-tight">Travel Card</p>
+                    <p class="text-[10px] text-slate-500/70 font-medium tracking-widest uppercase mt-0.5">Korea</p>
+                  </div>
+                  <iconify-icon icon="solar:nfc-bold" width="24" class="text-slate-400/40"></iconify-icon>
+                </div>
+
+                <!-- Middle: chip -->
+                <div>
+                  <div class="w-11 h-8 rounded-md bg-gradient-to-br from-amber-200/80 via-yellow-300/60 to-amber-100/80 border border-amber-300/30 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6)]">
+                    <div class="w-full h-full rounded-md" style="background: repeating-linear-gradient(90deg, transparent, transparent 4.5px, rgba(0,0,0,0.04) 4.5px, rgba(0,0,0,0.04) 5.5px);"></div>
+                  </div>
+                </div>
+
+                <!-- Bottom: number + T-money -->
+                <div class="flex items-end justify-between">
+                  <div>
+                    <p class="font-display text-[13px] text-slate-500/50 tracking-[0.25em] mb-1.5" style="font-variant-numeric: tabular-nums;">•••• •••• •••• 0000</p>
+                    <p class="font-display text-xs text-slate-500/60 tracking-wider uppercase">Cardholder Name</p>
+                  </div>
+                  <div class="flex items-center gap-1.5 bg-slate-500/[0.06] border border-slate-400/10 rounded-full px-2.5 py-1">
+                    <iconify-icon icon="solar:bus-bold" width="11" class="text-slate-400/50"></iconify-icon>
+                    <span class="text-[10px] text-slate-500/50 font-medium tracking-wide">Transit</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== FEE COMPARISON — floats over hero ===== -->
+<section class="relative z-10 pt-16 md:pt-24 pb-10 md:pb-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="reveal bg-white/90 backdrop-blur-xl ring-1 ring-black/[0.06] rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] p-8 md:p-12">
+
+      <div class="text-center mb-8">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-5 font-display">
+          <span data-l="ja">手数料比較</span>
+          <span data-l="ko">수수료 비교</span>
+          <span data-l="en">Fee comparison</span>
+        </span>
+        <h2 class="font-display text-2xl md:text-3xl tracking-tight font-bold text-ink break-keep-all">
+          <span data-l="ja">¥200,000の施術費、<br>手数料でいくら消える？</span>
+          <span data-l="ko">¥200,000 시술비,<br>수수료로 얼마나 사라질까?</span>
+          <span data-l="en">¥200,000 treatment.<br>How much vanishes in fees?</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <!-- Other card -->
+        <div class="rounded-2xl bg-warm-100 ring-1 ring-black/[0.04] p-6 text-center">
+          <p class="text-xs text-ink-muted uppercase tracking-wider font-display font-medium mb-3">
+            <span data-l="ja">海外カード (3.85%)</span><span data-l="ko">해외카드 (3.85%)</span><span data-l="en">Foreign card (3.85%)</span>
+          </p>
+          <p class="font-display font-black text-4xl md:text-5xl text-ink/25 line-through decoration-2 decoration-red-400/40 mb-2" style="font-variant-numeric: tabular-nums;">−¥7,700</p>
+          <p class="text-sm text-ink-muted">
+            <span data-l="ja">明細を見て初めて気づく</span><span data-l="ko">명세서를 보고 나서야 알게 됨</span><span data-l="en">You only notice on the statement</span>
+          </p>
+        </div>
+
+        <!-- This card -->
+        <div class="rounded-2xl bg-accent-soft ring-2 ring-accent/20 p-6 text-center relative overflow-hidden">
+          <p class="text-xs text-accent-dark uppercase tracking-wider font-display font-bold mb-3">
+            <span data-l="ja">このカード</span><span data-l="ko">이 카드</span><span data-l="en">This card</span>
+          </p>
+          <p class="font-display font-black text-5xl md:text-6xl text-accent mb-2 counter" data-target="0" data-from="7700" data-prefix="¥" style="font-variant-numeric: tabular-nums; line-height: 1;">¥7,700</p>
+          <p class="text-sm text-accent-dark/70 font-medium">
+            <span data-l="ja">手数料ゼロ。全額を治療に。</span><span data-l="ko">수수료 제로. 전액을 시술에.</span><span data-l="en">Zero fees. Every yen on treatment.</span>
+          </p>
+        </div>
+      </div>
+
+      <p class="text-center text-base text-ink-light">
+        <span data-l="ja">1回の旅行で <span class="text-ink font-bold">¥7,700</span> の差。年に3回なら <span class="text-accent font-bold">¥23,100</span> の節約。</span>
+        <span data-l="ko">1회 여행에서 <span class="text-ink font-bold">¥7,700</span> 차이. 연 3회면 <span class="text-accent font-bold">¥23,100</span> 절약.</span>
+        <span data-l="en"><span class="text-ink font-bold">¥7,700</span> per trip. 3 trips a year? <span class="text-accent font-bold">¥23,100</span> saved.</span>
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== BENEFITS — Zig-Zag ===== -->
+<section id="benefits" class="py-20 md:py-28 bg-sky-50/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Benefit 1 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
+      <div class="reveal">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-6 font-display">01</span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
+          <span data-l="ja">あの行列、<br>もう並ばなくていい</span>
+          <span data-l="ko">그 줄,<br>이제 안 서도 돼</span>
+          <span data-l="en">That queue?<br>You can skip it now</span>
+        </h2>
+        <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
+          <span data-l="ja">キオスクの前で20分待ち…もう経験したくないですよね。このカードならアプリで日本の口座からサクッとチャージ。その20分、明洞でカフェ巡りしませんか？</span>
+          <span data-l="ko">키오스크 앞에서 20분 대기…다시는 하고 싶지 않죠? 이 카드는 앱에서 일본 계좌로 바로 충전. 그 20분, 명동에서 카페 투어 어때요?</span>
+          <span data-l="en">20 minutes waiting at a kiosk to load your card — never again. This card lets you top up from your Japanese bank in seconds. Use that time for a Myeongdong cafe crawl instead.</span>
+        </p>
+        <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
+          <iconify-icon icon="solar:smartphone-bold" width="20"></iconify-icon>
+          <span data-l="ja">アプリでチャージ → すぐ使える</span>
+          <span data-l="ko">앱으로 충전 → 바로 사용</span>
+          <span data-l="en">Top up via app → Ready to go</span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 120ms;">
+        <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
+          <img src="https://images.unsplash.com/photo-1743271853206-ea3d52a472ed?w=800&h=600&fit=crop" alt="Myeongdong shopping street Seoul" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <div class="flex items-center gap-2 mb-2">
+              <iconify-icon icon="solar:smartphone-2-bold-duotone" width="20"></iconify-icon>
+              <p class="font-display font-bold text-sm">
+                <span data-l="ja">アプリで即チャージ</span><span data-l="ko">앱에서 즉시 충전</span><span data-l="en">Instant app top-up</span>
+              </p>
+            </div>
+            <p class="text-xs text-white/60">
+              <span data-l="ja">キオスクの20分 → カフェ巡りの20分に</span><span data-l="ko">키오스크 20분 → 카페 투어 20분으로</span><span data-l="en">20 min at kiosk → 20 min at cafes</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefit 2 — reversed -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
+      <div class="reveal order-2 lg:order-1" style="transition-delay: 120ms;">
+        <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
+          <img src="https://images.unsplash.com/photo-1556741564-a0e2cc7e2b79?w=800&h=600&fit=crop" alt="Contactless card payment" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <div class="flex items-center gap-2 mb-2">
+              <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
+              <p class="font-display font-bold text-sm">
+                <span data-l="ja">全加盟店で決済OK</span><span data-l="ko">전 가맹점 결제 OK</span><span data-l="en">Accepted everywhere</span>
+              </p>
+            </div>
+            <p class="text-xs text-white/60">
+              <span data-l="ja">クリニックでも百貨店でも、断られない</span><span data-l="ko">클리닉에서도 백화점에서도, 거절 없음</span><span data-l="en">Clinics, department stores — never rejected</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal order-1 lg:order-2">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-6 font-display">02</span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
+          <span data-l="ja">「このカード使えません」<br>はもう聞かない</span>
+          <span data-l="ko">"이 카드 안 됩니다"<br>이제 안 들어도 돼</span>
+          <span data-l="en">"Card not accepted"<br>— never again</span>
+        </h2>
+        <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
+          <span data-l="ja">クリニックのレジで「使えません」って言われた瞬間のあの焦り、分かります。このカードはデビットカードだから、韓国の全お店で使えます。施術に集中して、支払いのことは忘れてください。</span>
+          <span data-l="ko">클리닉 카운터에서 "안 됩니다" 들었을 때 그 당황스러움, 알죠? 이 카드는 직불카드니까 한국 모든 가맹점에서 OK. 시술에만 집중하고, 결제 걱정은 잊으세요.</span>
+          <span data-l="en">That sinking feeling at the clinic counter when your card gets rejected — we get it. This card is a debit card, accepted everywhere in Korea. Focus on your treatment, forget about payments.</span>
+        </p>
+        <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
+          <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
+          <span data-l="ja">韓国の全お店で使える</span>
+          <span data-l="ko">한국 전 가맹점 결제 가능</span>
+          <span data-l="en">Accepted at all Korean merchants</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefit 3 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="reveal">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-6 font-display">03</span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
+          <span data-l="ja">仁川に着いたら<br>そのまま地下鉄へ</span>
+          <span data-l="ko">인천 도착하면<br>바로 지하철 타면 돼</span>
+          <span data-l="en">Land at Incheon,<br>hop right on the subway</span>
+        </h2>
+        <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
+          <span data-l="ja">着いてすぐ交通カードを買いに走るのはもう卒業。このカードには交通カード機能が入っているから、到着ゲートを出たらそのまま地下鉄へ。カード1枚で買い物も移動もぜんぶOK。</span>
+          <span data-l="ko">도착하자마자 교통카드 사러 뛰어다니는 건 졸업. 이 카드에 교통카드 기능이 들어 있으니까, 입국장 나오면 바로 지하철로. 카드 한 장이면 쇼핑도 이동도 전부 OK.</span>
+          <span data-l="en">No more rushing to buy a transit card the moment you land. This card has transit built in — walk through arrivals and straight onto the subway. One card for shopping and getting around.</span>
+        </p>
+        <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
+          <iconify-icon icon="solar:bus-bold" width="20"></iconify-icon>
+          <span data-l="ja">交通カード内蔵 — 地下鉄もバスもOK</span>
+          <span data-l="ko">교통카드 내장 — 지하철도 버스도 OK</span>
+          <span data-l="en">Built-in transit — subway & bus ready</span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 120ms;">
+        <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
+          <img src="https://images.unsplash.com/photo-1599033769076-a8a6a36c7519?w=800&h=600&fit=crop" alt="Seoul subway station" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <div class="flex items-center gap-2 mb-2">
+              <iconify-icon icon="solar:train-bold-duotone" width="20"></iconify-icon>
+              <p class="font-display font-bold text-sm">
+                <span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span><span data-l="en">Transit built-in</span>
+              </p>
+            </div>
+            <p class="text-xs text-white/60">
+              <span data-l="ja">空港を出て、そのまま地下鉄へ</span><span data-l="ko">공항 나오면 바로 지하철로</span><span data-l="en">Walk out of the airport, onto the subway</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefit 4 — reversed -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mt-20 md:mt-28">
+      <div class="reveal order-2 lg:order-1" style="transition-delay: 120ms;">
+        <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop" alt="Smartphone banking refund" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <div class="flex items-center gap-2 mb-2">
+              <iconify-icon icon="solar:wallet-money-bold-duotone" width="20"></iconify-icon>
+              <p class="font-display font-bold text-sm">
+                <span data-l="ja">アプリで即返金</span><span data-l="ko">앱에서 즉시 환불</span><span data-l="en">Instant app refund</span>
+              </p>
+            </div>
+            <p class="text-xs text-white/60">
+              <span data-l="ja">残高 → 日本の口座へ</span><span data-l="ko">잔액 → 일본 계좌로</span><span data-l="en">Balance → back to your account</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal order-1 lg:order-2">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-6 font-display">04</span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
+          <span data-l="ja">残ったお金、<br>ワンタップで返金</span>
+          <span data-l="ko">남은 돈,<br>한 번 누르면 돌려받아</span>
+          <span data-l="en">Leftover balance?<br>One tap to get it back</span>
+        </h2>
+        <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
+          <span data-l="ja">旅行が終わって残った残高、そのままにしていませんか？ このカードならアプリでワンタップ。残高がそのまま日本の口座に戻ります。使い切れなくても損しない。</span>
+          <span data-l="ko">여행 끝나고 남은 잔액, 그냥 놔두고 있지 않나요? 이 카드는 앱에서 한 번만 누르면 잔액이 일본 계좌로 돌아갑니다. 다 못 써도 손해 없어요.</span>
+          <span data-l="en">Don't let leftover balance go to waste. One tap in the app sends your remaining balance straight back to your Japanese bank account. Nothing lost.</span>
+        </p>
+        <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
+          <iconify-icon icon="solar:wallet-money-bold" width="20"></iconify-icon>
+          <span data-l="ja">アプリで即返金 → 日本の口座へ</span>
+          <span data-l="ko">앱에서 즉시 환불 → 일본 계좌로</span>
+          <span data-l="en">Instant refund → to your Japanese bank</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== SOCIAL PROOF — Masonry cards ===== -->
+<section class="py-16 md:py-24 bg-warm-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-display text-3xl md:text-4xl tracking-tight leading-tight font-bold mb-3 break-keep-all">
+        <span data-l="ja">こんな経験、ありませんか？</span>
+        <span data-l="ko">이런 경험, 없으세요?</span>
+        <span data-l="en">Sound familiar?</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto stagger">
+
+      <!-- Pain 1 -->
+      <div class="reveal">
+        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:bill-cross-bold-duotone" class="text-accent/40 mb-4" width="32"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">明細を見て驚いた手数料</span>
+            <span data-l="ko">명세서 보고 놀란 수수료</span>
+            <span data-l="en">Surprise fees on the statement</span>
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">クリニックで200万ウォンを払って、帰国後の明細に手数料7万ウォン。最初から知っていたら、別の方法で払ったのに。</span>
+            <span data-l="ko">클리닉에서 200만원 결제하고, 귀국 후 명세서에 수수료 7만원. 미리 알았으면 다른 방법으로 냈을 텐데.</span>
+            <span data-l="en">Paid ₩2M at a clinic, then found ₩70K in fees on your statement back home. If only you'd known sooner.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Pain 2 -->
+      <div class="reveal">
+        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:clock-circle-bold-duotone" class="text-accent/40 mb-4" width="32"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">キオスクの前で20分待ち</span>
+            <span data-l="ko">키오스크 앞에서 20분 대기</span>
+            <span data-l="en">20 minutes in the kiosk line</span>
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">現金を入れるために長い列に並んで、やっと充電。その20分があれば明洞をもう一周できたのに。</span>
+            <span data-l="ko">현금 넣으려고 긴 줄에 서서 겨우 충전. 그 20분이면 명동을 한 바퀴 더 돌았을 텐데.</span>
+            <span data-l="en">Standing in line just to load cash. Those 20 minutes could've been another lap around Myeongdong.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Pain 3 -->
+      <div class="reveal">
+        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/40 mb-4" width="32"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">空港で交通カード探し</span>
+            <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
+            <span data-l="en">Hunting for a transit card at the airport</span>
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">仁川に着いて交通カードを買うのに30分。やっと手に入れて地下鉄に乗ったら、もう疲れてる。</span>
+            <span data-l="ko">인천에 도착해서 교통카드 사는 데 30분. 겨우 구해서 지하철 탔더니 벌써 지쳐 있음.</span>
+            <span data-l="en">30 minutes at Incheon just to buy a transit card. By the time you're on the subway, you're already tired.</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Metrics -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16 stagger">
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:tag-price-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">手数料ゼロ</span><span data-l="ko">수수료 제로</span><span data-l="en">Zero fees</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">決済手数料0%</span><span data-l="ko">결제 수수료 0%</span><span data-l="en">0% payment fees</span></p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:verified-check-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">全店舗対応</span><span data-l="ko">전 가맹점 대응</span><span data-l="en">All merchants</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">カード決済可能な全店舗</span><span data-l="ko">카드 결제 가능한 전 가맹점</span><span data-l="en">Everywhere cards are accepted</span></p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:smartphone-2-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">アプリ充電</span><span data-l="ko">앱 충전</span><span data-l="en">App top-up</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">日本の口座から即チャージ</span><span data-l="ko">일본 계좌에서 즉시 충전</span><span data-l="en">Instant from Japanese bank</span></p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:bus-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード</span><span data-l="ko">교통카드</span><span data-l="en">Transit card</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バス対応</span><span data-l="ko">지하철·버스 대응</span><span data-l="en">Subway & bus ready</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ===== CTA — Pre-register (links to survey) ===== -->
+<section class="relative py-16 md:py-24" id="register">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+      <div class="reveal bg-white ring-1 ring-black/[0.06] rounded-3xl shadow-[0_20px_60px_-15px_rgba(2,132,199,0.08)] p-10 md:p-14 text-center">
+
+        <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-6">
+          <iconify-icon icon="solar:bell-bold-duotone" width="28" class="text-accent"></iconify-icon>
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight font-bold mb-4 break-keep-all text-ink">
+          <span data-l="ja">次の韓国旅行、<br>損しないために</span>
+          <span data-l="ko">다음 한국 여행,<br>손해 보지 않으려면</span>
+          <span data-l="en">For your next Korea trip,<br>don't overpay</span>
+        </h2>
+        <p class="text-base text-ink-muted mb-3 max-w-[40ch] mx-auto break-keep-all">
+          <span data-l="ja">簡単なアンケートに答えるだけで事前登録完了。サービス開始時に優先ご案内します。</span>
+          <span data-l="ko">간단한 설문에 답하면 사전등록 완료. 서비스 시작 시 우선 안내드려요.</span>
+          <span data-l="en">Answer a quick survey to pre-register. Get priority access at launch.</span>
+        </p>
+        <p class="text-sm text-accent font-medium mb-8">
+          <span data-l="ja">インタビュー参加で <strong>スタバギフトカード3,000円</strong> プレゼント</span>
+          <span data-l="ko">인터뷰 참여 시 <strong>스타벅스 기프트카드 3,000엔</strong> 증정</span>
+          <span data-l="en"><strong>¥3,000 Starbucks gift card</strong> for interview participants</span>
+        </p>
+        <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('preregister_click')" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
+          <span data-l="ja">事前登録する（無料）</span><span data-l="ko">사전등록하기 (무료)</span><span data-l="en">Pre-register (free)</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" class="spring group-hover:translate-x-0.5"></iconify-icon>
+        </a>
+        <p class="text-xs text-ink-muted/60 mt-4"><span data-l="ja">※ まだサービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span><span data-l="en">※ Not yet launched</span></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="py-8 border-t border-black/[0.04] bg-warm-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-ink-muted font-display font-medium">
+      <span data-l="ja">運営: 株式会社MOIN</span><span data-l="ko">운영: 주식회사모인</span><span data-l="en">Operated by MOIN Inc.</span>
+    </p>
+    <p class="text-xs text-ink-muted/60">&copy; 2026 MOIN Inc.</p>
+  </div>
+</footer>
+
+
+<script>
+// Language switching
+const langBtns = document.querySelectorAll('.lang-btn');
+langBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang = btn.dataset.lang;
+    document.documentElement.lang = lang;
+    langBtns.forEach(b => {
+      b.classList.remove('on', 'bg-accent', 'text-white');
+      b.classList.add('text-ink-muted', 'hover:text-ink');
+    });
+    btn.classList.add('on', 'bg-accent', 'text-white');
+    btn.classList.remove('text-ink-muted', 'hover:text-ink');
+  });
+});
+
+// Initial state
+document.querySelector('.lang-btn.on').classList.add('bg-accent', 'text-white');
+document.querySelectorAll('.lang-btn:not(.on)').forEach(b => {
+  b.classList.add('text-ink-muted', 'hover:text-ink');
+});
+
+let amt = null;
+
+
+// Pass UTM params to survey link
+const utmParams = new URLSearchParams(location.search);
+const surveyParams = new URLSearchParams();
+if (utmParams.get('utm_source')) surveyParams.set('utm_source', utmParams.get('utm_source'));
+if (utmParams.get('utm_campaign')) surveyParams.set('utm_campaign', utmParams.get('utm_campaign'));
+const surveyLink = document.getElementById('survey-link');
+if (surveyLink) {
+  const baseUrl = surveyLink.href;
+  surveyLink.href = baseUrl + (surveyParams.toString() ? '?' + surveyParams : '');
+}
+
+// Scroll reveal — staggered per-section
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Counter animation
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    const from = el.dataset.from ? parseInt(el.dataset.from) : 0;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = from > target ? 600 : 1200;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const current = Math.round(from + (target - from) * eased);
+      el.textContent = prefix + current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// Parallax on scroll
+const parallaxEls = document.querySelectorAll('.parallax');
+if (parallaxEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.speed) || 0.2;
+        el.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+      ticking = false;
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// Smooth nav background on scroll
+const nav = document.querySelector('nav');
+if (nav) {
+  const onNavScroll = () => {
+    if (window.scrollY > 100) {
+      nav.classList.add('bg-white/90', 'shadow-[0_4px_24px_rgba(0,0,0,0.08)]');
+      nav.classList.remove('bg-white/70', 'shadow-[0_4px_24px_rgba(0,0,0,0.06)]');
+    } else {
+      nav.classList.remove('bg-white/90', 'shadow-[0_4px_24px_rgba(0,0,0,0.08)]');
+      nav.classList.add('bg-white/70', 'shadow-[0_4px_24px_rgba(0,0,0,0.06)]');
+    }
+  };
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+}
+
+// Holographic 3D card — scroll-driven tilt + mouse hover + light
+const holoScene = document.getElementById('holoScene');
+const holoTilt = document.getElementById('holoTilt');
+const holoCard = document.getElementById('holoCard');
+let isHovering = false;
+
+if (holoScene && holoTilt && holoCard) {
+  // Mouse hover — direct tilt + light
+  holoScene.addEventListener('mousemove', (e) => {
+    isHovering = true;
+    const rect = holoScene.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const cx = x - 0.5;
+    const cy = y - 0.5;
+    holoTilt.style.transform = `rotateY(${cx * 20}deg) rotateX(${cy * -15}deg)`;
+    holoCard.style.setProperty('--light-x', `${(x - 0.5) * 100 - 50}%`);
+    holoCard.style.setProperty('--light-y', `${(y - 0.5) * 100 - 50}%`);
+    const angle = Math.atan2(cy, cx) * (180 / Math.PI) + 180;
+    holoCard.style.setProperty('--holo-angle', `${angle}deg`);
+  });
+  holoScene.addEventListener('mouseleave', () => {
+    isHovering = false;
+    holoTilt.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    holoTilt.style.opacity = '';
+    holoCard.style.setProperty('--light-x', '-50%');
+    holoCard.style.setProperty('--light-y', '-50%');
+    holoCard.style.setProperty('--holo-angle', '135deg');
+  });
+
+  // Scroll-driven: scale up + tilt + fade out as you scroll past
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      const rect = holoScene.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const center = rect.top + rect.height / 2;
+      // progress: 0 = card at center of viewport, 1 = card scrolled off top
+      const progress = Math.max(0, Math.min(1, 1 - center / vh));
+
+      if (!isHovering) {
+        const scale = 1 + progress * 0.15;
+        const opacity = progress < 0.6 ? 1 : 1 - (progress - 0.6) / 0.4;
+
+        holoTilt.style.transform = `scale(${scale})`;
+        holoTilt.style.opacity = opacity;
+
+        // Shift holographic sheen with scroll
+        holoCard.style.setProperty('--holo-angle', `${progress * 360}deg`);
+      }
+      scrollTicking = false;
+    });
+  }, { passive: true });
+}
+</script>
+
+</body>
+</html>

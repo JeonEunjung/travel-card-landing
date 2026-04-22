@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MOIN Travel Card</title>
+<meta name="description" content="日本の口座から直接チャージ。韓国全国で決済。手数料ゼロ。">
+<meta property="og:title" content="MOIN Travel Card — 手数料ゼロの韓国決済カード">
+<meta property="og:description" content="日本の口座から直接チャージ。韓国全国で決済。交通カード付き。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+function track(n,p){gtag('event',n,p||{})}
+</script>
+
+<style>
+:root{
+  --blue:oklch(0.52 0.22 255);--blue-b:oklch(0.60 0.22 255);--blue-d:oklch(0.38 0.18 255);
+  --blue-p:oklch(0.96 0.025 255);
+  --cta:oklch(0.60 0.21 35);--cta-h:oklch(0.54 0.21 35);
+  --g1:oklch(0.55 0.24 255);--g2:oklch(0.50 0.20 290);--g3:oklch(0.60 0.17 200);
+  --bg:oklch(0.99 0.003 255);--sf:#fff;--raised:oklch(0.97 0.006 255);
+  --ink:oklch(0.12 0.01 255);--ink2:oklch(0.36 0.008 255);--ink3:oklch(0.52 0.006 255);
+  --w:oklch(0.99 0.003 255);
+  --green:oklch(0.55 0.16 158);--red:oklch(0.55 0.17 25);
+  --line:oklch(0.91 0.004 255);
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;--s10:128px;
+  --fd:'Figtree',system-ui,sans-serif;
+  --fj:'Noto Sans JP',system-ui,sans-serif;--fk:'Noto Sans KR',system-ui,sans-serif;--fe:'Noto Sans',system-ui,sans-serif;
+  --fb:var(--fj);
+  --r:10px;--rl:14px;--rx:20px;
+}
+[lang="ko"]{--fb:var(--fk)}[lang="en"]{--fb:var(--fe)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* LANG — glass pill, fixed */
+.lang{position:fixed;top:var(--s4);right:var(--s5);z-index:100;display:flex;gap:2px;padding:3px;background:oklch(0 0 0/.25);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:9999px}
+.lang button{font-family:var(--fd);font-size:0.75rem;font-weight:700;padding:5px 11px;border:none;border-radius:9999px;background:transparent;color:oklch(1 0 0/.6);cursor:pointer;transition:all .12s}
+.lang button:hover{color:oklch(1 0 0/.9)}.lang button.on{background:var(--w);color:var(--ink)}
+[data-l]{display:none}[lang="ja"] [data-l="ja"],[lang="ko"] [data-l="ko"],[lang="en"] [data-l="en"]{display:block}
+span[data-l]{display:none}[lang="ja"] span[data-l="ja"],[lang="ko"] span[data-l="ko"],[lang="en"] span[data-l="en"]{display:inline}
+
+/* CONTAINERS */
+.cx{max-width:1080px;margin:0 auto;padding:0 var(--s5)}
+
+/* ============================================
+   HERO — full viewport, gradient, NO nav
+   가이드 #1: 하나의 목적에 집중. 내비게이션 없음.
+   가이드 #3: 3초 헤드라인.
+   ============================================ */
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  background:linear-gradient(150deg,var(--g1),var(--g2) 45%,var(--g3));
+  color:var(--w);padding:var(--s9) 0;position:relative;overflow:hidden;
+}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.hero .cx{position:relative;z-index:1}
+.hero-in{max-width:700px}
+.hero-tag{font-family:var(--fd);font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;opacity:.55;margin-bottom:var(--s5)}
+.hero h1{font-family:var(--fd);font-size:clamp(2rem,5.5vw,3.5rem);font-weight:900;line-height:1.3;letter-spacing:-.035em;margin-bottom:var(--s6)}
+.hero h1 .hl{background:oklch(1 0 0/.12);padding:0 6px;border-radius:4px}
+/* 가이드 #2: 타겟의 실제 상황으로 말하기 */
+.hero-sub{font-size:clamp(1rem,2vw,1.15rem);opacity:.8;max-width:38ch;line-height:1.65;margin-bottom:var(--s7)}
+/* 수수료 비교 */
+.fee{display:inline-flex;flex-direction:column;gap:1px;border-radius:var(--rx);overflow:hidden;max-width:420px;width:100%;margin-bottom:var(--s7)}
+.fee-r{display:flex;justify-content:space-between;align-items:center;padding:var(--s4) var(--s6)}
+.fee-r:first-child{background:oklch(0 0 0/.18)}.fee-r:last-child{background:oklch(1 0 0/.12)}
+.fee-n{font-size:1rem;opacity:.8}.fee-v{font-family:var(--fd);font-weight:800;font-size:clamp(1.1rem,2.5vw,1.35rem);font-variant-numeric:tabular-nums}
+.fee-bad{opacity:.55;text-decoration:line-through;text-decoration-thickness:2px}.fee-good{color:var(--w)}
+/* 가이드 #5: 히어로에 CTA 배치 — 첫 화면에서 행동 가능 */
+.hero-cta{display:flex;gap:var(--s3);flex-wrap:wrap}
+.hero-cta .hc-btn{
+  font-family:var(--fd);font-size:1rem;font-weight:800;
+  padding:var(--s4) var(--s6);border:none;border-radius:var(--r);
+  cursor:pointer;min-height:52px;transition:all .12s;
+  text-decoration:none;display:inline-flex;align-items:center;
+}
+.hc-primary{background:var(--w);color:var(--blue-d)}.hc-primary:hover{background:oklch(0.95 0.003 255)}
+.hc-ghost{background:transparent;border:2px solid oklch(1 0 0/.35);color:var(--w)}.hc-ghost:hover{border-color:oklch(1 0 0/.6)}
+
+/* ============================================
+   VALUES — 3 independent sections, each a full-width block
+   가이드 #4: 기능이 아닌 혜택, 꼭지별 분리
+   ============================================ */
+.val-section{padding:var(--s9) 0}
+.val-section.val-alt{background:var(--raised)}
+.val-row{display:grid;grid-template-columns:1fr;gap:var(--s5);max-width:720px;margin:0 auto}
+.val-num{
+  font-family:var(--fd);font-size:clamp(2.5rem,6vw,4rem);font-weight:900;
+  color:var(--blue-p);line-height:1;letter-spacing:-.04em;
+}
+.val-content h2{
+  font-family:var(--fd);font-size:clamp(1.25rem,3vw,1.75rem);font-weight:900;
+  line-height:1.3;letter-spacing:-.025em;margin-bottom:var(--s4);
+}
+.val-benefit{font-size:clamp(0.95rem,1.8vw,1.05rem);color:var(--ink2);line-height:1.75;max-width:52ch;margin-bottom:var(--s4)}
+.val-how{
+  font-family:var(--fd);font-size:clamp(0.8rem,1.5vw,0.875rem);font-weight:700;
+  color:var(--blue);letter-spacing:.01em;
+}
+@media(min-width:640px){
+  .val-row{grid-template-columns:auto 1fr;gap:var(--s7);align-items:start}
+}
+
+/* ============================================
+   SOCIAL PROOF — 가이드 #6: 신뢰 구축
+   ============================================ */
+.proof{background:var(--raised);padding:var(--s8) 0}
+.proof-head{text-align:center;margin-bottom:var(--s7)}
+.proof-head h2{font-family:var(--fd);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:var(--s2)}
+.proof-head p{font-size:0.875rem;color:var(--ink3)}
+
+.proof-grid{display:grid;grid-template-columns:1fr;gap:var(--s5);max-width:860px;margin:0 auto}
+.proof-card{
+  background:var(--sf);border-radius:var(--rx);padding:var(--s6);
+  border:1px solid var(--line);
+}
+.proof-q{font-size:1rem;line-height:1.7;margin-bottom:var(--s4);font-style:italic;color:var(--ink)}
+.proof-who{font-size:0.8125rem;color:var(--ink2);font-weight:500}
+
+.trust-badges{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s6);
+  margin-top:var(--s7);padding-top:var(--s6);border-top:1px solid var(--line);
+}
+.trust-b{text-align:center}
+.trust-b .tb-label{font-family:var(--fd);font-size:0.875rem;font-weight:700}
+.trust-b .tb-sub{font-size:0.75rem;color:var(--ink3)}
+
+@media(min-width:640px){.proof-grid{grid-template-columns:1fr 1fr}}
+
+/* ============================================
+   AMOUNT — 가이드 #5: CTA로 이끄는 흐름
+   ============================================ */
+.pick{padding:var(--s9) 0}
+.pick h2{font-family:var(--fd);font-size:clamp(1.3rem,3.5vw,2rem);font-weight:900;line-height:1.2;letter-spacing:-.03em;text-align:center;margin-bottom:var(--s7)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);max-width:580px;margin:0 auto}
+.ac{
+  background:var(--sf);border:2px solid var(--line);border-radius:var(--rx);
+  padding:var(--s6) var(--s5);cursor:pointer;text-align:left;
+  transition:all .15s;
+}
+.ac:hover{border-color:var(--blue-b);transform:translateY(-2px);box-shadow:0 8px 24px oklch(0 0 0/.06)}
+.ac.on{border-color:var(--blue);background:var(--blue-p);box-shadow:0 0 0 2px var(--blue)}
+.ac-y{font-family:var(--fd);font-weight:900;font-size:clamp(1.2rem,3vw,1.5rem);font-variant-numeric:tabular-nums;margin-bottom:2px}
+.ac-k{font-size:0.8125rem;color:var(--ink3);font-variant-numeric:tabular-nums;margin-bottom:var(--s3)}
+.ac-u{font-size:0.8125rem;color:var(--ink2);font-weight:500;line-height:1.45}
+
+@media(min-width:640px){.ag{grid-template-columns:repeat(4,1fr);max-width:860px}}
+
+/* ============================================
+   CTA SECTION — 가이드 #5: 단 하나의 명확한 CTA
+   반복 배치 (히어로에 한 번, 여기에 한 번)
+   ============================================ */
+.cta-s{padding:var(--s9) 0;text-align:center;background:var(--blue-d);color:var(--w)}
+.cta-s h2{font-family:var(--fd);font-size:clamp(1.3rem,3vw,1.8rem);font-weight:900;letter-spacing:-.02em;margin-bottom:var(--s3)}
+.cta-sub{font-size:1rem;opacity:.7;margin-bottom:var(--s6);max-width:34ch;margin-inline:auto}
+.cf{display:flex;flex-direction:column;gap:var(--s3);max-width:400px;margin:0 auto}
+@media(min-width:520px){.cf{flex-direction:row}.cf .ci{flex:1}}
+.ci{
+  font-family:var(--fb);font-size:1rem;padding:var(--s3) var(--s4);
+  border:1.5px solid oklch(1 0 0/.2);border-radius:var(--r);
+  background:oklch(1 0 0/.08);color:var(--w);min-height:52px;
+  transition:border-color .12s;
+}
+.ci:focus{outline:none;border-color:oklch(1 0 0/.5);box-shadow:0 0 0 3px oklch(1 0 0/.1)}
+.ci::placeholder{color:oklch(1 0 0/.4)}
+.cb{
+  font-family:var(--fd);font-size:16px;font-weight:800;
+  padding:var(--s4) var(--s7);border:none;border-radius:var(--r);
+  background:var(--cta);color:var(--w);cursor:pointer;min-height:52px;
+  transition:background .12s,transform .08s;white-space:nowrap;
+}
+.cb:hover{background:var(--cta-h)}.cb:active{transform:scale(.98)}.cb:disabled{opacity:.4;cursor:not-allowed}
+.cn{font-size:0.8125rem;opacity:.45;margin-top:var(--s4)}
+
+/* Done */
+.done{display:none;text-align:center;padding:var(--s7) 0}
+.done.show{display:block}
+.done h3{font-family:var(--fd);font-weight:800;font-size:1.25rem;margin-bottom:var(--s4)}
+.done p{font-size:1rem;opacity:.7;margin-bottom:var(--s6);max-width:32ch;margin-inline:auto}
+.sv{
+  display:inline-flex;align-items:center;
+  font-family:var(--fd);font-weight:700;font-size:1rem;
+  padding:var(--s4) var(--s6);border:2px solid oklch(1 0 0/.3);border-radius:var(--r);
+  color:var(--w);text-decoration:none;min-height:48px;transition:all .12s;
+}
+.sv:hover{border-color:oklch(1 0 0/.6);background:oklch(1 0 0/.06)}
+
+footer{text-align:center;padding:var(--s6) 0;font-size:0.8125rem;color:var(--ink3)}
+
+@media(prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1)}
+  .rv.vis{opacity:1;transform:none}.rv:nth-child(2){transition-delay:.06s}.rv:nth-child(3){transition-delay:.12s}
+}
+</style>
+</head>
+<body>
+
+<!-- 가이드 #1: 내비게이션 없음. 언어 전환만. -->
+<nav class="lang" aria-label="Language">
+  <button class="on" data-lang="ja">JP</button>
+  <button data-lang="ko">KR</button>
+  <button data-lang="en">EN</button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+<div class="cx"><div class="hero-in">
+  <p class="hero-tag">Coming Soon</p>
+
+  <!-- 가이드 #3: 3초 안에 무엇을/어떻게/얼마나 전달 -->
+  <h1>
+    <span data-l="ja">韓国で<span class="hl">20万円</span>の治療費を払うと、<br>手数料だけで<span class="hl">7,700円</span>消える。</span>
+    <span data-l="ko">한국에서 <span class="hl">20만엔</span> 치료비를 내면,<br>수수료만 <span class="hl">7,700엔</span>이 사라집니다.</span>
+    <span data-l="en">Pay <span class="hl">¥200,000</span> for treatment in Korea.<br><span class="hl">¥7,700</span> vanishes in fees.</span>
+  </h1>
+
+  <!-- 가이드 #2: 타겟의 실제 상황 묘사 -->
+  <p class="hero-sub">
+    <span data-l="ja">もうキオスクの行列に並ぶ必要はありません。日本の口座からアプリで直接チャージ。韓国全国どこでも手数料ゼロで決済。</span>
+    <span data-l="ko">더 이상 키오스크 줄에 설 필요 없습니다. 일본 계좌에서 앱으로 바로 충전. 한국 전국 수수료 0원 결제.</span>
+    <span data-l="en">No more kiosk lines. Charge from your Japanese bank via app. Pay anywhere in Korea, zero fees.</span>
+  </p>
+
+  <div class="fee">
+    <div class="fee-r"><span class="fee-n"><span data-l="ja">楽天カード 3.85%</span><span data-l="ko">라쿠텐카드 3.85%</span><span data-l="en">Rakuten Card 3.85%</span></span><span class="fee-v fee-bad">−¥7,700</span></div>
+    <div class="fee-r"><span class="fee-n"><span data-l="ja">このカード</span><span data-l="ko">이 카드</span><span data-l="en">This card</span></span><span class="fee-v fee-good">¥0</span></div>
+  </div>
+
+  <!-- 가이드 #5: 첫 화면에 CTA -->
+  <div class="hero-cta">
+    <a href="#register" class="hc-btn hc-primary">
+      <span data-l="ja">事前登録する（無料）</span><span data-l="ko">사전등록하기 (무료)</span><span data-l="en">Pre-register (free)</span>
+    </a>
+    <a href="#amount" class="hc-btn hc-ghost">
+      <span data-l="ja">詳しく見る</span><span data-l="ko">자세히 보기</span><span data-l="en">Learn more</span>
+    </a>
+  </div>
+
+</div></div>
+</section>
+
+<!-- ===== BENEFIT 1: 쉽고 — 가이드 #4 ===== -->
+<section class="val-section">
+<div class="cx">
+  <div class="val-row rv">
+    <div class="val-num">01</div>
+    <div class="val-content">
+      <h2>
+        <span data-l="ja">キオスクの行列から解放</span>
+        <span data-l="ko">키오스크 줄에서 해방</span>
+        <span data-l="en">Skip the kiosk lines</span>
+      </h2>
+      <p class="val-benefit">
+        <span data-l="ja">現金を持ち歩く必要はありません。旅行前でも旅行中でも、日本の銀行口座からアプリで直接チャージ。WOWPASSの行列に並ぶ20分を、明洞の散策に使えます。</span>
+        <span data-l="ko">현금을 들고 다닐 필요 없습니다. 여행 전에도 여행 중에도, 일본 은행 계좌에서 앱으로 바로 충전. WOWPASS 줄에서 보내던 20분을 명동 구경에 쓰세요.</span>
+        <span data-l="en">No need to carry cash. Top up directly from your Japanese bank, before or during your trip. Spend those 20 minutes you'd waste in WOWPASS lines exploring Myeongdong instead.</span>
+      </p>
+      <p class="val-how"><span data-l="ja">日本の銀行口座 → アプリで即チャージ → すぐ使える</span><span data-l="ko">일본 은행 계좌 → 앱에서 즉시 충전 → 바로 사용</span><span data-l="en">Japanese bank → Instant app top-up → Ready to use</span></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== BENEFIT 2: 더 광범위하고 ===== -->
+<section class="val-section val-alt">
+<div class="cx">
+  <div class="val-row rv">
+    <div class="val-num">02</div>
+    <div class="val-content">
+      <h2>
+        <span data-l="ja">病院でも百貨店でも、決済拒否ゼロ</span>
+        <span data-l="ko">병원에서도 백화점에서도, 결제 거절 제로</span>
+        <span data-l="en">Zero payment rejections — clinics, department stores, everywhere</span>
+      </h2>
+      <p class="val-benefit">
+        <span data-l="ja">プリペイドカードで断られた経験、ありませんか？ このカードはチェックカード（デビットカード）として機能するため、韓国の全加盟店で100%決済可能。治療費の支払いに集中できます。</span>
+        <span data-l="ko">선불카드로 결제 거절당한 경험, 있지 않나요? 이 카드는 체크카드(직불카드)로 작동하여 한국 전 가맹점에서 100% 결제 가능. 시술비 결제에만 집중하세요.</span>
+        <span data-l="en">Ever been rejected with a prepaid card? This card works as a debit card, so it's accepted at 100% of merchants in Korea. Focus on your treatment, not payment anxiety.</span>
+      </p>
+      <p class="val-how"><span data-l="ja">チェックカードBIN → 全加盟店対応 → 拒否ゼロ</span><span data-l="ko">체크카드 BIN → 전 가맹점 대응 → 거절 제로</span><span data-l="en">Debit card BIN → All merchants → Zero rejections</span></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== BENEFIT 3: 편하고 ===== -->
+<section class="val-section">
+<div class="cx">
+  <div class="val-row rv">
+    <div class="val-num">03</div>
+    <div class="val-content">
+      <h2>
+        <span data-l="ja">空港に着いたら、すぐ地下鉄に乗れる</span>
+        <span data-l="ko">공항에 도착하면, 바로 지하철을 탈 수 있다</span>
+        <span data-l="en">Land at the airport, hop straight on the subway</span>
+      </h2>
+      <p class="val-benefit">
+        <span data-l="ja">交通カードを別途買う必要はありません。決済も移動もこの1枚で完結。仁川空港に降りた瞬間から韓国旅行が始まります。</span>
+        <span data-l="ko">교통카드를 따로 살 필요 없습니다. 결제도 이동도 이 한 장으로 끝. 인천공항에 내리는 순간부터 한국 여행이 시작됩니다.</span>
+        <span data-l="en">No need to buy a separate transit card. Payment and transit on one card. Your Korea trip starts the moment you land at Incheon.</span>
+      </p>
+      <p class="val-how"><span data-l="ja">T-money交通カード内蔵 → 地下鉄・バス対応</span><span data-l="ko">T-money 교통카드 내장 → 지하철·버스 대응</span><span data-l="en">Built-in T-money → Subway & bus ready</span></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== SOCIAL PROOF — 가이드 #6: 신뢰 ===== -->
+<section class="proof">
+<div class="cx">
+  <div class="proof-head">
+    <h2><span data-l="ja">韓国旅行者の声</span><span data-l="ko">한국 여행자의 목소리</span><span data-l="en">From Korea travelers</span></h2>
+    <p><span data-l="ja">※ サービス開始前のため、一般的な韓国旅行の決済体験です</span><span data-l="ko">※ 서비스 시작 전이므로, 일반적인 한국 여행 결제 경험입니다</span><span data-l="en">※ Pre-launch. These reflect common Korea travel payment experiences.</span></p>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-card rv">
+      <p class="proof-q">
+        <span data-l="ja">"クリニックで200万ウォンを払ったとき、手数料が後で明細に出てきて驚きました。最初から手数料ゼロで払えたらよかったのに。"</span>
+        <span data-l="ko">"클리닉에서 200만원을 결제했는데, 수수료가 나중에 명세서에 나와서 놀랐어요. 처음부터 수수료 없이 결제할 수 있었으면."</span>
+        <span data-l="en">"I paid ₩2M at a clinic and was shocked to see the fees on my statement later. Wish I could've paid with zero fees from the start."</span>
+      </p>
+      <p class="proof-who"><span data-l="ja">— 30代女性、東京、美容クリニック訪問</span><span data-l="ko">— 30대 여성, 도쿄, 미용클리닉 방문</span><span data-l="en">— Woman, 30s, Tokyo, visited beauty clinic</span></p>
+    </div>
+    <div class="proof-card rv">
+      <p class="proof-q">
+        <span data-l="ja">"WOWPASSに現金を入れるために20分も並びました。アプリで充電できたら、その時間で明洞をもう一周できたのに。"</span>
+        <span data-l="ko">"WOWPASS에 현금 넣으려고 20분이나 줄 섰어요. 앱으로 충전할 수 있었으면 그 시간에 명동을 한 바퀴 더 돌았을 텐데."</span>
+        <span data-l="en">"I waited 20 minutes to load cash into WOWPASS. If I could top up via app, I'd have spent that time exploring Myeongdong."</span>
+      </p>
+      <p class="proof-who"><span data-l="ja">— 20代女性、大阪、ショッピング旅行</span><span data-l="ko">— 20대 여성, 오사카, 쇼핑 여행</span><span data-l="en">— Woman, 20s, Osaka, shopping trip</span></p>
+    </div>
+  </div>
+
+  <!-- Trust badges -->
+  <div class="trust-badges">
+    <div class="trust-b">
+      <p class="tb-label"><span data-l="ja">韓国金融委員会 登録</span><span data-l="ko">금융위원회 등록</span><span data-l="en">Korea FSC Registered</span></p>
+      <p class="tb-sub"><span data-l="ja">金融当局監督下で運営</span><span data-l="ko">금융당국 감독 운영</span><span data-l="en">Government supervised</span></p>
+    </div>
+    <div class="trust-b">
+      <p class="tb-label"><span data-l="ja">海外送金 運営実績</span><span data-l="ko">해외송금 운영 실적</span><span data-l="en">Remittance track record</span></p>
+      <p class="tb-sub"><span data-l="ja">日韓送金の信頼</span><span data-l="ko">한일 송금 신뢰</span><span data-l="en">Japan-Korea transfers</span></p>
+    </div>
+    <div class="trust-b">
+      <p class="tb-label"><span data-l="ja">全国加盟店で利用可能</span><span data-l="ko">전국 가맹점 이용</span><span data-l="en">Nationwide coverage</span></p>
+      <p class="tb-sub"><span data-l="ja">チェックカード全店舗</span><span data-l="ko">체크카드 전 가맹점</span><span data-l="en">All debit merchants</span></p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== AMOUNT ===== -->
+<section class="pick" id="amount">
+<div class="cx">
+  <h2><span data-l="ja">いくらチャージしますか？</span><span data-l="ko">얼마를 충전하시겠습니까?</span><span data-l="en">How much would you charge?</span></h2>
+  <div class="ag">
+    <div class="ac rv" onclick="pick(this,10000)">
+      <div class="ac-y">¥10,000</div><div class="ac-k">≈ ₩100,000</div>
+      <div class="ac-u"><span data-l="ja">コンビニ・交通費</span><span data-l="ko">편의점·교통비</span><span data-l="en">Convenience & transit</span></div>
+    </div>
+    <div class="ac rv" onclick="pick(this,30000)">
+      <div class="ac-y">¥30,000</div><div class="ac-k">≈ ₩300,000</div>
+      <div class="ac-u"><span data-l="ja">ショッピング・グルメ</span><span data-l="ko">쇼핑·미식</span><span data-l="en">Shopping & dining</span></div>
+    </div>
+    <div class="ac rv" onclick="pick(this,50000)">
+      <div class="ac-y">¥50,000</div><div class="ac-k">≈ ₩500,000</div>
+      <div class="ac-u"><span data-l="ja">ショッピング・プチ整形</span><span data-l="ko">쇼핑·쁘띠성형</span><span data-l="en">Shopping & treatments</span></div>
+    </div>
+    <div class="ac rv" onclick="pick(this,100000)">
+      <div class="ac-y">¥100,000</div><div class="ac-k">≈ ₩1,000,000</div>
+      <div class="ac-u"><span data-l="ja">美容クリニック</span><span data-l="ko">미용클리닉</span><span data-l="en">Beauty clinics</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== CTA — 다크 bg, 반복 CTA ===== -->
+<section class="cta-s" id="register">
+<div class="cx">
+  <div id="fa">
+    <h2><span data-l="ja">サービス開始時に優先ご案内</span><span data-l="ko">서비스 시작 시 우선 안내</span><span data-l="en">Get priority access at launch</span></h2>
+    <p class="cta-sub"><span data-l="ja">事前登録は無料。開始時にご連絡します。</span><span data-l="ko">사전등록 무료. 시작 시 연락드립니다.</span><span data-l="en">Free pre-registration. We'll notify you at launch.</span></p>
+    <form class="cf" onsubmit="sub(event)">
+      <input class="ci" type="email" id="em" required autocomplete="email" inputmode="email">
+      <button class="cb" type="submit" id="bt"><span data-l="ja">事前登録</span><span data-l="ko">사전등록</span><span data-l="en">Pre-register</span></button>
+    </form>
+    <p class="cn"><span data-l="ja">※ まだサービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span><span data-l="en">※ Not yet launched</span></p>
+  </div>
+  <div class="done" id="dn">
+    <h3><span data-l="ja">ありがとうございます！</span><span data-l="ko">감사합니다!</span><span data-l="en">Thank you!</span></h3>
+    <p><span data-l="ja">30秒アンケートで優先案内いたします。</span><span data-l="ko">30초 설문으로 우선 안내드립니다.</span><span data-l="en">30-sec survey for priority access.</span></p>
+    <a class="sv" href="#" target="_blank" id="svl" onclick="track('survey_click')"><span data-l="ja">アンケートに答える →</span><span data-l="ko">설문 답하기 →</span><span data-l="en">Take the survey →</span></a>
+  </div>
+</div>
+</section>
+
+<footer><div class="cx"><span data-l="ja">© 2026 MOIN Inc.</span><span data-l="ko">© 2026 MOIN Inc.</span><span data-l="en">© 2026 MOIN Inc.</span></div></footer>
+
+<script>
+document.querySelectorAll('.lang button').forEach(b=>{b.addEventListener('click',()=>{
+  const l=b.dataset.lang;document.documentElement.lang=l;
+  document.querySelectorAll('.lang button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  document.getElementById('em').placeholder={ja:'メールアドレス',ko:'이메일 주소',en:'Email address'}[l];
+})});
+document.getElementById('em').placeholder='メールアドレス';
+
+let amt=null;
+function pick(el,v){
+  document.querySelectorAll('.ac').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');amt=v;track('amount_selected',{value:v});
+  document.getElementById('register').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function sub(e){e.preventDefault();const em=document.getElementById('em').value;if(!em)return;
+  track('preregister_click',{amount:amt});
+  const b=document.getElementById('bt');b.disabled=true;b.textContent='…';
+  setTimeout(()=>{track('preregister_complete',{amount:amt,domain:em.split('@')[1]});
+  document.getElementById('fa').style.display='none';document.getElementById('dn').classList.add('show')},500)}
+
+const u=new URLSearchParams(location.search),sp=new URLSearchParams();
+if(u.get('utm_source'))sp.set('utm_source',u.get('utm_source'));
+if(u.get('utm_campaign'))sp.set('utm_campaign',u.get('utm_campaign'));
+document.getElementById('svl').href='https://forms.gle/PLACEHOLDER'+(sp.toString()?'?'+sp:'');
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
