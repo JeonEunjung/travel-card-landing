@@ -150,6 +150,13 @@ tailwind.config = {
 
   html { scroll-behavior: smooth; }
   h1, h2, h3 { text-wrap: balance; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spring { transition: none; }
+    .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+    .parallax { animation: none; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 
@@ -207,7 +214,7 @@ tailwind.config = {
           <span data-l="en">Paying in Korea?<br>You're losing <span class="bg-white/15 px-1.5 rounded">thousands in fees</span>.</span>
         </h1>
 
-        <p class="reveal text-lg md:text-xl text-white/75 leading-relaxed max-w-[52ch] mb-10 break-keep-all" style="transition-delay: 160ms;">
+        <p class="reveal text-lg md:text-xl text-white/85 leading-relaxed max-w-[52ch] mb-10 break-keep-all" style="transition-delay: 160ms;">
           <span data-l="ja">クリニックで20万円払ったのに、手数料で7,700円も取られてた — そんな経験ありませんか？ このカードなら手数料ゼロ。アプリでサクッとチャージして、韓国どこでも使えます。</span>
           <span data-l="ko">클리닉에서 20만엔 결제했는데 수수료로 7,700엔이나 빠져나간 적 없어요? 이 카드는 수수료 제로. 앱에서 바로 충전하고 한국 어디서든 쓸 수 있어요.</span>
           <span data-l="en">Paid ¥200,000 at a clinic only to find ¥7,700 gone in hidden fees? With this card, fees are zero. Top up via app and pay anywhere in Korea.</span>
