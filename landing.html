@@ -510,29 +510,33 @@ tailwind.config = {
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto stagger">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto stagger">
 
-      <!-- Pain 1 -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:bill-cross-bold-duotone" class="text-accent/40 mb-4" width="32"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">明細を見て驚いた手数料</span>
-            <span data-l="ko">명세서 보고 놀란 수수료</span>
-            <span data-l="en">Surprise fees on the statement</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">クリニックで200万ウォンを払って、帰国後の明細に手数料7万ウォン。最初から知っていたら、別の方法で払ったのに。</span>
-            <span data-l="ko">클리닉에서 200만원 결제하고, 귀국 후 명세서에 수수료 7만원. 미리 알았으면 다른 방법으로 냈을 텐데.</span>
-            <span data-l="en">Paid ₩2M at a clinic, then found ₩70K in fees on your statement back home. If only you'd known sooner.</span>
-          </p>
+      <!-- Pain 1 — featured (spans full width) -->
+      <div class="reveal md:col-span-2">
+        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8 md:p-10 flex flex-col md:flex-row gap-6 md:items-center">
+          <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center shrink-0">
+            <iconify-icon icon="solar:bill-cross-bold-duotone" class="text-accent/60" width="28"></iconify-icon>
+          </div>
+          <div>
+            <p class="font-display font-bold text-lg text-ink mb-2 break-keep-all">
+              <span data-l="ja">明細を見て驚いた手数料</span>
+              <span data-l="ko">명세서 보고 놀란 수수료</span>
+              <span data-l="en">Surprise fees on the statement</span>
+            </p>
+            <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+              <span data-l="ja">クリニックで200万ウォンを払って、帰国後の明細に手数料7万ウォン。最初から知っていたら、別の方法で払ったのに。</span>
+              <span data-l="ko">클리닉에서 200만원 결제하고, 귀국 후 명세서에 수수료 7만원. 미리 알았으면 다른 방법으로 냈을 텐데.</span>
+              <span data-l="en">Paid ₩2M at a clinic, then found ₩70K in fees on your statement back home. If only you'd known sooner.</span>
+            </p>
+          </div>
         </div>
       </div>
 
       <!-- Pain 2 -->
       <div class="reveal">
         <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:clock-circle-bold-duotone" class="text-accent/40 mb-4" width="32"></iconify-icon>
+          <iconify-icon icon="solar:clock-circle-bold-duotone" class="text-accent/60 mb-4" width="28"></iconify-icon>
           <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
             <span data-l="ja">キオスクの前で20分待ち</span>
             <span data-l="ko">키오스크 앞에서 20분 대기</span>
@@ -549,7 +553,7 @@ tailwind.config = {
       <!-- Pain 3 -->
       <div class="reveal">
         <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/40 mb-4" width="32"></iconify-icon>
+          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/60 mb-4" width="28"></iconify-icon>
           <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
             <span data-l="ja">空港で交通カード探し</span>
             <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
