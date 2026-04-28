@@ -12,9 +12,10 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -29,8 +30,8 @@ tailwind.config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'Pretendard', 'system-ui', 'sans-serif'],
+        sans: ['Pretendard JP', 'Pretendard', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Pretendard JP', 'Pretendard', 'system-ui', 'sans-serif'],
       },
       colors: {
         accent: { DEFAULT: '#0284c7', light: '#38bdf8', soft: '#f0f9ff', dark: '#0369a1' },
@@ -151,11 +152,21 @@ tailwind.config = {
   html { scroll-behavior: smooth; }
   h1, h2, h3 { text-wrap: balance; }
 
+  /* Receipt hover */
+  .receipt-paper {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .receipt-paper:hover {
+    transform: rotate(-0.4deg) translateY(-6px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 16px 32px -6px rgba(0,0,0,0.18), 0 40px 70px -16px rgba(0,0,0,0.30) !important;
+  }
+  .receipt-annotation { transform: rotate(-1.5deg); }
   @media (prefers-reduced-motion: reduce) {
     .spring { transition: none; }
     .reveal { opacity: 1; transform: none; filter: none; transition: none; }
     .parallax { animation: none; }
     html { scroll-behavior: auto; }
+    .receipt-paper { transition: none; }
   }
 </style>
 </head>
@@ -197,9 +208,8 @@ tailwind.config = {
   <!-- V2: Photo + overlay -->
   <div id="hero-v2" class="absolute inset-0">
     <img src="https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1920&h=1080&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover" style="filter: brightness(106%);" loading="eager">
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(96,165,250,0.17), rgba(56,189,248,0.14), rgba(94,234,212,0.10)); mix-blend-mode: color-dodge;"></div>
     <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(96,165,250,1.0), rgba(56,189,248,0.7), transparent);"></div>
-    <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 50%, white 100%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 50%, #ffffff 100%);"></div>
   </div>
   <!-- Curved bottom edge — asymmetric organic shape -->
   <div class="absolute bottom-0 left-0 right-0 translate-y-[1px]">
@@ -208,7 +218,7 @@ tailwind.config = {
     </svg>
   </div>
   <!-- Grain texture overlay (Nstock-style) -->
-  <div class="absolute inset-0 pointer-events-none" style="filter: url(#grain); opacity: 0.45; mix-blend-mode: screen;"></div>
+  <div class="absolute inset-0 pointer-events-none" style="filter: url(#grain); opacity: 0.45; mix-blend-mode: screen; mask-image: linear-gradient(to bottom, black 60%, transparent 95%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 95%);"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-52 md:pt-0 md:pb-44">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -265,46 +275,110 @@ tailwind.config = {
         </div>
       </div>
 
-      <!-- Right: Holographic 3D Card -->
+      <!-- Right: Credit card statement (paper receipt) -->
       <div class="lg:col-span-5 reveal" style="transition-delay: 320ms;">
-        <div class="card-scene w-full max-w-[420px] mx-auto" id="holoScene">
-          <div class="card-3d" id="holoTilt">
-            <div class="holo-card aspect-[1.586/1]" id="holoCard" style="padding: clamp(1.5rem, 4vw, 2.25rem);">
-              <div class="card-inner flex flex-col justify-between h-full">
+        <div class="relative w-full max-w-[380px] mx-auto" style="transform: rotate(-1.6deg);">
+          <!-- Paper -->
+          <div class="receipt-paper relative bg-[#fefdf6] px-8 pt-7 pb-6" style="font-family: ui-monospace, 'SF Mono', 'Menlo', 'Monaco', monospace; color: #1e293b; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 16px -4px rgba(0,0,0,0.12), 0 24px 48px -12px rgba(0,0,0,0.25);">
+            <!-- Subtle paper texture -->
+            <div class="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-multiply" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>');"></div>
 
-                <!-- Top: logo + NFC -->
-                <div class="flex items-start justify-between">
-                  <div>
-                    <p class="font-display font-black text-slate-700 text-xl tracking-tight">Travel Card</p>
-                    <p class="text-[10px] text-slate-500/70 font-medium tracking-widest uppercase mt-0.5">Korea</p>
-                  </div>
-                  <iconify-icon icon="solar:nfc-bold" width="24" class="text-slate-400/40"></iconify-icon>
-                </div>
+            <!-- Top perforated edge -->
+            <div class="absolute -top-[3px] left-0 right-0 h-[6px]" style="background-image: radial-gradient(circle at 5px 3px, #fefdf6 3px, transparent 3.2px); background-size: 10px 6px; background-repeat: repeat-x;"></div>
+            <!-- Bottom perforated edge -->
+            <div class="absolute -bottom-[3px] left-0 right-0 h-[6px]" style="background-image: radial-gradient(circle at 5px 3px, #fefdf6 3px, transparent 3.2px); background-size: 10px 6px; background-repeat: repeat-x;"></div>
 
-                <!-- Middle: chip -->
-                <div>
-                  <div class="w-11 h-8 rounded-md bg-gradient-to-br from-amber-200/80 via-yellow-300/60 to-amber-100/80 border border-amber-300/30 shadow-[inset_0_1px_2px_rgba(255,255,255,0.6)]">
-                    <div class="w-full h-full rounded-md" style="background: repeating-linear-gradient(90deg, transparent, transparent 4.5px, rgba(0,0,0,0.04) 4.5px, rgba(0,0,0,0.04) 5.5px);"></div>
-                  </div>
-                </div>
-
-                <!-- Bottom: number + T-money -->
-                <div class="flex items-end justify-between">
-                  <div>
-                    <p class="font-display text-[13px] text-slate-500/50 tracking-[0.25em] mb-1.5" style="font-variant-numeric: tabular-nums;">•••• •••• •••• 0000</p>
-                    <p class="font-display text-xs text-slate-500/60 tracking-wider uppercase">Cardholder Name</p>
-                  </div>
-                  <div class="flex items-center gap-1.5 bg-slate-500/[0.06] border border-slate-400/10 rounded-full px-2.5 py-1">
-                    <iconify-icon icon="solar:bus-bold" width="11" class="text-slate-400/50"></iconify-icon>
-                    <span class="text-[10px] text-slate-500/50 font-medium tracking-wide">Transit</span>
-                  </div>
-                </div>
-
+            <!-- Header -->
+            <div class="relative flex items-start justify-between mb-4">
+              <div>
+                <p class="text-[9px] tracking-[0.22em] text-slate-400 mb-1">CREDIT CARD STATEMENT</p>
+                <p class="text-[13px] font-bold text-slate-800 tracking-wide">
+                  <span data-l="ja">ご利用明細</span>
+                  <span data-l="ko">카드 이용내역</span>
+                  <span data-l="en">Statement</span>
+                </p>
               </div>
+              <p class="text-[9px] text-slate-400 leading-[1.4] text-right tracking-wider" style="font-variant-numeric: tabular-nums;">2026.04.18<br>SEOUL · KR</p>
+            </div>
+
+            <!-- Dashed divider -->
+            <div class="border-t border-dashed border-slate-300/80"></div>
+
+            <!-- Rows -->
+            <div class="space-y-[7px] text-[11px] py-4">
+              <div class="flex justify-between">
+                <span class="text-slate-400">
+                  <span data-l="ja">加盟店</span>
+                  <span data-l="ko">가맹점</span>
+                  <span data-l="en">Merchant</span>
+                </span>
+                <span class="text-slate-700 tracking-wider">MYEONGDONG STORE</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">
+                  <span data-l="ja">通貨</span>
+                  <span data-l="ko">통화</span>
+                  <span data-l="en">Currency</span>
+                </span>
+                <span class="text-slate-700 tracking-wider">KRW</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">
+                  <span data-l="ja">ご利用金額</span>
+                  <span data-l="ko">결제 금액</span>
+                  <span data-l="en">Paid</span>
+                </span>
+                <span class="text-slate-700 tracking-wider" style="font-variant-numeric: tabular-nums;">¥200,000</span>
+              </div>
+            </div>
+
+            <!-- Solid divider -->
+            <div class="border-t border-slate-400/60"></div>
+
+            <!-- Billed amount: label left, big number right -->
+            <div class="relative pt-4 pb-2 flex items-end justify-between">
+              <p class="text-[10px] tracking-wider text-slate-500 pb-1.5">
+                <span data-l="ja">ご請求金額</span>
+                <span data-l="ko">청구 금액</span>
+                <span data-l="en">Billed</span>
+              </p>
+              <div class="relative">
+                <p class="text-[34px] leading-none font-bold text-slate-900" style="font-variant-numeric: tabular-nums; letter-spacing: -0.01em;">¥207,700</p>
+                <!-- Hand-drawn red circle -->
+                <svg class="receipt-circle absolute -inset-y-3 -inset-x-3 w-[calc(100%+24px)] h-[calc(100%+24px)] pointer-events-none" viewBox="0 0 200 60" preserveAspectRatio="none" fill="none">
+                  <path d="M 12 32 C 8 18, 30 8, 100 8 C 175 8, 192 18, 188 30 C 192 44, 170 54, 100 52 C 30 54, 6 46, 12 32 Z" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="filter: url(#scribble);"/>
+                </svg>
+                <svg width="0" height="0" class="absolute">
+                  <filter id="scribble">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="5"/>
+                    <feDisplacementMap in="SourceGraphic" scale="3"/>
+                  </filter>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Marker annotation (handwritten) -->
+            <div class="receipt-annotation relative mt-3 flex items-center justify-end gap-2">
+              <svg width="20" height="14" viewBox="0 0 20 14" fill="none" class="text-red-600">
+                <path d="M 2 7 Q 8 3, 14 7 M 11 4 L 14 7 L 11 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              <p class="text-red-600" style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px; line-height: 1;">
+                <span data-l="ja">+¥7,700  あれ？</span>
+                <span data-l="ko">+¥7,700  어?</span>
+                <span data-l="en">+¥7,700  wait?</span>
+              </p>
+            </div>
+
+            <!-- Footer note -->
+            <div class="relative border-t border-dashed border-slate-300/80 mt-5 pt-3">
+              <p class="text-[9px] text-slate-400 tracking-[0.05em] text-center">
+                <span data-l="ja">海外手数料 + DCC + 為替差 = 約 3.85%</span>
+                <span data-l="ko">해외 수수료 + DCC + 환율차 = 약 3.85%</span>
+                <span data-l="en">Foreign fee + DCC + FX spread ≈ 3.85%</span>
+              </p>
             </div>
           </div>
         </div>
-
       </div>
 
     </div>
@@ -316,11 +390,68 @@ tailwind.config = {
 <!-- ═══ /DIVERGENT (hero) ═══ -->
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- DIVERGENT: pain section (C variant) — moved up for doubt→recognition arc    -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ===== PAIN POINTS — moved up for doubt → recognition flow ===== -->
+<section class="py-16 md:py-24" style="background-color: #ffffff;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-display text-3xl md:text-4xl tracking-tight leading-tight font-bold mb-3 break-keep-all">
+        <span data-l="ja">こんな経験、ありませんか？</span>
+        <span data-l="ko">이런 경험, 없으세요?</span>
+        <span data-l="en">Sound familiar?</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto stagger">
+
+      <!-- Pain 1 — Statement higher than expected -->
+      <div class="reveal">
+        <div class="bg-slate-50 ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:document-text-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">明細書、思っていたより高い</span>
+            <span data-l="ko">명세서가, 생각보다 비싸다</span>
+            <span data-l="en">The statement comes in higher than expected</span>
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">¥200,000払ったつもりが、明細では¥207,700。海外手数料・DCC・為替差で<strong>合計3.85%</strong>が、知らないうちに上乗せされていた。</span>
+            <span data-l="ko">¥200,000 결제한 줄 알았는데, 명세서엔 ¥207,700. 해외 수수료·DCC·환율 차이로 <strong>합계 3.85%</strong>가, 모르는 사이에 더 붙어 있었어요.</span>
+            <span data-l="en">You thought it was ¥200,000 — the statement says ¥207,700. Foreign fees + DCC + FX spread quietly added up to <strong>3.85%</strong>.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Pain 2 — Hunting for transit card -->
+      <div class="reveal">
+        <div class="bg-slate-50 ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">空港で交通カード探し</span>
+            <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
+            <span data-l="en">Hunting for a transit card at the airport</span>
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">空港に着いて交通カードを買うのに30分。やっと手に入れて地下鉄に乗ったら、もう疲れてる。</span>
+            <span data-l="ko">공항에 도착해서 교통카드 사는 데 30분. 겨우 구해서 지하철 탔더니 벌써 지쳐 있어요.</span>
+            <span data-l="en">30 minutes at the airport just to buy a transit card. By the time you're on the subway, you're already tired.</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- SHARED: fee-comparison v1                                                   -->
 <!-- Edit in both landing.html (W) and landing-c.html (C) when changing.         -->
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== FEE COMPARISON — floats over hero ===== -->
-<section class="relative z-10 pt-16 md:pt-24 pb-10 md:pb-16">
+<section class="relative z-10 pt-16 md:pt-24 pb-10 md:pb-16 bg-slate-50">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="reveal bg-white/90 backdrop-blur-xl ring-1 ring-black/[0.06] rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] p-8 md:p-12">
@@ -344,7 +475,7 @@ tailwind.config = {
           <p class="text-xs text-ink-muted uppercase tracking-wider font-display font-medium mb-3">
             <span data-l="ja">海外カード (3.85%)</span><span data-l="ko">해외카드 (3.85%)</span><span data-l="en">Foreign card (3.85%)</span>
           </p>
-          <p class="font-display font-black text-4xl md:text-5xl text-ink/25 line-through decoration-2 decoration-red-400/40 mb-2" style="font-variant-numeric: tabular-nums;">−¥7,700</p>
+          <p class="font-display font-black text-4xl md:text-5xl text-ink/60 mb-2" style="font-variant-numeric: tabular-nums;">−¥7,700</p>
           <p class="text-sm text-ink-muted">
             <span data-l="ja">明細を見て初めて気づく</span><span data-l="ko">명세서를 봐야 알 수 있어요</span><span data-l="en">You only notice on the statement</span>
           </p>
@@ -383,65 +514,62 @@ tailwind.config = {
 <section id="benefits" class="py-20 md:py-28">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- ═══ DIVERGENT: benefit #1 (C variant — "払った金額がそのまま") ═══ -->
-    <!-- Benefit 1 -->
+    <!-- ═══ DIVERGENT: benefits (C variant — Cost / FX timing / Realtime / Transit) ═══ -->
+    <!-- Benefit 1 — All hidden costs zero (수수료+DCC+상승 통합) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
       <div class="reveal">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">01</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
           <span data-l="ja">払った金額が、<br>そのまま請求</span>
           <span data-l="ko">결제한 금액이,<br>그대로 청구</span>
-          <span data-l="en">What you pay is<br>what you're billed</span>
+          <span data-l="en">What you pay,<br>is what you're billed</span>
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">クレカ手数料1.6〜2.2%、DCCで上乗せ、レート換算の差額… 帰国後の明細でやっと気づく「見えない出費」。このカードは日本円から直接チャージ。海外手数料ゼロ、DCC関係なし。請求書には、決済した金額だけ。</span>
-          <span data-l="ko">신용카드 해외수수료 1.6~2.2%, DCC로 추가, 환율 환산 차액… 귀국 후 명세서에서야 알게 되는 "보이지 않는 지출". 이 카드는 엔화에서 직접 충전. 해외 수수료 0원, DCC 무관. 명세서에는 결제한 금액만 나와요.</span>
-          <span data-l="en">Foreign fee 1.6–2.2%, DCC markup, exchange rate spread — the "invisible cost" you only spot on the statement back home. This card tops up from yen directly. Zero foreign fee, DCC doesn't apply. Your statement shows what you actually paid.</span>
+          <span data-l="ja">クレカで韓国決済すると、海外手数料・DCC・為替差が重なって<strong>約3.85%</strong>が上乗せされる。このカードは韓国発行だから、決済した金額がそのまま明細に出ます。</span>
+          <span data-l="ko">신용카드로 한국 결제하면, 해외 수수료·DCC·환율 차이가 겹쳐 <strong>약 3.85%</strong>가 더 붙어요. 이 카드는 한국 발행이라, 결제한 금액이 그대로 명세서에 나와요.</span>
+          <span data-l="en">Korea on a credit card stacks foreign fees, DCC, and FX spread — <strong>about 3.85%</strong> quietly added. This card is Korean-issued: what you paid is what you're billed.</span>
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:dollar-minimalistic-bold" width="20"></iconify-icon>
-          <span data-l="ja">海外手数料ゼロ・DCC不要・見積もり通り</span>
-          <span data-l="ko">해외 수수료 0원·DCC 무관·견적 그대로</span>
-          <span data-l="en">Zero foreign fees · No DCC · As quoted</span>
+          <span data-l="ja">余計な料金、まるごとゼロ</span>
+          <span data-l="ko">여분의 비용, 통째로 0</span>
+          <span data-l="en">Hidden costs, all gone</span>
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
         <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
-          <img src="https://images.unsplash.com/photo-1743271853206-ea3d52a472ed?w=800&h=600&fit=crop" alt="Myeongdong shopping street Seoul" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop" alt="Statement showing exact amount" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 text-white">
             <div class="flex items-center gap-2 mb-2">
-              <iconify-icon icon="solar:smartphone-2-bold-duotone" width="20"></iconify-icon>
+              <iconify-icon icon="solar:document-text-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">アプリで即チャージ</span><span data-l="ko">앱에서 즉시 충전</span><span data-l="en">Instant app top-up</span>
+                <span data-l="ja">払った額 = 請求額</span><span data-l="ko">결제 = 청구</span><span data-l="en">Paid = billed</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">キオスクの20分 → カフェ巡りの20分に</span><span data-l="ko">키오스크 20분 → 카페 투어 20분으로</span><span data-l="en">20 min at kiosk → 20 min at cafes</span>
+              <span data-l="ja">手数料・店レート・差額、ぜんぶゼロ</span><span data-l="ko">수수료·가게환율·차액, 전부 0</span><span data-l="en">No fee, no merchant rate, no spread</span>
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ═══ /DIVERGENT (benefit #1) ═══ -->
-
-    <!-- ═══ SHARED: benefits 2-4 (zigzag) ═══ -->
-    <!-- Benefit 2 — reversed -->
+    <!-- Benefit 2 — Charge when FX rate is good (이전 B3) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
       <div class="reveal order-2 lg:order-1" style="transition-delay: 120ms;">
         <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
-          <img src="https://images.unsplash.com/photo-1736901217559-70e403fcb98f?w=800&h=600&fit=crop" alt="Card payment at counter" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop" alt="Currency exchange rate display" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 text-white">
             <div class="flex items-center gap-2 mb-2">
-              <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
+              <iconify-icon icon="solar:graph-up-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">全加盟店で決済OK</span><span data-l="ko">전 가맹점 결제 OK</span><span data-l="en">Accepted everywhere</span>
+                <span data-l="ja">レートを選んでチャージ</span><span data-l="ko">환율 골라서 충전</span><span data-l="en">Pick your rate</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">クリニックでも百貨店でも、断られない</span><span data-l="ko">클리닉에서도 백화점에서도, 어디서든 결제돼요</span><span data-l="en">Clinics, department stores — never rejected</span>
+              <span data-l="ja">円安の日に、安心の準備</span><span data-l="ko">엔저인 날, 미리 준비</span><span data-l="en">Stock up on a good FX day</span>
             </p>
           </div>
         </div>
@@ -449,46 +577,67 @@ tailwind.config = {
       <div class="reveal order-1 lg:order-2">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">02</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">「このカード使えません」<br>はもう聞かない</span>
-          <span data-l="ko">"이 카드 안 됩니다"<br>이제 안 들어도 돼요</span>
-          <span data-l="en">"Card not accepted"<br>— never again</span>
+          <span data-l="ja">レートが安い日に、<br>まとめてチャージ</span>
+          <span data-l="ko">환율 좋을 때,<br>미리 충전</span>
+          <span data-l="en">Top up when<br>the rate is on your side</span>
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">クリニックのレジで「使えません」って言われた瞬間のあの焦り、分かります。このカードはデビットカードだから、韓国のどのお店でも使えます。支払いのことは気にせず、施術に集中してください。</span>
-          <span data-l="ko">클리닉 카운터에서 "결제가 안 된다"는 말을 들었을 때의 그 당황스러움, 아시죠? 이 카드는 체크카드라 한국 모든 가맹점에서 사용할 수 있어요. 시술에만 집중하시고, 결제 걱정은 내려놓으세요.</span>
-          <span data-l="en">That sinking feeling at the clinic counter when your card gets rejected — we get it. This card is a debit card, accepted everywhere in Korea. Focus on your treatment, forget about payments.</span>
+          <span data-l="ja">クレカは決済の瞬間のレートで請求されるから、円安の日も避けられない。このカードなら、レートが安い日にまとめてチャージして、しばらく安心して使えます。</span>
+          <span data-l="ko">신용카드는 결제하는 그 순간의 환율로 청구되니, 엔저인 날도 피할 수 없어요. 이 카드는 환율 좋은 날 미리 충전해두면, 한동안 안심하고 쓸 수 있어요.</span>
+          <span data-l="en">Credit cards bill at the moment-of-payment rate — bad-FX days are unavoidable. With this card, top up on a good day and spend in peace for a while.</span>
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
-          <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
-          <span data-l="ja">韓国の全お店で使える</span>
-          <span data-l="ko">한국 전 가맹점 결제 가능</span>
-          <span data-l="en">Accepted at all Korean merchants</span>
+          <iconify-icon icon="solar:graph-up-bold" width="20"></iconify-icon>
+          <span data-l="ja">自分のタイミングで、レート確定</span>
+          <span data-l="ko">내 타이밍에, 환율 확정</span>
+          <span data-l="en">Top up on your terms</span>
         </div>
       </div>
     </div>
 
-    <!-- Benefit 3 -->
+    <!-- Benefit 3 — Real-time app tracking (이전 B4) -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
       <div class="reveal">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">03</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">空港に着いたら<br>そのまま地下鉄へ</span>
-          <span data-l="ko">공항 도착하면<br>바로 지하철 타면 돼요</span>
-          <span data-l="en">Land at the airport,<br>hop right on the subway</span>
+          <span data-l="ja">使ったらすぐ、<br>アプリで確認</span>
+          <span data-l="ko">결제하면 바로,<br>앱에서 확인</span>
+          <span data-l="en">Right after you tap,<br>see the spend</span>
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">着いてすぐ交通カードを買いに走るのはもう卒業。このカードには交通カード機能が入っているから、到着ゲートを出たらそのまま地下鉄へ。カード1枚で買い物も移動もぜんぶOK。</span>
-          <span data-l="ko">도착하자마자 교통카드 사러 뛰어다니던 시절은 이제 안녕. 이 카드에는 교통카드 기능이 내장돼 있어서, 입국장을 나서면 바로 지하철로 가면 돼요. 카드 한 장으로 쇼핑도 이동도 전부 해결.</span>
-          <span data-l="en">No more rushing to buy a transit card the moment you land. This card has transit built in — walk through arrivals and straight onto the subway. One card for shopping and getting around.</span>
+          <span data-l="ja">クレカは数日後に明細反映、本当の支払額は請求書まで分からない。このカードは決済後数秒でアプリに反映、「いくら使ったっけ？」がなくなります。</span>
+          <span data-l="ko">신용카드는 며칠 뒤에야 명세서 반영, 진짜 결제 금액은 청구서 봐야 알아요. 이 카드는 결제 직후 몇 초 만에 앱에 반영, "얼마 썼지?"가 없어집니다.</span>
+          <span data-l="en">Credit cards take days to update; you won't know the real cost until the statement. This card updates balance in your app within seconds — no more "how much did I spend?" panic.</span>
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
-          <iconify-icon icon="solar:bus-bold" width="20"></iconify-icon>
-          <span data-l="ja">交通カード内蔵 — 地下鉄もバスもOK</span>
-          <span data-l="ko">교통카드 내장 — 지하철도 버스도 OK</span>
-          <span data-l="en">Built-in transit — subway & bus ready</span>
+          <iconify-icon icon="solar:bell-bing-bold" width="20"></iconify-icon>
+          <span data-l="ja">決済 → 数秒でアプリ反映 — 帰国後の驚き、もうない</span>
+          <span data-l="ko">결제 → 몇 초 만에 앱 반영 — 귀국 후 놀랄 일, 더 이상 없음</span>
+          <span data-l="en">Tap → instant app update — no more post-trip surprise</span>
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
+        <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
+          <img src="https://images.unsplash.com/photo-1611174743420-3d7df880ce32?w=800&h=600&fit=crop" alt="Phone showing transaction history" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <div class="flex items-center gap-2 mb-2">
+              <iconify-icon icon="solar:bell-bing-bold" width="20"></iconify-icon>
+              <p class="font-display font-bold text-sm">
+                <span data-l="ja">決済 → 数秒でアプリ反映</span><span data-l="ko">결제 → 몇 초 만에 앱 반영</span><span data-l="en">Tap → updates in seconds</span>
+              </p>
+            </div>
+            <p class="text-xs text-white/60">
+              <span data-l="ja">帰国後の驚き、もうない</span><span data-l="ko">귀국 후 놀랄 일, 더 이상 없음</span><span data-l="en">No more post-trip surprise</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefit 4 — Transit + payment integrated (NEW) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mt-20 md:mt-28">
+      <div class="reveal order-2 lg:order-1" style="transition-delay: 120ms;">
         <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
           <img src="https://images.unsplash.com/photo-1760020884550-f706e361528b?w=800&h=600&fit=crop" alt="Subway fare gate" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -500,28 +649,7 @@ tailwind.config = {
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">空港を出て、そのまま地下鉄へ</span><span data-l="ko">공항 나오면 바로 지하철로</span><span data-l="en">Walk out of the airport, onto the subway</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Benefit 4 — reversed -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mt-20 md:mt-28">
-      <div class="reveal order-2 lg:order-1" style="transition-delay: 120ms;">
-        <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
-          <img src="https://images.unsplash.com/photo-1618914240933-7427509eeb49?w=800&h=600&fit=crop" alt="Hand with phone and cash refund" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-          <div class="absolute bottom-6 left-6 right-6 text-white">
-            <div class="flex items-center gap-2 mb-2">
-              <iconify-icon icon="solar:wallet-money-bold-duotone" width="20"></iconify-icon>
-              <p class="font-display font-bold text-sm">
-                <span data-l="ja">アプリで即返金</span><span data-l="ko">앱에서 즉시 환불</span><span data-l="en">Instant app refund</span>
-              </p>
-            </div>
-            <p class="text-xs text-white/60">
-              <span data-l="ja">残高 → 日本の口座へ</span><span data-l="ko">잔액 → 일본 계좌로</span><span data-l="en">Balance → back to your account</span>
+              <span data-l="ja">決済も交通も、これ1枚</span><span data-l="ko">결제도 교통도, 이 한 장</span><span data-l="en">Pay & ride, one card</span>
             </p>
           </div>
         </div>
@@ -529,20 +657,20 @@ tailwind.config = {
       <div class="reveal order-1 lg:order-2">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">04</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">残ったお金、<br>ワンタップで返金</span>
-          <span data-l="ko">남은 금액,<br>탭 한 번으로 바로 환급</span>
-          <span data-l="en">Leftover balance?<br>One tap to get it back</span>
+          <span data-l="ja">地下鉄もバスも、<br>この1枚で</span>
+          <span data-l="ko">지하철도 버스도,<br>이 한 장으로</span>
+          <span data-l="en">Subway, bus, shopping —<br>one card</span>
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">旅行が終わって余った残高、そのままにしていませんか？ このカードならアプリでワンタップ。残高がそのまま日本の口座に戻ります。使い切れなくても損しない。</span>
-          <span data-l="ko">여행 끝나고 남은 잔액, 그냥 놔두고 있지 않나요? 이 카드는 앱에서 한 번만 누르면 잔액이 일본 계좌로 돌아갑니다. 다 못 써도 손해 없어요.</span>
-          <span data-l="en">Don't let leftover balance go to waste. One tap in the app sends your remaining balance straight back to your Japanese bank account. Nothing lost.</span>
+          <span data-l="ja">韓国でクレカは交通機関で使えないから、別途T-moneyを買う必要があった。このカードは交通カード内蔵で、空港から地下鉄・バス・コンビニまで、全部これ1枚で完結。</span>
+          <span data-l="ko">한국에서 신용카드는 교통수단에 사용 안 되니, T-money를 따로 사야 했죠. 이 카드는 교통카드 기능이 내장돼 있어서, 공항에서 지하철·버스·편의점까지 전부 이 한 장으로 완결.</span>
+          <span data-l="en">Foreign credit cards don't work on Korean transit, so you had to buy a separate T-money card. This card has transit built in — airport subway, buses, convenience stores, all on one.</span>
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
-          <iconify-icon icon="solar:wallet-money-bold" width="20"></iconify-icon>
-          <span data-l="ja">アプリで即返金 → 日本の口座へ</span>
-          <span data-l="ko">앱에서 즉시 환불 → 일본 계좌로</span>
-          <span data-l="en">Instant refund → to your Japanese bank</span>
+          <iconify-icon icon="solar:bus-bold" width="20"></iconify-icon>
+          <span data-l="ja">決済も交通も — 1枚で完結</span>
+          <span data-l="ko">결제도 교통도 — 한 장으로 완결</span>
+          <span data-l="en">Pay & ride — one card</span>
         </div>
       </div>
     </div>
@@ -552,108 +680,40 @@ tailwind.config = {
 
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- DIVERGENT: pain section heading + pain card #1 (C variant)                  -->
-<!-- Cards 2-3 below are shared between W and C.                                 -->
+<!-- METRICS — recap stats (after benefits)                                       -->
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- ===== SOCIAL PROOF — Masonry cards ===== -->
 <section class="py-16 md:py-24 bg-slate-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="text-center mb-16 reveal">
-      <h2 class="font-display text-3xl md:text-4xl tracking-tight leading-tight font-bold mb-3 break-keep-all">
-        <span data-l="ja">こんな経験、ありませんか？</span>
-        <span data-l="ko">이런 경험, 없으세요?</span>
-        <span data-l="en">Sound familiar?</span>
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto stagger">
-
-      <!-- Pain 1 (C variant) -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:bill-cross-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">「日本円にしますか？」の罠</span>
-            <span data-l="ko">"엔화로 결제하시겠어요?"의 함정</span>
-            <span data-l="en">The "Pay in yen?" trap</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">レジで「日本円にしますか？」と聞かれて、「分かりやすいから」と選んだら、店独自の不利なレートで請求。気づくのは、明細を見た後。</span>
-            <span data-l="ko">카운터에서 "엔화로 결제하시겠어요?" 묻길래 "이해하기 쉬우니까" 선택했더니, 가게 자체의 불리한 환율로 청구. 명세서 보고서야 알아요.</span>
-            <span data-l="en">"Pay in yen?" they ask. "Sure, easier to understand." Then the merchant uses their own unfavorable rate. You only notice on the statement.</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- ═══ /DIVERGENT (pain card #1) ═══ -->
-
-      <!-- ═══ SHARED: pain cards 2-3 ═══ -->
-      <!-- Pain 2 -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:clock-circle-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">キオスクの前で20分待ち</span>
-            <span data-l="ko">키오스크 앞에서 20분 대기</span>
-            <span data-l="en">20 minutes in the kiosk line</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">現金を入れるために長い列に並んで、やっとチャージ。その20分があれば明洞をもう一周できたのに。</span>
-            <span data-l="ko">현금 넣으려고 긴 줄에 서서 겨우 충전. 그 20분이면 명동을 한 바퀴 더 돌았을 텐데.</span>
-            <span data-l="en">Standing in line just to load cash. Those 20 minutes could've been another lap around Myeongdong.</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- Pain 3 -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">空港で交通カード探し</span>
-            <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
-            <span data-l="en">Hunting for a transit card at the airport</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">空港に着いて交通カードを買うのに30分。やっと手に入れて地下鉄に乗ったら、もう疲れてる。</span>
-            <span data-l="ko">공항에 도착해서 교통카드 사는 데 30분. 겨우 구해서 지하철 탔더니 벌써 지쳐 있어요.</span>
-            <span data-l="en">30 minutes at the airport just to buy a transit card. By the time you're on the subway, you're already tired.</span>
-          </p>
-        </div>
-      </div>
-
-    </div>
-
     <!-- Metrics -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16 stagger">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto stagger">
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:tag-price-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">手数料ゼロ</span><span data-l="ko">수수료 제로</span><span data-l="en">Zero fees</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">決済手数料0%</span><span data-l="ko">결제 수수료 0%</span><span data-l="en">0% payment fees</span></p>
-      </div>
-      <div class="reveal text-center">
-        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
-          <iconify-icon icon="solar:verified-check-bold-duotone" width="22" class="text-accent"></iconify-icon>
-        </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">全店舗対応</span><span data-l="ko">전 가맹점 결제</span><span data-l="en">All merchants</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">カード決済可能な全店舗</span><span data-l="ko">카드 결제 가능한 전 가맹점</span><span data-l="en">Everywhere cards are accepted</span></p>
-      </div>
-      <div class="reveal text-center">
-        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
-          <iconify-icon icon="solar:smartphone-2-bold-duotone" width="22" class="text-accent"></iconify-icon>
-        </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">アプリチャージ</span><span data-l="ko">앱 충전</span><span data-l="en">App top-up</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">日本の口座から即チャージ</span><span data-l="ko">일본 계좌에서 즉시 충전</span><span data-l="en">Instant from Japanese bank</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">海外手数料ゼロ</span><span data-l="ko">해외 수수료 0</span><span data-l="en">Zero foreign fees</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">3.85%上乗せ、なし</span><span data-l="ko">3.85% 추가 청구 없음</span><span data-l="en">No 3.85% markup</span></p>
       </div>
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:bus-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード</span><span data-l="ko">교통카드</span><span data-l="en">Transit card</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バス対応</span><span data-l="ko">지하철·버스 이용 가능</span><span data-l="en">Subway & bus ready</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span><span data-l="en">Transit built-in</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バスもこの1枚で</span><span data-l="ko">지하철·버스 한 장으로</span><span data-l="en">Subway & bus, same card</span></p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:graph-up-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">好きなレートでチャージ</span><span data-l="ko">원하는 환율로 충전</span><span data-l="en">Lock-in rate</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">良いレートを先取り</span><span data-l="ko">유리한 환율 미리 잡기</span><span data-l="en">Pick a good day, save it</span></p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:bell-bing-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">数秒でアプリ反映</span><span data-l="ko">몇 초 만에 앱 반영</span><span data-l="en">Updates in seconds</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">決済後すぐに履歴更新</span><span data-l="ko">결제 직후 내역 업데이트</span><span data-l="en">History updates right after</span></p>
       </div>
     </div>
 
