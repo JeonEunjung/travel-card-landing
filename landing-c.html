@@ -747,11 +747,36 @@ tailwind.config = {
           <span data-l="ko">다음 명세서,<br>더 이상 놀랄 일 없게.</span>
           
         </h2>
-        <p class="text-base text-ink-muted mb-5 max-w-[44ch] mx-auto break-keep-all">
-          <span data-l="ja">5分のアンケートに答えるだけ。先着10名+抽選20名にAmazonギフトカード¥1,000、インタビュー参加でさらに¥2,000をプレゼントします。</span>
-          <span data-l="ko">5분 설문에 답하기만 하면 끝. 선착순 10명+추첨 20명에게 Amazon 기프트카드 ¥1,000, 인터뷰 참여 시 추가 ¥2,000을 드려요.</span>
-          
+        <p class="text-base text-ink-muted mb-6 max-w-[44ch] mx-auto break-keep-all">
+          <span data-l="ja">5分のアンケートに答えるだけ。</span>
+          <span data-l="ko">5분 설문 응답이면 끝.</span>
         </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-7 max-w-md mx-auto">
+          <div class="flex-1 bg-accent-soft ring-1 ring-accent/15 rounded-2xl px-4 py-3.5 flex items-center gap-3 text-left">
+            <iconify-icon icon="solar:gift-bold-duotone" width="22" class="text-accent shrink-0"></iconify-icon>
+            <div class="leading-tight">
+              <p class="font-display font-bold text-sm text-ink mb-0.5">
+                <span data-l="ja">アンケート回答</span><span data-l="ko">설문 응답</span>
+              </p>
+              <p class="text-[11px] text-ink-muted">
+                <span data-l="ja">先着10名 + 抽選20名<br>Amazonギフト ¥1,000</span>
+                <span data-l="ko">선착순 10명 + 추첨 20명<br>Amazon 기프트 ¥1,000</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex-1 bg-accent-soft ring-1 ring-accent/15 rounded-2xl px-4 py-3.5 flex items-center gap-3 text-left">
+            <iconify-icon icon="solar:microphone-3-bold-duotone" width="22" class="text-accent shrink-0"></iconify-icon>
+            <div class="leading-tight">
+              <p class="font-display font-bold text-sm text-ink mb-0.5">
+                <span data-l="ja">インタビュー参加</span><span data-l="ko">인터뷰 참여</span>
+              </p>
+              <p class="text-[11px] text-ink-muted">
+                <span data-l="ja">Amazonギフト ¥2,000</span>
+                <span data-l="ko">Amazon 기프트 ¥2,000</span>
+              </p>
+            </div>
+          </div>
+        </div>
         <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('survey_click', {variant:'C'})" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
           <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span>
           <iconify-icon icon="solar:arrow-right-linear" width="18" class="spring group-hover:translate-x-0.5"></iconify-icon>
