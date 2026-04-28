@@ -303,13 +303,12 @@ tailwind.config = {
             <!-- Dashed divider -->
             <div class="border-t border-dashed border-slate-300/80"></div>
 
-            <!-- Rows -->
+            <!-- Context rows -->
             <div class="space-y-[7px] text-[11px] py-4">
               <div class="flex justify-between">
                 <span class="text-slate-400">
                   <span data-l="ja">加盟店</span>
                   <span data-l="ko">가맹점</span>
-                  
                 </span>
                 <span class="text-slate-700 tracking-wider">MYEONGDONG STORE</span>
               </div>
@@ -317,32 +316,30 @@ tailwind.config = {
                 <span class="text-slate-400">
                   <span data-l="ja">通貨</span>
                   <span data-l="ko">통화</span>
-                  
                 </span>
                 <span class="text-slate-700 tracking-wider">KRW</span>
               </div>
-              <div class="flex justify-between">
-                <span class="text-slate-400">
-                  <span data-l="ja">ご利用金額</span>
-                  <span data-l="ko">결제 금액</span>
-                  
-                </span>
-                <span class="text-slate-700 tracking-wider" style="font-variant-numeric: tabular-nums;">¥200,000</span>
-              </div>
             </div>
 
-            <!-- Solid divider -->
-            <div class="border-t border-slate-400/60"></div>
+            <!-- Dashed divider -->
+            <div class="border-t border-dashed border-slate-300/80"></div>
 
-            <!-- Billed amount: label left, big number right -->
-            <div class="relative pt-4 pb-2 flex items-end justify-between">
-              <p class="text-[10px] tracking-wider text-slate-500 pb-1.5">
-                <span data-l="ja">ご請求金額</span>
-                <span data-l="ko">청구 금액</span>
-                
-              </p>
-              <div class="relative">
-                <p class="text-[34px] leading-none font-bold text-slate-900" style="font-variant-numeric: tabular-nums; letter-spacing: -0.01em;">¥207,700</p>
+            <!-- Two amounts: paid vs billed (size differential) -->
+            <div class="pt-3 pb-1 space-y-2">
+              <div class="flex items-baseline justify-between">
+                <span class="text-[11px] tracking-wider text-slate-500">
+                  <span data-l="ja">ご利用金額</span>
+                  <span data-l="ko">결제 금액</span>
+                </span>
+                <span class="text-[18px] font-semibold text-slate-700" style="font-variant-numeric: tabular-nums;">¥200,000</span>
+              </div>
+              <div class="relative flex items-baseline justify-between pt-1">
+                <span class="text-[11px] tracking-wider text-slate-500 pb-1">
+                  <span data-l="ja">ご請求金額</span>
+                  <span data-l="ko">청구 금액</span>
+                </span>
+                <div class="relative">
+                  <p class="text-[28px] leading-none font-bold text-slate-900" style="font-variant-numeric: tabular-nums; letter-spacing: -0.01em;">¥207,700</p>
                 <!-- Hand-drawn red circle (drawn twice — like a real marker pass) -->
                 <svg class="receipt-circle absolute -inset-y-3 -inset-x-3 w-[calc(100%+24px)] h-[calc(100%+24px)] pointer-events-none" viewBox="0 0 200 60" preserveAspectRatio="none" fill="none">
                   <!-- First pass: lighter, slightly offset -->
@@ -360,6 +357,7 @@ tailwind.config = {
                     <feDisplacementMap in="SourceGraphic" scale="3.5"/>
                   </filter>
                 </svg>
+                </div>
               </div>
             </div>
 
