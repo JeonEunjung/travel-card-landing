@@ -161,7 +161,7 @@ tailwind.config = {
   .receipt-annotation { transform: rotate(-1.5deg); }
   /* Image filter A/B/C/D (debug toggle) */
   body[data-fx="a"] img[loading="lazy"] { filter: saturate(0.85) contrast(1.05) brightness(0.95); }
-  body[data-fx="b"] img[loading="lazy"] { filter: saturate(0.8) contrast(1.05) brightness(0.95) hue-rotate(-10deg); }
+  body[data-fx="b"] img[loading="lazy"] { filter: saturate(0.6) contrast(1.05) brightness(0.95) sepia(0.4) hue-rotate(180deg); }
   body[data-fx="c"] img[loading="lazy"] { filter: grayscale(1) sepia(1) hue-rotate(170deg) saturate(2.5) brightness(0.95) contrast(1.1); }
   body[data-fx="d"] img[loading="lazy"] { filter: saturate(0.4) contrast(1.1); }
   body[data-fx] img[loading="lazy"] { transition: filter 0.4s ease; }
