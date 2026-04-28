@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>韓国トラベルカード — 手数料ゼロの韓国決済カード</title>
-<meta name="description" content="日本の口座から直接チャージ。韓国全国で決済。手数料ゼロ。">
-<meta property="og:title" content="韓国トラベルカード — 手数料ゼロの韓国決済カード">
-<meta property="og:description" content="日本の口座から直接チャージ。韓国全国で決済。交通カード付き。">
+<title>韓国トラベルカード — 両替もチャージもスマホで完結</title>
+<meta name="description" content="日本の口座から直接チャージ。韓国の決済も交通も、これ1枚で。残高不足でレジが止まっても、スマホですぐ補充。">
+<meta property="og:title" content="韓国トラベルカード — 両替もチャージもスマホで完結">
+<meta property="og:description" content="残高不足でレジが止まる、もうない。スマホで即チャージ。1枚で決済も交通も。">
 <meta property="og:image" content="https://picsum.photos/seed/moin-og/1200/630">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><text x='50%25' y='55%25' dominant-baseline='central' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='18'>M</text></svg>">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -29,8 +30,8 @@ tailwind.config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'Pretendard', 'system-ui', 'sans-serif'],
+        sans: ['Pretendard JP', 'Pretendard', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Pretendard JP', 'Pretendard', 'system-ui', 'sans-serif'],
       },
       colors: {
         accent: { DEFAULT: '#0284c7', light: '#38bdf8', soft: '#f0f9ff', dark: '#0369a1' },
@@ -142,11 +143,9 @@ tailwind.config = {
   [data-l] { display: none; }
   [lang="ja"] [data-l="ja"] { display: block; }
   [lang="ko"] [data-l="ko"] { display: block; }
-  [lang="en"] [data-l="en"] { display: block; }
   span[data-l] { display: none; }
   [lang="ja"] span[data-l="ja"] { display: inline; }
   [lang="ko"] span[data-l="ko"] { display: inline; }
-  [lang="en"] span[data-l="en"] { display: inline; }
 
   html { scroll-behavior: smooth; }
   h1, h2, h3 { text-wrap: balance; }
@@ -171,28 +170,31 @@ tailwind.config = {
   </filter>
 </svg>
 
-<!-- ===== HERO VERSION TOGGLE ===== -->
-<button id="version-toggle" onclick="toggleHeroVersion()" class="fixed top-5 left-5 z-40 px-4 py-2.5 rounded-full backdrop-blur-2xl bg-black/60 text-white text-xs font-bold border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.1)] cursor-pointer spring hover:bg-black/80 min-h-[44px]">
+<!-- ===== HERO VERSION TOGGLE (dev only — show with ?debug=1) ===== -->
+<button id="version-toggle" onclick="toggleHeroVersion()" class="hidden fixed top-5 left-5 z-40 px-4 py-2.5 rounded-full backdrop-blur-2xl bg-black/60 text-white text-xs font-bold border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.1)] cursor-pointer spring hover:bg-black/80 min-h-[44px]">
   V2: Photo + Gradient
 </button>
+<script>if(new URLSearchParams(location.search).get('debug')==='1'){document.getElementById('version-toggle').classList.remove('hidden');}</script>
 
 <!-- ===== FLOATING GLASS NAV ===== -->
-<nav class="fixed top-5 right-5 z-40 flex items-center gap-1 px-1.5 py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
-  <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">JP</button>
-  <button data-lang="ko" class="lang-btn font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">KR</button>
-  <button data-lang="en" class="lang-btn font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">EN</button>
+<nav class="fixed top-3 right-3 md:top-5 md:right-5 z-40 flex items-center gap-1 px-1 py-1 md:px-1.5 md:py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
+  <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-3 py-2 md:px-4 md:py-2.5 rounded-full spring min-h-[40px] min-w-[40px] md:min-h-[44px] md:min-w-[44px]">JP</button>
+  <button data-lang="ko" class="lang-btn font-display text-xs font-bold px-3 py-2 md:px-4 md:py-2.5 rounded-full spring min-h-[40px] min-w-[40px] md:min-h-[44px] md:min-w-[44px]">KR</button>
 </nav>
 
 
 <main class="overflow-x-hidden">
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- DIVERGENT: hero (W variant — WOWPASS users)                                 -->
+<!-- C variant lives in landing-c.html. Sync structure, diverge content.         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== HERO — Bright gradient + grain texture ===== -->
-<section class="relative min-h-[100dvh] flex items-center overflow-hidden">
+<section class="relative min-h-[85dvh] md:min-h-[100dvh] flex items-center overflow-hidden">
   <!-- V1: Gradient background (hidden by default) -->
   <div id="hero-v1" class="absolute inset-0 bg-gradient-to-br from-blue-400 via-sky-400 to-teal-300 hidden"></div>
   <!-- V2: Photo + overlay -->
   <div id="hero-v2" class="absolute inset-0">
     <img src="https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1920&h=1080&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover" style="filter: brightness(106%);" loading="eager">
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(96,165,250,0.17), rgba(56,189,248,0.14), rgba(94,234,212,0.10)); mix-blend-mode: color-dodge;"></div>
     <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(96,165,250,1.0), rgba(56,189,248,0.7), transparent);"></div>
     <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 50%, white 100%);"></div>
   </div>
@@ -203,10 +205,7 @@ tailwind.config = {
     </svg>
   </div>
   <!-- Grain texture overlay (Nstock-style) -->
-  <div class="absolute inset-0 pointer-events-none" style="filter: url(#grain); opacity: 0.45; mix-blend-mode: screen;"></div>
-  <!-- Soft decorative shapes -->
-  <div class="parallax absolute top-20 right-[10%] w-72 h-72 rounded-full bg-white/10 blur-3xl" data-speed="0.3" style="animation: float 8s ease-in-out infinite;"></div>
-  <div class="parallax absolute bottom-32 left-[5%] w-96 h-96 rounded-full bg-sky-300/10 blur-3xl" data-speed="0.15" style="animation: float 10s ease-in-out infinite; animation-delay: -3s;"></div>
+  <div class="absolute inset-0 pointer-events-none" style="filter: url(#grain); opacity: 0.45; mix-blend-mode: screen; mask-image: linear-gradient(to bottom, black 60%, transparent 95%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 95%);"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-52 md:pt-0 md:pb-44">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -216,33 +215,50 @@ tailwind.config = {
         <div class="reveal">
           <span class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-medium bg-white/15 border border-white/20 mb-8">
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-            Coming Soon
+            <span data-l="ja">サービス準備中・ご意見募集中</span>
+            <span data-l="ko">출시 준비 중·의견 모집 중</span>
+            
           </span>
         </div>
 
         <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight font-bold mb-8 break-keep-all" style="transition-delay: 80ms;">
-          <span data-l="ja">韓国での支払い、<br><span class="bg-white/15 px-1.5 rounded">手数料で損</span>していませんか？</span>
-          <span data-l="ko">한국에서 결제할 때,<br><span class="bg-white/15 px-1.5 rounded">수수료로 손해</span>보고 있지 않나요?</span>
-          <span data-l="en">Paying in Korea?<br>You're losing <span class="bg-white/15 px-1.5 rounded">thousands in fees</span>.</span>
+          <span data-l="ja">旅行中、お会計で<br><span class="bg-white/15 px-1.5 rounded">止まった経験</span>ありますか？</span>
+          <span data-l="ko">여행 중, 결제하려다<br><span class="bg-white/15 px-1.5 rounded">멈춘 적</span> 있으세요?</span>
+          ?</span>
         </h1>
 
         <p class="reveal text-lg md:text-xl text-white/85 leading-relaxed max-w-[52ch] mb-10 break-keep-all" style="transition-delay: 160ms;">
-          <span data-l="ja">クリニックで20万円払ったのに、手数料で7,700円も取られてた — そんな経験ありませんか？ このカードなら手数料ゼロ。アプリでサクッとチャージして、韓国どこでも使えます。</span>
-          <span data-l="ko">클리닉에서 ¥200,000 결제했는데 수수료로 ¥7,700이 빠져나간 경험, 있으신가요? 이 카드는 수수료가 없어요. 앱에서 바로 충전해 한국 어디서든 쓸 수 있습니다.</span>
-          <span data-l="en">Paid ¥200,000 at a clinic only to find ¥7,700 gone in hidden fees? With this card, fees are zero. Top up via app and pay anywhere in Korea.</span>
+          <span data-l="ja">「残高不足」で会計が止まる、キオスクを探す、結局クレカを出す。そんな韓国旅行は、<strong class="text-white">もう終わり</strong>。</span>
+          <span data-l="ko">"잔액 부족"으로 결제가 멈추고, 키오스크 찾아 헤매고, 결국 신용카드 꺼내고. 그런 한국 여행은 <strong class="text-white">이제 그만</strong>.</span>
+          
         </p>
 
         <!-- CTA -->
         <div class="reveal flex flex-wrap gap-4" style="transition-delay: 240ms;">
-          <a href="https://forms.gle/PLACEHOLDER" target="_blank" onclick="track('preregister_click_hero')" class="group inline-flex items-center gap-3 bg-white text-accent font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-            <span data-l="ja">事前登録する（無料）</span><span data-l="ko">사전등록하기 (무료)</span><span data-l="en">Pre-register (free)</span>
+          <a href="https://forms.gle/PLACEHOLDER" target="_blank" onclick="track('survey_click_hero', {variant:'W'})" class="group inline-flex items-center gap-3 bg-white text-accent font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+            <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span>
             <span class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center spring group-hover:translate-x-1">
               <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
             </span>
           </a>
           <a href="#benefits" class="inline-flex items-center gap-2 text-white/80 hover:text-white font-display font-bold text-lg px-6 py-4 rounded-full border border-white/25 hover:border-white/50 spring hover:scale-[1.02] active:scale-[0.98]">
-            <span data-l="ja">詳しく見る</span><span data-l="ko">자세히 보기</span><span data-l="en">Learn more</span>
+            <span data-l="ja">詳しく見る</span><span data-l="ko">자세히 보기</span>
           </a>
+        </div>
+        <!-- Reward detail (informational, below CTA) -->
+        <div class="reveal mt-5 border-l-2 border-white/40 pl-4 py-1 flex flex-col gap-1.5 text-white/85" style="transition-delay: 320ms;">
+          <span class="inline-flex items-center gap-2 text-sm font-medium">
+            <iconify-icon icon="solar:gift-bold-duotone" width="16" class="text-white/95"></iconify-icon>
+            <span data-l="ja">回答者の中から抽選でプレゼント</span>
+            <span data-l="ko">응답자 중 추첨으로 선물 증정</span>
+            
+          </span>
+          <span class="inline-flex items-center gap-2 text-sm font-medium">
+            <iconify-icon icon="solar:microphone-3-bold-duotone" width="16" class="text-white/95"></iconify-icon>
+            <span data-l="ja">インタビュー参加者には追加特典</span>
+            <span data-l="ko">인터뷰 참여자에게 추가 보상</span>
+            
+          </span>
         </div>
       </div>
 
@@ -294,53 +310,139 @@ tailwind.config = {
 
 
 
-<!-- ===== FEE COMPARISON — floats over hero ===== -->
-<section class="relative z-10 pt-16 md:pt-24 pb-10 md:pb-16">
+<!-- ═══ /DIVERGENT (hero) ═══ -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- PAIN POINTS — moved up for hero promise → recognition → proof flow          -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-display text-3xl md:text-4xl tracking-tight leading-tight font-bold mb-3 break-keep-all">
+        <span data-l="ja">こんな経験、ありませんか？</span>
+        <span data-l="ko">이런 경험, 없으세요?</span>
+        
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto stagger">
+
+      <!-- Pain 1 (W variant) -->
+      <div class="reveal">
+        <div class="bg-slate-50 ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:wallet-2-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">結局、クレカも持ってきた</span>
+            <span data-l="ko">결국, 신용카드도 가져왔어요</span>
+            
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">「プリペイドカードがあれば大丈夫」と思って出発。でも毎回チャージが足りなくなって、結局クレカも財布の中。財布が膨らむ。</span>
+            <span data-l="ko">"선불카드만 있으면 돼"라고 생각하고 출발. 하지만 매번 잔액이 부족해서, 결국 신용카드도 지갑에. 짐만 늘어요.</span>
+            
+          </p>
+        </div>
+      </div>
+
+      <!-- Pain 2 -->
+      <div class="reveal">
+        <div class="bg-slate-50 ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:clock-circle-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">キオスクの前で20分待ち</span>
+            <span data-l="ko">키오스크 앞에서 20분 대기</span>
+            
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">現金を入れるために長い列に並んで、やっとチャージ。その20分があれば明洞をもう一周できたのに。</span>
+            <span data-l="ko">현금 넣으려고 긴 줄에 서서 겨우 충전. 그 20분이면 명동을 한 바퀴 더 돌았을 텐데.</span>
+            
+          </p>
+        </div>
+      </div>
+
+      <!-- Pain 3 -->
+      <div class="reveal">
+        <div class="bg-slate-50 ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
+          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
+          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
+            <span data-l="ja">空港で交通カード探し</span>
+            <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
+            
+          </p>
+          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
+            <span data-l="ja">空港に着いて交通カードを買うのに30分。やっと手に入れて地下鉄に乗ったら、もう疲れてる。</span>
+            <span data-l="ko">공항에 도착해서 교통카드 사는 데 30분. 겨우 구해서 지하철 탔더니 벌써 지쳐 있어요.</span>
+            
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- DIVERGENT (W variant): 3枚 → 1枚 visualization                              -->
+<!-- C page has the fee comparison instead.                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ===== WALLET SLIM-DOWN — floats over hero ===== -->
+<section class="relative z-10 pt-16 md:pt-24 pb-10 md:pb-16 bg-slate-50">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="reveal bg-white/90 backdrop-blur-xl ring-1 ring-black/[0.06] rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] p-8 md:p-12">
 
       <div class="text-center mb-8">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-5 font-display">
-          <span data-l="ja">手数料比較</span>
-          <span data-l="ko">수수료 비교</span>
-          <span data-l="en">Fee comparison</span>
+          <span data-l="ja">3枚 → 1枚</span>
+          <span data-l="ko">3장 → 1장</span>
+          
         </span>
         <h2 class="font-display text-2xl md:text-3xl tracking-tight font-bold text-ink break-keep-all">
-          <span data-l="ja">¥200,000の施術費、<br>手数料でいくら消える？</span>
-          <span data-l="ko">¥200,000 시술비,<br>수수료로 얼마나 빠져나갈까요?</span>
-          <span data-l="en">¥200,000 treatment.<br>How much vanishes in fees?</span>
+          <span data-l="ja">韓国旅行のお財布、<br>何枚入ってますか？</span>
+          <span data-l="ko">한국 여행 지갑에,<br>몇 장 들어 있나요?</span>
+          
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <!-- Other card -->
+        <!-- Before: 3 cards -->
         <div class="rounded-2xl bg-slate-50 ring-1 ring-black/[0.04] p-6 text-center">
           <p class="text-xs text-ink-muted uppercase tracking-wider font-display font-medium mb-3">
-            <span data-l="ja">海外カード (3.85%)</span><span data-l="ko">해외카드 (3.85%)</span><span data-l="en">Foreign card (3.85%)</span>
+            <span data-l="ja">今までの韓国旅行</span><span data-l="ko">지금까지의 한국 여행</span>
           </p>
-          <p class="font-display font-black text-4xl md:text-5xl text-ink/25 line-through decoration-2 decoration-red-400/40 mb-2" style="font-variant-numeric: tabular-nums;">−¥7,700</p>
+          <div class="flex items-center justify-center gap-2 mb-3 text-ink/40">
+            <iconify-icon icon="solar:card-bold" width="34"></iconify-icon>
+            <iconify-icon icon="solar:card-2-bold" width="34"></iconify-icon>
+            <iconify-icon icon="solar:wallet-money-bold" width="34"></iconify-icon>
+          </div>
+          <p class="font-display font-black text-4xl md:text-5xl text-ink/35 mb-2" style="font-variant-numeric: tabular-nums;">3<span class="text-2xl md:text-3xl">枚</span></p>
           <p class="text-sm text-ink-muted">
-            <span data-l="ja">明細を見て初めて気づく</span><span data-l="ko">명세서를 봐야 알 수 있어요</span><span data-l="en">You only notice on the statement</span>
+            <span data-l="ja">プリペイド + クレカ + 現金</span><span data-l="ko">선불카드 + 신용카드 + 현금</span>
           </p>
         </div>
 
-        <!-- This card -->
+        <!-- After: 1 card -->
         <div class="rounded-2xl bg-accent-soft ring-2 ring-accent/20 p-6 text-center relative overflow-hidden">
           <p class="text-xs text-accent-dark uppercase tracking-wider font-display font-bold mb-3">
-            <span data-l="ja">このカード</span><span data-l="ko">이 카드</span><span data-l="en">This card</span>
+            <span data-l="ja">これからの韓国旅行</span><span data-l="ko">앞으로의 한국 여행</span>
           </p>
-          <p class="font-display font-black text-5xl md:text-6xl text-accent mb-2 counter" data-target="0" data-from="7700" data-prefix="¥" style="font-variant-numeric: tabular-nums; line-height: 1;">¥7,700</p>
+          <div class="flex items-center justify-center gap-2 mb-3 text-accent">
+            <iconify-icon icon="solar:card-bold" width="44"></iconify-icon>
+          </div>
+          <p class="font-display font-black text-5xl md:text-6xl text-accent mb-2" style="font-variant-numeric: tabular-nums; line-height: 1;">1<span class="text-3xl md:text-4xl">枚</span></p>
           <p class="text-sm text-accent-dark/70 font-medium">
-            <span data-l="ja">手数料ゼロ。全額を施術に。</span><span data-l="ko">수수료 없이, 전액 그대로 시술에.</span><span data-l="en">Zero fees. Every yen on treatment.</span>
+            <span data-l="ja">決済も、交通も、これ1枚で。</span><span data-l="ko">결제도, 교통도, 이 한 장으로.</span>
           </p>
         </div>
       </div>
 
       <p class="text-center text-base text-ink-light">
-        <span data-l="ja">1回の旅行で <span class="text-ink font-bold">¥7,700</span> の差。年に3回なら <span class="text-accent font-bold">¥23,100</span> の節約。</span>
-        <span data-l="ko">여행 한 번에 <span class="text-ink font-bold">¥7,700</span> 차이. 세 번이면 <span class="text-accent font-bold">¥23,100</span>을 아낄 수 있어요.</span>
-        <span data-l="en"><span class="text-ink font-bold">¥7,700</span> per trip. 3 trips a year? <span class="text-accent font-bold">¥23,100</span> saved.</span>
+        <span data-l="ja"><span class="text-ink font-bold">3枚を持ち歩く韓国旅行</span>は、もう古い。<span class="text-accent font-bold">1枚で完結</span>する時代へ。</span>
+        <span data-l="ko"><span class="text-ink font-bold">3장을 들고 다니는 한국 여행</span>은 이제 옛말. <span class="text-accent font-bold">한 장이면 충분한 시대</span>로.</span>
       </p>
 
     </div>
@@ -353,25 +455,26 @@ tailwind.config = {
 <section id="benefits" class="py-20 md:py-28">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+    <!-- ═══ DIVERGENT: benefit #1 (W variant — instant top-up at counter) ═══ -->
     <!-- Benefit 1 -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
       <div class="reveal">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">01</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">あの行列、<br>もう並ばなくていい</span>
-          <span data-l="ko">앱으로 즉시 충전.<br>줄 서지 마세요</span>
-          <span data-l="en">That queue?<br>You can skip it now</span>
+          <span data-l="ja">残高が足りなくても、<br>スマホで30秒</span>
+          <span data-l="ko">잔액이 부족해도,<br>스마트폰으로 30초</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">キオスクの前で20分待ち…もう経験したくないですよね。このカードならアプリで日本の口座からサクッとチャージ。その20分、明洞でカフェ巡りしませんか？</span>
-          <span data-l="ko">키오스크 앞에서 20분 대기…다시는 하고 싶지 않죠? 이 카드는 앱에서 일본 계좌로 바로 충전. 그 20분, 명동에서 카페 투어 어때요?</span>
-          <span data-l="en">20 minutes waiting at a kiosk to load your card — never again. This card lets you top up from your Japanese bank in seconds. Use that time for a Myeongdong cafe crawl instead.</span>
+          <span data-l="ja">残高が足りなくなっても、キオスクへ走る必要なし。アプリで日本の口座から振込、約30秒で残高反映。レジ前から動かず、その場で完結。</span>
+          <span data-l="ko">잔액이 부족해도, 키오스크로 뛸 필요 없어요. 앱에서 일본 계좌로 송금, 약 30초면 잔액 반영. 카운터 앞에서 움직이지 않고, 그 자리에서 끝.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:smartphone-bold" width="20"></iconify-icon>
-          <span data-l="ja">アプリでチャージ → すぐ使える</span>
-          <span data-l="ko">앱으로 충전 → 바로 사용</span>
-          <span data-l="en">Top up via app → Ready to go</span>
+          <span data-l="ja">残高不足 → 30秒チャージ → そのまま決済</span>
+          <span data-l="ko">잔액 부족 → 30초 충전 → 그대로 결제</span>
+          
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
@@ -382,32 +485,35 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:smartphone-2-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">アプリで即チャージ</span><span data-l="ko">앱에서 즉시 충전</span><span data-l="en">Instant app top-up</span>
+                <span data-l="ja">アプリで即チャージ</span><span data-l="ko">앱에서 즉시 충전</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">キオスクの20分 → カフェ巡りの20分に</span><span data-l="ko">키오스크 20분 → 카페 투어 20분으로</span><span data-l="en">20 min at kiosk → 20 min at cafes</span>
+              <span data-l="ja">キオスクの20分 → カフェ巡りの20分に</span><span data-l="ko">키오스크 20분 → 카페 투어 20분으로</span>
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Benefit 2 — reversed -->
+    <!-- ═══ /DIVERGENT (benefit #1) ═══ -->
+
+    <!-- ═══ DIVERGENT: benefits 2-4 (W variant — top-up fee / transit / refund) ═══ -->
+    <!-- Benefit 2 — top-up fee zero -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
       <div class="reveal order-2 lg:order-1" style="transition-delay: 120ms;">
         <div class="rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] aspect-[4/3] relative group">
-          <img src="https://images.unsplash.com/photo-1736901217559-70e403fcb98f?w=800&h=600&fit=crop" alt="Card payment at counter" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
+          <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&h=600&fit=crop" alt="Mobile banking app" loading="lazy" decoding="async" class="w-full h-full object-cover spring group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 text-white">
             <div class="flex items-center gap-2 mb-2">
-              <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
+              <iconify-icon icon="solar:dollar-minimalistic-bold" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">全加盟店で決済OK</span><span data-l="ko">전 가맹점 결제 OK</span><span data-l="en">Accepted everywhere</span>
+                <span data-l="ja">チャージ手数料0%</span><span data-l="ko">충전 수수료 0%</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">クリニックでも百貨店でも、断られない</span><span data-l="ko">클리닉에서도 백화점에서도, 어디서든 결제돼요</span><span data-l="en">Clinics, department stores — never rejected</span>
+              <span data-l="ja">日本の口座から直接 → 上乗せなし</span><span data-l="ko">일본 계좌에서 바로 → 추가 비용 없음</span>
             </p>
           </div>
         </div>
@@ -415,20 +521,20 @@ tailwind.config = {
       <div class="reveal order-1 lg:order-2">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">02</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">「このカード使えません」<br>はもう聞かない</span>
-          <span data-l="ko">"이 카드 안 됩니다"<br>이제 안 들어도 돼요</span>
-          <span data-l="en">"Card not accepted"<br>— never again</span>
+          <span data-l="ja">チャージするたびに、<br>手数料0</span>
+          <span data-l="ko">충전할 때마다,<br>수수료 0</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">クリニックのレジで「使えません」って言われた瞬間のあの焦り、分かります。このカードはデビットカードだから、韓国のどのお店でも使えます。支払いのことは気にせず、施術に集中してください。</span>
-          <span data-l="ko">클리닉 카운터에서 "결제가 안 된다"는 말을 들었을 때의 그 당황스러움, 아시죠? 이 카드는 체크카드라 한국 모든 가맹점에서 사용할 수 있어요. 시술에만 집중하시고, 결제 걱정은 내려놓으세요.</span>
-          <span data-l="en">That sinking feeling at the clinic counter when your card gets rejected — we get it. This card is a debit card, accepted everywhere in Korea. Focus on your treatment, forget about payments.</span>
+          <span data-l="ja">アプリでクレカ・PayPalを使ってチャージすると、4〜6%の手数料が乗ることがあります。このカードは日本の口座から直接チャージするので、手数料0。何回チャージしても追加料金はありません。</span>
+          <span data-l="ko">앱에서 신용카드·페이팔로 충전하면, 4~6%의 수수료가 붙는 경우가 있어요. 이 카드는 일본 계좌에서 직접 충전하니까 수수료 0. 몇 번을 충전해도 추가 요금 없어요.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
-          <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
-          <span data-l="ja">韓国の全お店で使える</span>
-          <span data-l="ko">한국 전 가맹점 결제 가능</span>
-          <span data-l="en">Accepted at all Korean merchants</span>
+          <iconify-icon icon="solar:dollar-minimalistic-bold" width="20"></iconify-icon>
+          <span data-l="ja">日本の口座から直接 — チャージ手数料0%</span>
+          <span data-l="ko">일본 계좌에서 바로 — 충전 수수료 0%</span>
+          
         </div>
       </div>
     </div>
@@ -439,19 +545,19 @@ tailwind.config = {
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">03</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
           <span data-l="ja">空港に着いたら<br>そのまま地下鉄へ</span>
-          <span data-l="ko">공항 도착하면<br>바로 지하철 타면 돼요</span>
-          <span data-l="en">Land at the airport,<br>hop right on the subway</span>
+          <span data-l="ko">공항 도착하자마자,<br>바로 지하철로</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
           <span data-l="ja">着いてすぐ交通カードを買いに走るのはもう卒業。このカードには交通カード機能が入っているから、到着ゲートを出たらそのまま地下鉄へ。カード1枚で買い物も移動もぜんぶOK。</span>
           <span data-l="ko">도착하자마자 교통카드 사러 뛰어다니던 시절은 이제 안녕. 이 카드에는 교통카드 기능이 내장돼 있어서, 입국장을 나서면 바로 지하철로 가면 돼요. 카드 한 장으로 쇼핑도 이동도 전부 해결.</span>
-          <span data-l="en">No more rushing to buy a transit card the moment you land. This card has transit built in — walk through arrivals and straight onto the subway. One card for shopping and getting around.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:bus-bold" width="20"></iconify-icon>
           <span data-l="ja">交通カード内蔵 — 地下鉄もバスもOK</span>
           <span data-l="ko">교통카드 내장 — 지하철도 버스도 OK</span>
-          <span data-l="en">Built-in transit — subway & bus ready</span>
+          
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
@@ -462,11 +568,11 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:train-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span><span data-l="en">Transit built-in</span>
+                <span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">空港を出て、そのまま地下鉄へ</span><span data-l="ko">공항 나오면 바로 지하철로</span><span data-l="en">Walk out of the airport, onto the subway</span>
+              <span data-l="ja">空港を出て、そのまま地下鉄へ</span><span data-l="ko">공항 나오면 바로 지하철로</span>
             </p>
           </div>
         </div>
@@ -483,11 +589,11 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:wallet-money-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">アプリで即返金</span><span data-l="ko">앱에서 즉시 환불</span><span data-l="en">Instant app refund</span>
+                <span data-l="ja">アプリで即返金</span><span data-l="ko">앱에서 즉시 환불</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">残高 → 日本の口座へ</span><span data-l="ko">잔액 → 일본 계좌로</span><span data-l="en">Balance → back to your account</span>
+              <span data-l="ja">残高 → 日本の口座へ</span><span data-l="ko">잔액 → 일본 계좌로</span>
             </p>
           </div>
         </div>
@@ -495,20 +601,20 @@ tailwind.config = {
       <div class="reveal order-1 lg:order-2">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">04</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">残ったお金、<br>ワンタップで返金</span>
-          <span data-l="ko">남은 금액,<br>탭 한 번으로 바로 환급</span>
-          <span data-l="en">Leftover balance?<br>One tap to get it back</span>
+          <span data-l="ja">残った残高、<br>そのまま日本の口座へ</span>
+          <span data-l="ko">남은 잔액은,<br>그대로 일본 계좌로</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">旅行が終わって余った残高、そのままにしていませんか？ このカードならアプリでワンタップ。残高がそのまま日本の口座に戻ります。使い切れなくても損しない。</span>
-          <span data-l="ko">여행 끝나고 남은 잔액, 그냥 놔두고 있지 않나요? 이 카드는 앱에서 한 번만 누르면 잔액이 일본 계좌로 돌아갑니다. 다 못 써도 손해 없어요.</span>
-          <span data-l="en">Don't let leftover balance go to waste. One tap in the app sends your remaining balance straight back to your Japanese bank account. Nothing lost.</span>
+          <span data-l="ja">「残ったウォン、どうしよう…」と悩む必要は、もうありません。アプリでワンタップ、残高はそのまま日本円で口座に戻る。両替し直す必要も、使い切るために無理する必要もありません。</span>
+          <span data-l="ko">"남은 원화, 어떡하지…" 더 이상 고민 안 해도 돼요. 앱에서 한 번 탭, 잔액은 그대로 엔화로 계좌에 돌아가요. 다시 환전할 필요도, 억지로 다 쓸 필요도 없어요.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:wallet-money-bold" width="20"></iconify-icon>
           <span data-l="ja">アプリで即返金 → 日本の口座へ</span>
           <span data-l="ko">앱에서 즉시 환불 → 일본 계좌로</span>
-          <span data-l="en">Instant refund → to your Japanese bank</span>
+          
         </div>
       </div>
     </div>
@@ -517,102 +623,41 @@ tailwind.config = {
 </section>
 
 
-<!-- ===== SOCIAL PROOF — Masonry cards ===== -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- METRICS — recap stats (after benefits)                                       -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <section class="py-16 md:py-24 bg-slate-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="text-center mb-16 reveal">
-      <h2 class="font-display text-3xl md:text-4xl tracking-tight leading-tight font-bold mb-3 break-keep-all">
-        <span data-l="ja">こんな経験、ありませんか？</span>
-        <span data-l="ko">이런 경험, 없으세요?</span>
-        <span data-l="en">Sound familiar?</span>
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto stagger">
-
-      <!-- Pain 1 -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:bill-cross-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">明細を見て驚いた手数料</span>
-            <span data-l="ko">명세서 보고 놀란 수수료</span>
-            <span data-l="en">Surprise fees on the statement</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">クリニックで200万ウォンを払って、帰国後の明細に手数料7万ウォン。最初から知っていたら、別の方法で払ったのに。</span>
-            <span data-l="ko">클리닉에서 200만원 결제하고, 귀국 후 명세서에 수수료 7만원. 미리 알았으면 다른 방법으로 냈을 텐데.</span>
-            <span data-l="en">Paid ₩2M at a clinic, then found ₩70K in fees on your statement back home. If only you'd known sooner.</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- Pain 2 -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:clock-circle-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">キオスクの前で20分待ち</span>
-            <span data-l="ko">키오스크 앞에서 20분 대기</span>
-            <span data-l="en">20 minutes in the kiosk line</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">現金を入れるために長い列に並んで、やっとチャージ。その20分があれば明洞をもう一周できたのに。</span>
-            <span data-l="ko">현금 넣으려고 긴 줄에 서서 겨우 충전. 그 20분이면 명동을 한 바퀴 더 돌았을 텐데.</span>
-            <span data-l="en">Standing in line just to load cash. Those 20 minutes could've been another lap around Myeongdong.</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- Pain 3 -->
-      <div class="reveal">
-        <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:map-point-search-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
-          <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">空港で交通カード探し</span>
-            <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
-            <span data-l="en">Hunting for a transit card at the airport</span>
-          </p>
-          <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">空港に着いて交通カードを買うのに30分。やっと手に入れて地下鉄に乗ったら、もう疲れてる。</span>
-            <span data-l="ko">공항에 도착해서 교통카드 사는 데 30분. 겨우 구해서 지하철 탔더니 벌써 지쳐 있어요.</span>
-            <span data-l="en">30 minutes at the airport just to buy a transit card. By the time you're on the subway, you're already tired.</span>
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Metrics -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16 stagger">
+    <!-- Metrics (W variant) -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto stagger">
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
-          <iconify-icon icon="solar:tag-price-bold-duotone" width="22" class="text-accent"></iconify-icon>
+          <iconify-icon icon="solar:smartphone-2-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">手数料ゼロ</span><span data-l="ko">수수료 제로</span><span data-l="en">Zero fees</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">決済手数料0%</span><span data-l="ko">결제 수수료 0%</span><span data-l="en">0% payment fees</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">スマホで即チャージ</span><span data-l="ko">스마트폰으로 즉시 충전</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">日本の口座から3秒</span><span data-l="ko">일본 계좌에서 3초</span></p>
       </div>
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:verified-check-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">全店舗対応</span><span data-l="ko">전 가맹점 결제</span><span data-l="en">All merchants</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">カード決済可能な全店舗</span><span data-l="ko">카드 결제 가능한 전 가맹점</span><span data-l="en">Everywhere cards are accepted</span></p>
-      </div>
-      <div class="reveal text-center">
-        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
-          <iconify-icon icon="solar:smartphone-2-bold-duotone" width="22" class="text-accent"></iconify-icon>
-        </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">アプリチャージ</span><span data-l="ko">앱 충전</span><span data-l="en">App top-up</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">日本の口座から即チャージ</span><span data-l="ko">일본 계좌에서 즉시 충전</span><span data-l="en">Instant from Japanese bank</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">全加盟店OK</span><span data-l="ko">전 가맹점 OK</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">カード決済可能な全店舗</span><span data-l="ko">카드 결제 가능한 모든 곳</span></p>
       </div>
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:bus-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード</span><span data-l="ko">교통카드</span><span data-l="en">Transit card</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バス対応</span><span data-l="ko">지하철·버스 이용 가능</span><span data-l="en">Subway & bus ready</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バスもこの1枚で</span><span data-l="ko">지하철·버스 이 한 장으로</span></p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
+          <iconify-icon icon="solar:wallet-money-bold-duotone" width="22" class="text-accent"></iconify-icon>
+        </div>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">日本円で返金</span><span data-l="ko">엔화로 환불</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">残高 → 日本の口座へ</span><span data-l="ko">잔액 → 일본 계좌로</span></p>
       </div>
     </div>
 
@@ -621,6 +666,9 @@ tailwind.config = {
 
 
 
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- DIVERGENT: CTA heading (W variant). Body/buttons shared.                    -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== CTA — Pre-register (links to survey) ===== -->
 <section class="relative py-16 md:py-24" id="register">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -631,25 +679,20 @@ tailwind.config = {
           <iconify-icon icon="solar:bell-bold-duotone" width="28" class="text-accent"></iconify-icon>
         </div>
         <h2 class="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight font-bold mb-4 break-keep-all text-ink">
-          <span data-l="ja">次の韓国旅行、<br>損しないために</span>
-          <span data-l="ko">다음 한국 여행,<br>손해 보지 않으려면</span>
-          <span data-l="en">For your next Korea trip,<br>don't overpay</span>
+          <span data-l="ja">次の韓国旅行は、<br>カード1枚で。</span>
+          <span data-l="ko">다음 한국 여행은,<br>카드 한 장으로.</span>
+          
         </h2>
-        <p class="text-base text-ink-muted mb-3 max-w-[40ch] mx-auto break-keep-all">
-          <span data-l="ja">簡単なアンケートに答えるだけで事前登録完了。サービス開始時に優先的にご案内します。</span>
-          <span data-l="ko">간단한 설문에 답해주시면 사전등록이 완료돼요. 서비스 오픈 시 먼저 안내해 드립니다.</span>
-          <span data-l="en">Answer a quick survey to pre-register. Get priority access at launch.</span>
+        <p class="text-base text-ink-muted mb-5 max-w-[44ch] mx-auto break-keep-all">
+          <span data-l="ja">5分のアンケートに答えるだけ。回答者の中から抽選でプレゼント、インタビュー参加者には追加特典をご用意しています。</span>
+          <span data-l="ko">5분 설문에 답하기만 하면 끝. 응답자 중 추첨으로 선물 증정, 인터뷰 참여자에게는 추가 보상이 준비되어 있어요.</span>
+          
         </p>
-        <p class="text-sm text-accent font-medium mb-8">
-          <span data-l="ja">インタビュー参加で <strong>スタバギフトカード3,000円</strong> プレゼント</span>
-          <span data-l="ko">인터뷰 참여 시 <strong>스타벅스 기프트카드 3,000엔</strong> 증정</span>
-          <span data-l="en"><strong>¥3,000 Starbucks gift card</strong> for interview participants</span>
-        </p>
-        <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('preregister_click')" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
-          <span data-l="ja">事前登録する（無料）</span><span data-l="ko">사전등록하기 (무료)</span><span data-l="en">Pre-register (free)</span>
+        <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('survey_click', {variant:'W'})" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
+          <span data-l="ja">次の韓国旅行を変えよう</span><span data-l="ko">다음 한국 여행, 바꿔보기</span>
           <iconify-icon icon="solar:arrow-right-linear" width="18" class="spring group-hover:translate-x-0.5"></iconify-icon>
         </a>
-        <p class="text-xs text-ink-muted/60 mt-4"><span data-l="ja">※ 現在、サービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span><span data-l="en">※ Not yet launched</span></p>
+        <p class="text-xs text-ink-muted/60 mt-4"><span data-l="ja">※ 現在、サービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span></p>
 
       </div>
     </div>
@@ -663,7 +706,7 @@ tailwind.config = {
 <footer class="py-8 border-t border-black/[0.04]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-sm text-ink-muted font-display font-medium">
-      <span data-l="ja">運営: 株式会社MOIN</span><span data-l="ko">운영: 주식회사모인</span><span data-l="en">Operated by MOIN Inc.</span>
+      <span data-l="ja">運営: 株式会社MOIN</span><span data-l="ko">운영: 주식회사모인</span>
     </p>
     <p class="text-xs text-ink-muted/60">&copy; 2026 MOIN Inc.</p>
   </div>
@@ -825,31 +868,7 @@ if (holoScene && holoTilt && holoCard) {
     holoCard.style.setProperty('--holo-angle', '135deg');
   });
 
-  // Scroll-driven: scale up + tilt + fade out as you scroll past
-  let scrollTicking = false;
-  window.addEventListener('scroll', () => {
-    if (scrollTicking) return;
-    scrollTicking = true;
-    requestAnimationFrame(() => {
-      const rect = holoScene.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const center = rect.top + rect.height / 2;
-      // progress: 0 = card at center of viewport, 1 = card scrolled off top
-      const progress = Math.max(0, Math.min(1, 1 - center / vh));
-
-      if (!isHovering) {
-        const scale = 1 + progress * 0.15;
-        const opacity = progress < 0.6 ? 1 : 1 - (progress - 0.6) / 0.4;
-
-        holoTilt.style.transform = `scale(${scale})`;
-        holoTilt.style.opacity = opacity;
-
-        // Shift holographic sheen with scroll
-        holoCard.style.setProperty('--holo-angle', `${progress * 360}deg`);
-      }
-      scrollTicking = false;
-    });
-  }, { passive: true });
+  // Scroll-driven card behavior removed (motion cleanup)
 }
 </script>
 
