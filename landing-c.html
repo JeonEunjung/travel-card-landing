@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>韓国トラベルカード — 両替もチャージもスマホで完結</title>
-<meta name="description" content="日本の口座から直接チャージ。韓国の決済も交通も、これ1枚で。残高不足でレジが止まっても、スマホですぐ補充。">
-<meta property="og:title" content="韓国トラベルカード — 両替もチャージもスマホで完結">
-<meta property="og:description" content="残高不足でレジが止まる、もうない。スマホで即チャージ。1枚で決済も交通も。">
+<title>韓国トラベルカード — 海外手数料ゼロ</title>
+<meta name="description" content="韓国でのクレカ決済で、約3.85%が気づかないうちに上乗せされる。このカードは韓国発行だから、払った金額がそのまま明細に出ます。">
+<meta property="og:title" content="韓国トラベルカード — 海外手数料ゼロ">
+<meta property="og:description" content="韓国でのクレカ決済で、約3.85%が気づかないうちに上乗せされる。払った金額がそのまま明細に。">
 <meta property="og:image" content="https://picsum.photos/seed/moin-og/1200/630">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><text x='50%25' y='55%25' dominant-baseline='central' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='18'>M</text></svg>">
 
@@ -187,8 +187,8 @@ tailwind.config = {
 
 <main class="overflow-x-hidden">
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- DIVERGENT: hero (W variant — WOWPASS users)                                 -->
-<!-- C variant lives in landing-c.html. Sync structure, diverge content.         -->
+<!-- DIVERGENT: hero (C variant — Credit card users)                             -->
+<!-- W variant lives in landing.html. Sync structure, diverge content.           -->
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== HERO — Bright gradient + grain texture ===== -->
 <section class="relative min-h-[100dvh] flex items-center overflow-hidden">
@@ -225,20 +225,20 @@ tailwind.config = {
         </div>
 
         <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight font-bold mb-8 break-keep-all" style="transition-delay: 80ms;">
-          <span data-l="ja">旅行中、お会計で<br><span class="bg-white/15 px-1.5 rounded">止まった経験</span>ありますか？</span>
-          <span data-l="ko">여행 중, 결제하려다<br><span class="bg-white/15 px-1.5 rounded">멈춘 적</span> 있으세요?</span>
-          <span data-l="en">During your trip,<br>ever <span class="bg-white/15 px-1.5 rounded">stopped mid-payment</span>?</span>
+          <span data-l="ja">帰ってから明細を見て、<br><span class="bg-white/15 px-1.5 rounded">「あれ？」</span>ってなりませんでしたか？</span>
+          <span data-l="ko">귀국하고 명세서 보면서,<br><span class="bg-white/15 px-1.5 rounded">"어?"</span>가 되지 않았어요?</span>
+          <span data-l="en">Looking at your statement after coming back,<br>didn't you go <span class="bg-white/15 px-1.5 rounded">"wait, what?"</span></span>
         </h1>
 
         <p class="reveal text-lg md:text-xl text-white/85 leading-relaxed max-w-[52ch] mb-10 break-keep-all" style="transition-delay: 160ms;">
-          <span data-l="ja">「残高不足」でレジが止まる、キオスクを探す、結局クレカを出す。そんな韓国旅行は、<strong class="text-white">もう終わり</strong>。</span>
-          <span data-l="ko">"잔액 부족"으로 카운터에서 멈추고, 키오스크 찾고, 결국 신용카드 꺼내고. 그런 한국 여행은, <strong class="text-white">이제 끝</strong>.</span>
-          <span data-l="en">Frozen at the register on "balance insufficient", hunting for kiosks, falling back to your credit card. <strong class="text-white">Korea trips like that — done.</strong></span>
+          <span data-l="ja">韓国旅行のクレカ払い、気づかないうちに<strong class="text-white">約3.85%上乗せ</strong>されています。もう明細を見直さなくていい、韓国トラベルカード。</span>
+          <span data-l="ko">한국 여행 신용카드 결제, 모르는 사이에 <strong class="text-white">약 3.85%가 더 붙어</strong> 있어요. 이제 명세서 다시 안 봐도 되는, 한국 트래블카드.</span>
+          <span data-l="en">Korea trips on a credit card quietly add <strong class="text-white">about 3.85%</strong> on top. A Korea travel card you'll never need to double-check.</span>
         </p>
 
         <!-- CTA -->
         <div class="reveal flex flex-wrap gap-4" style="transition-delay: 240ms;">
-          <a href="https://forms.gle/PLACEHOLDER" target="_blank" onclick="track('survey_click_hero', {variant:'W'})" class="group inline-flex items-center gap-3 bg-white text-accent font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+          <a href="https://forms.gle/PLACEHOLDER" target="_blank" onclick="track('survey_click_hero', {variant:'C'})" class="group inline-flex items-center gap-3 bg-white text-accent font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
             <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span><span data-l="en">Take 5-min survey & enter drawing</span>
             <span class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center spring group-hover:translate-x-1">
               <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
@@ -367,6 +367,11 @@ tailwind.config = {
         <span data-l="ko">여행 한 번에 <span class="text-ink font-bold">¥7,700</span> 차이. 세 번이면 <span class="text-accent font-bold">¥23,100</span>을 아낄 수 있어요.</span>
         <span data-l="en"><span class="text-ink font-bold">¥7,700</span> per trip. 3 trips a year? <span class="text-accent font-bold">¥23,100</span> saved.</span>
       </p>
+      <p class="text-center text-xs text-ink-muted/70 mt-4">
+        <span data-l="ja">※ 3.85% = 海外事務手数料1.6〜2.2% + DCC・為替差1.5〜2%程度の合算推計（クレカ・店舗により変動）</span>
+        <span data-l="ko">※ 3.85% = 해외 사무 수수료 1.6~2.2% + DCC·환율 차이 1.5~2% 정도의 합산 추정 (카드사·매장에 따라 변동)</span>
+        <span data-l="en">※ 3.85% = ~1.6–2.2% foreign processing fee + ~1.5–2% DCC/FX spread (varies by issuer/merchant)</span>
+      </p>
 
     </div>
 
@@ -378,26 +383,26 @@ tailwind.config = {
 <section id="benefits" class="py-20 md:py-28">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- ═══ DIVERGENT: benefit #1 (W variant — instant top-up at counter) ═══ -->
+    <!-- ═══ DIVERGENT: benefit #1 (C variant — "払った金額がそのまま") ═══ -->
     <!-- Benefit 1 -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 md:mb-28">
       <div class="reveal">
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent/10 text-accent mb-6 font-display">01</span>
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
-          <span data-l="ja">残高が足りなくても、<br>スマホで30秒</span>
-          <span data-l="ko">잔액이 부족해도,<br>스마트폰으로 30초</span>
-          <span data-l="en">Out of balance?<br>30 seconds in your phone</span>
+          <span data-l="ja">払った金額が、<br>そのまま請求</span>
+          <span data-l="ko">결제한 금액이,<br>그대로 청구</span>
+          <span data-l="en">What you pay is<br>what you're billed</span>
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">残高が足りなくなっても、キオスクへ走る必要なし。アプリで日本の口座から振込、約30秒で残高反映。レジ前から動かず、その場で完結。</span>
-          <span data-l="ko">잔액이 부족해도, 키오스크로 뛸 필요 없어요. 앱에서 일본 계좌로 송금, 약 30초면 잔액 반영. 카운터 앞에서 움직이지 않고, 그 자리에서 끝.</span>
-          <span data-l="en">Out of balance? No need to find a kiosk. Top up from your Japanese bank — about 30 seconds — and finish paying right at the register.</span>
+          <span data-l="ja">クレカ手数料1.6〜2.2%、DCCで上乗せ、レート換算の差額… 帰国後の明細でやっと気づく「見えない出費」。このカードは日本円から直接チャージ。海外手数料ゼロ、DCC関係なし。請求書には、決済した金額だけ。</span>
+          <span data-l="ko">신용카드 해외수수료 1.6~2.2%, DCC로 추가, 환율 환산 차액… 귀국 후 명세서에서야 알게 되는 "보이지 않는 지출". 이 카드는 엔화에서 직접 충전. 해외 수수료 0원, DCC 무관. 명세서에는 결제한 금액만 나와요.</span>
+          <span data-l="en">Foreign fee 1.6–2.2%, DCC markup, exchange rate spread — the "invisible cost" you only spot on the statement back home. This card tops up from yen directly. Zero foreign fee, DCC doesn't apply. Your statement shows what you actually paid.</span>
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
-          <iconify-icon icon="solar:smartphone-bold" width="20"></iconify-icon>
-          <span data-l="ja">残高不足 → 30秒チャージ → そのまま決済</span>
-          <span data-l="ko">잔액 부족 → 30초 충전 → 그대로 결제</span>
-          <span data-l="en">Low balance → 30s top-up → keep paying</span>
+          <iconify-icon icon="solar:dollar-minimalistic-bold" width="20"></iconify-icon>
+          <span data-l="ja">海外手数料ゼロ・DCC不要・見積もり通り</span>
+          <span data-l="ko">해외 수수료 0원·DCC 무관·견적 그대로</span>
+          <span data-l="en">Zero foreign fees · No DCC · As quoted</span>
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
@@ -449,9 +454,9 @@ tailwind.config = {
           <span data-l="en">"Card not accepted"<br>— never again</span>
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
-          <span data-l="ja">韓国のレジで「使えません」って言われた瞬間のあの焦り、分かります。このカードはデビットカードだから、韓国のどのお店でも使えます。支払いのことは気にせず、旅行を楽しんでください。</span>
-          <span data-l="ko">한국 카운터에서 "결제가 안 된다"는 말을 들었을 때의 그 당황스러움, 아시죠? 이 카드는 체크카드라 한국 모든 가맹점에서 사용할 수 있어요. 결제 걱정 내려놓고, 여행을 즐기세요.</span>
-          <span data-l="en">That sinking feeling when your card gets rejected at a Korean register — we get it. This card is a debit card, accepted everywhere in Korea. Forget about payments, enjoy the trip.</span>
+          <span data-l="ja">クリニックのレジで「使えません」って言われた瞬間のあの焦り、分かります。このカードはデビットカードだから、韓国のどのお店でも使えます。支払いのことは気にせず、施術に集中してください。</span>
+          <span data-l="ko">클리닉 카운터에서 "결제가 안 된다"는 말을 들었을 때의 그 당황스러움, 아시죠? 이 카드는 체크카드라 한국 모든 가맹점에서 사용할 수 있어요. 시술에만 집중하시고, 결제 걱정은 내려놓으세요.</span>
+          <span data-l="en">That sinking feeling at the clinic counter when your card gets rejected — we get it. This card is a debit card, accepted everywhere in Korea. Focus on your treatment, forget about payments.</span>
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:verified-check-bold" width="20"></iconify-icon>
@@ -547,7 +552,7 @@ tailwind.config = {
 
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- DIVERGENT: pain section heading + pain card #1 (W variant)                  -->
+<!-- DIVERGENT: pain section heading + pain card #1 (C variant)                  -->
 <!-- Cards 2-3 below are shared between W and C.                                 -->
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== SOCIAL PROOF — Masonry cards ===== -->
@@ -564,19 +569,19 @@ tailwind.config = {
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto stagger">
 
-      <!-- Pain 1 (W variant) -->
+      <!-- Pain 1 (C variant) -->
       <div class="reveal">
         <div class="bg-white ring-1 ring-black/[0.04] rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-8">
-          <iconify-icon icon="solar:wallet-2-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
+          <iconify-icon icon="solar:bill-cross-bold-duotone" class="text-accent/50 mb-4" width="28"></iconify-icon>
           <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
-            <span data-l="ja">結局、クレカも持ってきた</span>
-            <span data-l="ko">결국, 신용카드도 가져왔어요</span>
-            <span data-l="en">Ended up bringing the credit card too</span>
+            <span data-l="ja">「日本円にしますか？」の罠</span>
+            <span data-l="ko">"엔화로 결제하시겠어요?"의 함정</span>
+            <span data-l="en">The "Pay in yen?" trap</span>
           </p>
           <p class="text-sm leading-relaxed text-ink-light break-keep-all">
-            <span data-l="ja">「プリペイドカードがあれば大丈夫」と思って出発。でも毎回チャージが足りなくなって、結局クレカも財布の中。財布が膨らむ。</span>
-            <span data-l="ko">"선불카드만 있으면 돼"라고 생각하고 출발. 하지만 매번 잔액이 부족해서, 결국 신용카드도 지갑에. 짐만 늘어요.</span>
-            <span data-l="en">Thought a prepaid card alone would do. But the balance kept running out, so the credit card came along too. The wallet just gets thicker.</span>
+            <span data-l="ja">レジで「日本円にしますか？」と聞かれて、「分かりやすいから」と選んだら、店独自の不利なレートで請求。気づくのは、明細を見た後。</span>
+            <span data-l="ko">카운터에서 "엔화로 결제하시겠어요?" 묻길래 "이해하기 쉬우니까" 선택했더니, 가게 자체의 불리한 환율로 청구. 명세서 보고서야 알아요.</span>
+            <span data-l="en">"Pay in yen?" they ask. "Sure, easier to understand." Then the merchant uses their own unfavorable rate. You only notice on the statement.</span>
           </p>
         </div>
       </div>
@@ -670,17 +675,17 @@ tailwind.config = {
           <iconify-icon icon="solar:bell-bold-duotone" width="28" class="text-accent"></iconify-icon>
         </div>
         <h2 class="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight font-bold mb-4 break-keep-all text-ink">
-          <span data-l="ja">次の韓国旅行は、<br>カード1枚で。</span>
-          <span data-l="ko">다음 한국 여행은,<br>카드 한 장으로.</span>
-          <span data-l="en">Your next Korea trip,<br>on one card.</span>
+          <span data-l="ja">次の請求書で、<br>もう驚かない。</span>
+          <span data-l="ko">다음 명세서에서,<br>더 이상 놀라지 않게.</span>
+          <span data-l="en">No more surprises<br>on your next statement.</span>
         </h2>
         <p class="text-base text-ink-muted mb-5 max-w-[44ch] mx-auto break-keep-all">
           <span data-l="ja">5分のアンケートに答えるだけ。回答者の中から抽選でプレゼント、インタビュー参加者には追加特典をご用意しています。</span>
           <span data-l="ko">5분 설문에 답하기만 하면 끝. 응답자 중 추첨으로 선물 증정, 인터뷰 참여자에게는 추가 보상이 준비되어 있어요.</span>
           <span data-l="en">Just a 5-minute survey. We'll draw gifts from respondents, and interview participants get a bonus reward.</span>
         </p>
-        <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('survey_click', {variant:'W'})" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
-          <span data-l="ja">次の韓国旅行を、変える</span><span data-l="ko">다음 한국 여행을, 바꾸는</span><span data-l="en">Change your next Korea trip</span>
+        <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('survey_click', {variant:'C'})" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
+          <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span><span data-l="en">Take 5-min survey & enter drawing</span>
           <iconify-icon icon="solar:arrow-right-linear" width="18" class="spring group-hover:translate-x-0.5"></iconify-icon>
         </a>
         <p class="text-xs text-ink-muted/60 mt-4"><span data-l="ja">※ 現在、サービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span><span data-l="en">※ Not yet launched</span></p>
