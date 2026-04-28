@@ -150,13 +150,8 @@ tailwind.config = {
   html { scroll-behavior: smooth; }
   h1, h2, h3 { text-wrap: balance; }
 
-  /* Image filter A/B/C/D (debug toggle) */
-  body[data-fx="a"] img[loading="lazy"] { filter: saturate(0.85) contrast(1.05) brightness(0.95); }
-  body[data-fx="b"] img[loading="lazy"] { filter: url(#duotone-blue); }
-  body[data-fx="b+"] img[loading="lazy"] { filter: url(#duotone-medium); }
-  body[data-fx="c"] img[loading="lazy"] { filter: url(#duotone-strong); }
-  body[data-fx="d"] img[loading="lazy"] { filter: saturate(0.4) contrast(1.1); }
-  body[data-fx] img[loading="lazy"] { transition: filter 0.4s ease; }
+  /* Tone-unifying duotone applied to all benefit images */
+  img[loading="lazy"] { filter: url(#duotone); }
 
   @media (prefers-reduced-motion: reduce) {
     .spring { transition: none; }
@@ -176,27 +171,13 @@ tailwind.config = {
     <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
     <feColorMatrix type="saturate" values="0" />
   </filter>
-  <!-- Duotone filters for image FX toggle -->
-  <filter id="duotone-blue" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values="
-      0.249 0.490 0.091 0 0.047
-      0.198 0.389 0.073 0 0.290
-      0.169 0.333 0.062 0 0.431
-      0     0     0     1 0"/>
-  </filter>
-  <filter id="duotone-medium" color-interpolation-filters="sRGB">
+  <!-- Tone-unifying duotone for benefit images -->
+  <filter id="duotone" color-interpolation-filters="sRGB">
     <feColorMatrix type="matrix" values="
       0.275 0.540 0.100 0 0.034
       0.199 0.395 0.077 0 0.235
       0.160 0.317 0.061 0 0.416
       0     0     0     1 0"/>
-  </filter>
-  <filter id="duotone-strong" color-interpolation-filters="sRGB">
-    <feColorMatrix type="matrix" values="
-      0.30 0.59 0.11 0 0.02
-      0.20 0.40 0.08 0 0.18
-      0.15 0.30 0.06 0 0.40
-      0    0    0    1 0"/>
   </filter>
 </svg>
 
@@ -206,26 +187,6 @@ tailwind.config = {
 </button>
 <script>if(new URLSearchParams(location.search).get('debug')==='1'){document.getElementById('version-toggle').classList.remove('hidden');}</script>
 
-<!-- ===== IMAGE FX TOGGLE (debug) — show with ?fx=1 ===== -->
-<div id="fx-controller" class="hidden fixed bottom-5 left-5 z-50 flex gap-1 px-1.5 py-1.5 rounded-full backdrop-blur-2xl bg-black/70 text-white text-xs font-bold shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
-  <button onclick="setFx(this,'off')" class="fx-btn px-3 py-1.5 rounded-full bg-white/20">Off</button>
-  <button onclick="setFx(this,'a')" class="fx-btn px-3 py-1.5 rounded-full">A</button>
-  <button onclick="setFx(this,'b')" class="fx-btn px-3 py-1.5 rounded-full">B</button>
-  <button onclick="setFx(this,'b+')" class="fx-btn px-3 py-1.5 rounded-full">B+</button>
-  <button onclick="setFx(this,'c')" class="fx-btn px-3 py-1.5 rounded-full">C</button>
-  <button onclick="setFx(this,'d')" class="fx-btn px-3 py-1.5 rounded-full">D</button>
-</div>
-<script>
-  if (new URLSearchParams(location.search).get('fx') === '1') {
-    document.getElementById('fx-controller').classList.remove('hidden');
-  }
-  function setFx(btn, v) {
-    if (v === 'off') document.body.removeAttribute('data-fx');
-    else document.body.setAttribute('data-fx', v);
-    document.querySelectorAll('.fx-btn').forEach(b => b.classList.remove('bg-white/20'));
-    btn.classList.add('bg-white/20');
-  }
-</script>
 
 <!-- ===== FLOATING GLASS NAV ===== -->
 <nav class="fixed top-3 right-3 md:top-5 md:right-5 z-40 flex items-center gap-1 px-1 py-1 md:px-1.5 md:py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
