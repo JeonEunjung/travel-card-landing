@@ -177,9 +177,9 @@ tailwind.config = {
 <script>if(new URLSearchParams(location.search).get('debug')==='1'){document.getElementById('version-toggle').classList.remove('hidden');}</script>
 
 <!-- ===== FLOATING GLASS NAV ===== -->
-<nav class="fixed top-5 right-5 z-40 flex items-center gap-1 px-1.5 py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
-  <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">JP</button>
-  <button data-lang="ko" class="lang-btn font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">KR</button>
+<nav class="fixed top-3 right-3 md:top-5 md:right-5 z-40 flex items-center gap-1 px-1 py-1 md:px-1.5 md:py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
+  <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-3 py-2 md:px-4 md:py-2.5 rounded-full spring min-h-[40px] min-w-[40px] md:min-h-[44px] md:min-w-[44px]">JP</button>
+  <button data-lang="ko" class="lang-btn font-display text-xs font-bold px-3 py-2 md:px-4 md:py-2.5 rounded-full spring min-h-[40px] min-w-[40px] md:min-h-[44px] md:min-w-[44px]">KR</button>
 </nav>
 
 
@@ -189,7 +189,7 @@ tailwind.config = {
 <!-- C variant lives in landing-c.html. Sync structure, diverge content.         -->
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== HERO — Bright gradient + grain texture ===== -->
-<section class="relative min-h-[100dvh] flex items-center overflow-hidden">
+<section class="relative min-h-[85dvh] md:min-h-[100dvh] flex items-center overflow-hidden">
   <!-- V1: Gradient background (hidden by default) -->
   <div id="hero-v1" class="absolute inset-0 bg-gradient-to-br from-blue-400 via-sky-400 to-teal-300 hidden"></div>
   <!-- V2: Photo + overlay -->
@@ -443,7 +443,6 @@ tailwind.config = {
       <p class="text-center text-base text-ink-light">
         <span data-l="ja"><span class="text-ink font-bold">3枚を持ち歩く韓国旅行</span>は、もう古い。<span class="text-accent font-bold">1枚で完結</span>する時代へ。</span>
         <span data-l="ko"><span class="text-ink font-bold">3장을 들고 다니는 한국 여행</span>은 이제 옛말. <span class="text-accent font-bold">한 장이면 충분한 시대</span>로.</span>
-         for Korea? That's the old way. Time to <span class="text-accent font-bold">go all-in-one</span>.</span>
       </p>
 
     </div>
