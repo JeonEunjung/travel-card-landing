@@ -162,6 +162,7 @@ tailwind.config = {
   /* Image filter A/B/C/D (debug toggle) */
   body[data-fx="a"] img[loading="lazy"] { filter: saturate(0.85) contrast(1.05) brightness(0.95); }
   body[data-fx="b"] img[loading="lazy"] { filter: url(#duotone-blue); }
+  body[data-fx="b+"] img[loading="lazy"] { filter: url(#duotone-medium); }
   body[data-fx="c"] img[loading="lazy"] { filter: url(#duotone-strong); }
   body[data-fx="d"] img[loading="lazy"] { filter: saturate(0.4) contrast(1.1); }
   body[data-fx] img[loading="lazy"] { transition: filter 0.4s ease; }
@@ -193,6 +194,13 @@ tailwind.config = {
       0.169 0.333 0.062 0 0.431
       0     0     0     1 0"/>
   </filter>
+  <filter id="duotone-medium" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="
+      0.275 0.540 0.100 0 0.034
+      0.199 0.395 0.077 0 0.235
+      0.160 0.317 0.061 0 0.416
+      0     0     0     1 0"/>
+  </filter>
   <filter id="duotone-strong" color-interpolation-filters="sRGB">
     <feColorMatrix type="matrix" values="
       0.30 0.59 0.11 0 0.02
@@ -213,6 +221,7 @@ tailwind.config = {
   <button onclick="setFx(this,'off')" class="fx-btn px-3 py-1.5 rounded-full bg-white/20">Off</button>
   <button onclick="setFx(this,'a')" class="fx-btn px-3 py-1.5 rounded-full">A</button>
   <button onclick="setFx(this,'b')" class="fx-btn px-3 py-1.5 rounded-full">B</button>
+  <button onclick="setFx(this,'b+')" class="fx-btn px-3 py-1.5 rounded-full">B+</button>
   <button onclick="setFx(this,'c')" class="fx-btn px-3 py-1.5 rounded-full">C</button>
   <button onclick="setFx(this,'d')" class="fx-btn px-3 py-1.5 rounded-full">D</button>
 </div>
