@@ -152,8 +152,8 @@ tailwind.config = {
 
   /* Image filter A/B/C/D (debug toggle) */
   body[data-fx="a"] img[loading="lazy"] { filter: saturate(0.85) contrast(1.05) brightness(0.95); }
-  body[data-fx="b"] img[loading="lazy"] { filter: saturate(0.6) contrast(1.05) brightness(0.95) sepia(0.4) hue-rotate(180deg); }
-  body[data-fx="c"] img[loading="lazy"] { filter: grayscale(1) sepia(1) hue-rotate(170deg) saturate(2.5) brightness(0.95) contrast(1.1); }
+  body[data-fx="b"] img[loading="lazy"] { filter: url(#duotone-blue); }
+  body[data-fx="c"] img[loading="lazy"] { filter: url(#duotone-strong); }
   body[data-fx="d"] img[loading="lazy"] { filter: saturate(0.4) contrast(1.1); }
   body[data-fx] img[loading="lazy"] { transition: filter 0.4s ease; }
 
@@ -174,6 +174,21 @@ tailwind.config = {
   <filter id="grain">
     <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
     <feColorMatrix type="saturate" values="0" />
+  </filter>
+  <!-- Duotone filters for image FX toggle -->
+  <filter id="duotone-blue" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="
+      0.249 0.490 0.091 0 0.047
+      0.198 0.389 0.073 0 0.290
+      0.169 0.333 0.062 0 0.431
+      0     0     0     1 0"/>
+  </filter>
+  <filter id="duotone-strong" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="
+      0.30 0.59 0.11 0 0.02
+      0.20 0.40 0.08 0 0.18
+      0.15 0.30 0.06 0 0.40
+      0    0    0    1 0"/>
   </filter>
 </svg>
 
