@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-jp.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Yusei+Magic&display=swap" rel="stylesheet">
 <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -343,14 +343,21 @@ tailwind.config = {
               </p>
               <div class="relative">
                 <p class="text-[34px] leading-none font-bold text-slate-900" style="font-variant-numeric: tabular-nums; letter-spacing: -0.01em;">¥207,700</p>
-                <!-- Hand-drawn red circle -->
+                <!-- Hand-drawn red circle (drawn twice — like a real marker pass) -->
                 <svg class="receipt-circle absolute -inset-y-3 -inset-x-3 w-[calc(100%+24px)] h-[calc(100%+24px)] pointer-events-none" viewBox="0 0 200 60" preserveAspectRatio="none" fill="none">
-                  <path d="M 12 32 C 8 18, 30 8, 100 8 C 175 8, 192 18, 188 30 C 192 44, 170 54, 100 52 C 30 54, 6 46, 12 32 Z" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="filter: url(#scribble);"/>
+                  <!-- First pass: lighter, slightly offset -->
+                  <path d="M 14 33 C 9 19, 32 9, 100 9 C 174 9, 191 19, 187 31 C 191 45, 169 55, 100 53 C 31 55, 7 47, 14 33 Z" stroke="#dc2626" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.55" style="filter: url(#scribble-1);"/>
+                  <!-- Second pass: darker, dominant stroke with slight thickness variation -->
+                  <path d="M 12 32 C 8 18, 30 8, 100 8 C 175 8, 192 18, 188 30 C 192 44, 170 54, 100 52 C 30 54, 6 46, 12 32 Z" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="filter: url(#scribble-2);"/>
                 </svg>
                 <svg width="0" height="0" class="absolute">
-                  <filter id="scribble">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="5"/>
-                    <feDisplacementMap in="SourceGraphic" scale="3"/>
+                  <filter id="scribble-1">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="3"/>
+                    <feDisplacementMap in="SourceGraphic" scale="4"/>
+                  </filter>
+                  <filter id="scribble-2">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="9"/>
+                    <feDisplacementMap in="SourceGraphic" scale="3.5"/>
                   </filter>
                 </svg>
               </div>
@@ -361,10 +368,9 @@ tailwind.config = {
               <svg width="20" height="14" viewBox="0 0 20 14" fill="none" class="text-red-600">
                 <path d="M 2 7 Q 8 3, 14 7 M 11 4 L 14 7 L 11 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
-              <p class="text-red-600" style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px; line-height: 1;">
+              <p class="text-red-600" style="font-family: 'Yusei Magic', 'Caveat', cursive; font-size: 20px; line-height: 1;">
                 <span data-l="ja">+¥7,700  あれ？</span>
                 <span data-l="ko">+¥7,700  어?</span>
-                
               </p>
             </div>
 
