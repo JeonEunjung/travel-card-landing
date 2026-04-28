@@ -143,11 +143,9 @@ tailwind.config = {
   [data-l] { display: none; }
   [lang="ja"] [data-l="ja"] { display: block; }
   [lang="ko"] [data-l="ko"] { display: block; }
-  [lang="en"] [data-l="en"] { display: block; }
   span[data-l] { display: none; }
   [lang="ja"] span[data-l="ja"] { display: inline; }
   [lang="ko"] span[data-l="ko"] { display: inline; }
-  [lang="en"] span[data-l="en"] { display: inline; }
 
   html { scroll-behavior: smooth; }
   h1, h2, h3 { text-wrap: balance; }
@@ -192,7 +190,6 @@ tailwind.config = {
 <nav class="fixed top-5 right-5 z-40 flex items-center gap-1 px-1.5 py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
   <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">JP</button>
   <button data-lang="ko" class="lang-btn font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">KR</button>
-  <button data-lang="en" class="lang-btn font-display text-xs font-bold px-4 py-2.5 rounded-full spring min-h-[44px] min-w-[44px]">EN</button>
 </nav>
 
 
@@ -230,32 +227,32 @@ tailwind.config = {
             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             <span data-l="ja">サービス準備中・ご意見募集中</span>
             <span data-l="ko">출시 준비 중·의견 모집 중</span>
-            <span data-l="en">In development · Survey open</span>
+            
           </span>
         </div>
 
         <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight font-bold mb-8 break-keep-all" style="transition-delay: 80ms;">
           <span data-l="ja">帰ってから明細を見て、<br><span class="bg-white/15 px-1.5 rounded">「あれ？」</span>と思ったこと、ありませんか？</span>
           <span data-l="ko">귀국 후 명세서 보고,<br><span class="bg-white/15 px-1.5 rounded">"어?"</span> 한 적 없으세요?</span>
-          <span data-l="en">Looking at your statement after coming back,<br>didn't you go <span class="bg-white/15 px-1.5 rounded">"wait, what?"</span></span>
+          </span>
         </h1>
 
         <p class="reveal text-lg md:text-xl text-white/85 leading-relaxed max-w-[52ch] mb-10 break-keep-all" style="transition-delay: 160ms;">
           <span data-l="ja">韓国旅行のクレカ払い、気づかないうちに<strong class="text-white">約3.85%上乗せ</strong>されています。明細とにらめっこしなくていい、韓国トラベルカード。</span>
           <span data-l="ko">한국 여행 신용카드 결제, 모르는 사이에 <strong class="text-white">약 3.85%가 더 붙어</strong> 있어요. 명세서 들여다볼 일 없는, 한국 트래블카드.</span>
-          <span data-l="en">Korea trips on a credit card quietly add <strong class="text-white">about 3.85%</strong> on top. A Korea travel card you'll never need to double-check.</span>
+          
         </p>
 
         <!-- CTA -->
         <div class="reveal flex flex-wrap gap-4" style="transition-delay: 240ms;">
           <a href="https://forms.gle/PLACEHOLDER" target="_blank" onclick="track('survey_click_hero', {variant:'C'})" class="group inline-flex items-center gap-3 bg-white text-accent font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-            <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span><span data-l="en">Take 5-min survey & enter drawing</span>
+            <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span>
             <span class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center spring group-hover:translate-x-1">
               <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
             </span>
           </a>
           <a href="#benefits" class="inline-flex items-center gap-2 text-white/80 hover:text-white font-display font-bold text-lg px-6 py-4 rounded-full border border-white/25 hover:border-white/50 spring hover:scale-[1.02] active:scale-[0.98]">
-            <span data-l="ja">詳しく見る</span><span data-l="ko">자세히 보기</span><span data-l="en">Learn more</span>
+            <span data-l="ja">詳しく見る</span><span data-l="ko">자세히 보기</span>
           </a>
         </div>
         <!-- Reward detail (informational, below CTA) -->
@@ -264,13 +261,13 @@ tailwind.config = {
             <iconify-icon icon="solar:gift-bold-duotone" width="16" class="text-white/95"></iconify-icon>
             <span data-l="ja">回答者の中から抽選でプレゼント</span>
             <span data-l="ko">응답자 중 추첨으로 선물 증정</span>
-            <span data-l="en">Drawing for gifts among respondents</span>
+            
           </span>
           <span class="inline-flex items-center gap-2 text-sm font-medium">
             <iconify-icon icon="solar:microphone-3-bold-duotone" width="16" class="text-white/95"></iconify-icon>
             <span data-l="ja">インタビュー参加者には追加特典</span>
             <span data-l="ko">인터뷰 참여자에게 추가 보상</span>
-            <span data-l="en">Bonus for interview participants</span>
+            
           </span>
         </div>
       </div>
@@ -295,7 +292,7 @@ tailwind.config = {
                 <p class="text-[13px] font-bold text-slate-800 tracking-wide">
                   <span data-l="ja">ご利用明細</span>
                   <span data-l="ko">카드 이용내역</span>
-                  <span data-l="en">Statement</span>
+                  
                 </p>
               </div>
               <p class="text-[9px] text-slate-400 leading-[1.4] text-right tracking-wider" style="font-variant-numeric: tabular-nums;">2026.04.18<br>SEOUL · KR</p>
@@ -310,7 +307,7 @@ tailwind.config = {
                 <span class="text-slate-400">
                   <span data-l="ja">加盟店</span>
                   <span data-l="ko">가맹점</span>
-                  <span data-l="en">Merchant</span>
+                  
                 </span>
                 <span class="text-slate-700 tracking-wider">MYEONGDONG STORE</span>
               </div>
@@ -318,7 +315,7 @@ tailwind.config = {
                 <span class="text-slate-400">
                   <span data-l="ja">通貨</span>
                   <span data-l="ko">통화</span>
-                  <span data-l="en">Currency</span>
+                  
                 </span>
                 <span class="text-slate-700 tracking-wider">KRW</span>
               </div>
@@ -326,7 +323,7 @@ tailwind.config = {
                 <span class="text-slate-400">
                   <span data-l="ja">ご利用金額</span>
                   <span data-l="ko">결제 금액</span>
-                  <span data-l="en">Paid</span>
+                  
                 </span>
                 <span class="text-slate-700 tracking-wider" style="font-variant-numeric: tabular-nums;">¥200,000</span>
               </div>
@@ -340,7 +337,7 @@ tailwind.config = {
               <p class="text-[10px] tracking-wider text-slate-500 pb-1.5">
                 <span data-l="ja">ご請求金額</span>
                 <span data-l="ko">청구 금액</span>
-                <span data-l="en">Billed</span>
+                
               </p>
               <div class="relative">
                 <p class="text-[34px] leading-none font-bold text-slate-900" style="font-variant-numeric: tabular-nums; letter-spacing: -0.01em;">¥207,700</p>
@@ -365,7 +362,7 @@ tailwind.config = {
               <p class="text-red-600" style="font-family: 'Caveat', cursive; font-weight: 700; font-size: 22px; line-height: 1;">
                 <span data-l="ja">+¥7,700  あれ？</span>
                 <span data-l="ko">+¥7,700  어?</span>
-                <span data-l="en">+¥7,700  wait?</span>
+                
               </p>
             </div>
 
@@ -374,7 +371,7 @@ tailwind.config = {
               <p class="text-[9px] text-slate-400 tracking-[0.05em] text-center">
                 <span data-l="ja">海外手数料 + DCC + 為替の上乗せ ≈ 約 3.85%</span>
                 <span data-l="ko">해외 수수료 + DCC + 환율 위 차액 ≈ 약 3.85%</span>
-                <span data-l="en">Foreign fee + DCC + FX markup ≈ 3.85%</span>
+                
               </p>
             </div>
           </div>
@@ -400,7 +397,7 @@ tailwind.config = {
       <h2 class="font-display text-3xl md:text-4xl tracking-tight leading-tight font-bold mb-3 break-keep-all">
         <span data-l="ja">こんな経験、ありませんか？</span>
         <span data-l="ko">이런 경험, 없으세요?</span>
-        <span data-l="en">Sound familiar?</span>
+        
       </h2>
     </div>
 
@@ -413,12 +410,12 @@ tailwind.config = {
           <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
             <span data-l="ja">明細が、思っていたより高い</span>
             <span data-l="ko">명세서, 생각보다 많이 나왔다</span>
-            <span data-l="en">The statement comes in higher than expected</span>
+            
           </p>
           <p class="text-sm leading-relaxed text-ink-light break-keep-all">
             <span data-l="ja">¥200,000払ったつもりが、明細では¥207,700。海外手数料・DCC（日本円で決済される仕組み）・為替の上乗せで、<strong>合計約3.85%</strong>が知らないうちに加算されていた。</span>
             <span data-l="ko">¥200,000 결제한 줄 알았는데, 명세서엔 ¥207,700. 해외 수수료·DCC(원화 대신 엔화로 결제되는 방식)·환율 위에 붙는 차액으로 <strong>합계 약 3.85%</strong>가 모르는 사이에 더 붙어 있었어요.</span>
-            <span data-l="en">You thought it was ¥200,000 — the statement says ¥207,700. Foreign fees, DCC (billed in yen instead of won), and FX markup quietly added up to <strong>~3.85%</strong>.</span>
+            
           </p>
         </div>
       </div>
@@ -430,12 +427,12 @@ tailwind.config = {
           <p class="font-display font-bold text-base text-ink mb-3 break-keep-all">
             <span data-l="ja">空港で交通カード探し</span>
             <span data-l="ko">공항에서 교통카드 찾아 헤매기</span>
-            <span data-l="en">Hunting for a transit card at the airport</span>
+            
           </p>
           <p class="text-sm leading-relaxed text-ink-light break-keep-all">
             <span data-l="ja">空港に着いて交通カードを買うのに30分。やっと手に入れて地下鉄に乗ったら、もう疲れてる。</span>
             <span data-l="ko">공항에 도착해서 교통카드 사는 데 30분. 겨우 구해서 지하철 탔더니 벌써 지쳐 있어요.</span>
-            <span data-l="en">30 minutes at the airport just to buy a transit card. By the time you're on the subway, you're already tired.</span>
+            
           </p>
         </div>
       </div>
@@ -460,12 +457,12 @@ tailwind.config = {
         <span class="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.15em] font-medium bg-accent-soft text-accent mb-5 font-display">
           <span data-l="ja">手数料比較</span>
           <span data-l="ko">수수료 비교</span>
-          <span data-l="en">Fee comparison</span>
+          
         </span>
         <h2 class="font-display text-2xl md:text-3xl tracking-tight font-bold text-ink break-keep-all">
           <span data-l="ja">韓国で¥200,000の決済、<br>手数料でいくら消える？</span>
           <span data-l="ko">한국에서 ¥200,000 결제,<br>수수료로 얼마나 사라질까요?</span>
-          <span data-l="en">¥200,000 paid in Korea —<br>how much vanishes in fees?</span>
+          
         </h2>
       </div>
 
@@ -473,22 +470,22 @@ tailwind.config = {
         <!-- Other card -->
         <div class="rounded-2xl bg-slate-50 ring-1 ring-black/[0.04] p-6 text-center">
           <p class="text-xs text-ink-muted uppercase tracking-wider font-display font-medium mb-3">
-            <span data-l="ja">海外カード (3.85%)</span><span data-l="ko">해외카드 (3.85%)</span><span data-l="en">Foreign card (3.85%)</span>
+            <span data-l="ja">海外カード (3.85%)</span><span data-l="ko">해외카드 (3.85%)</span>
           </p>
           <p class="font-display font-black text-4xl md:text-5xl text-ink/60 mb-2" style="font-variant-numeric: tabular-nums;">−¥7,700</p>
           <p class="text-sm text-ink-muted">
-            <span data-l="ja">明細を見て初めて気づく</span><span data-l="ko">명세서를 봐야 알 수 있어요</span><span data-l="en">You only notice on the statement</span>
+            <span data-l="ja">明細を見て初めて気づく</span><span data-l="ko">명세서를 봐야 알 수 있어요</span>
           </p>
         </div>
 
         <!-- This card -->
         <div class="rounded-2xl bg-accent-soft ring-2 ring-accent/20 p-6 text-center relative overflow-hidden">
           <p class="text-xs text-accent-dark uppercase tracking-wider font-display font-bold mb-3">
-            <span data-l="ja">このカード</span><span data-l="ko">이 카드</span><span data-l="en">This card</span>
+            <span data-l="ja">このカード</span><span data-l="ko">이 카드</span>
           </p>
           <p class="font-display font-black text-5xl md:text-6xl text-accent mb-2 counter" data-target="0" data-from="7700" data-prefix="¥" style="font-variant-numeric: tabular-nums; line-height: 1;">¥7,700</p>
           <p class="text-sm text-accent-dark/70 font-medium">
-            <span data-l="ja">手数料ゼロ。全額そのまま決済に。</span><span data-l="ko">수수료 없이, 전액 그대로 결제에.</span><span data-l="en">Zero fees. Every yen on the actual payment.</span>
+            <span data-l="ja">手数料ゼロ。全額そのまま決済に。</span><span data-l="ko">수수료 없이, 전액 그대로 결제에.</span>
           </p>
         </div>
       </div>
@@ -496,12 +493,12 @@ tailwind.config = {
       <p class="text-center text-base text-ink-light">
         <span data-l="ja">1回の旅行で <span class="text-ink font-bold">¥7,700</span> の差。年に3回なら <span class="text-accent font-bold">¥23,100</span> の節約。</span>
         <span data-l="ko">여행 한 번에 <span class="text-ink font-bold">¥7,700</span> 차이. 세 번이면 <span class="text-accent font-bold">¥23,100</span>을 아낄 수 있어요.</span>
-        <span data-l="en"><span class="text-ink font-bold">¥7,700</span> per trip. 3 trips a year? <span class="text-accent font-bold">¥23,100</span> saved.</span>
+         per trip. 3 trips a year? <span class="text-accent font-bold">¥23,100</span> saved.</span>
       </p>
       <p class="text-center text-xs text-ink-muted/70 mt-4">
         <span data-l="ja">※ 海外手数料 + 為替の上乗せの目安。カード・店舗により1〜4%程度変動します。</span>
         <span data-l="ko">※ 해외 수수료 + 환율 위 차액의 대략적인 합계예요. 카드사·매장에 따라 1~4% 정도 달라져요.</span>
-        <span data-l="en">※ Approximate total of foreign fees + FX markup. Varies 1–4% depending on issuer and merchant.</span>
+        
       </p>
 
     </div>
@@ -522,18 +519,18 @@ tailwind.config = {
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
           <span data-l="ja">払った金額が、<br>そのまま請求</span>
           <span data-l="ko">결제한 금액이,<br>그대로 청구</span>
-          <span data-l="en">What you pay,<br>is what you're billed</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
           <span data-l="ja">韓国でクレカを使うと、<strong>約3.85%</strong>が上乗せされます。原因は海外手数料・DCC・為替の上乗せ。このカードは韓国発行なので、払った金額がそのまま明細に出ます。</span>
           <span data-l="ko">한국에서 신용카드 쓰면, <strong>약 3.85%</strong>가 더 붙어요. 원인은 해외 수수료·DCC·환율 위 차액. 이 카드는 한국 발행이라, 결제한 금액 그대로 명세서에 나와요.</span>
-          <span data-l="en">Using a credit card in Korea adds <strong>about 3.85%</strong>. The culprits: foreign fees, DCC, and FX markup. This card is Korean-issued — what you paid is what you're billed.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:dollar-minimalistic-bold" width="20"></iconify-icon>
           <span data-l="ja">余計な手数料、まるごとゼロ</span>
           <span data-l="ko">숨은 수수료, 전부 0</span>
-          <span data-l="en">Hidden fees, all gone</span>
+          
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
@@ -544,11 +541,11 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:document-text-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">払った額 = 請求額</span><span data-l="ko">결제 = 청구</span><span data-l="en">Paid = billed</span>
+                <span data-l="ja">払った額 = 請求額</span><span data-l="ko">결제 = 청구</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">手数料・店レート・差額、ぜんぶゼロ</span><span data-l="ko">수수료·가게환율·차액, 전부 0</span><span data-l="en">No fee, no merchant rate, no spread</span>
+              <span data-l="ja">手数料・店レート・差額、ぜんぶゼロ</span><span data-l="ko">수수료·가게환율·차액, 전부 0</span>
             </p>
           </div>
         </div>
@@ -565,11 +562,11 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:graph-up-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">レートを選んでチャージ</span><span data-l="ko">환율 골라서 충전</span><span data-l="en">Pick your rate</span>
+                <span data-l="ja">レートを選んでチャージ</span><span data-l="ko">환율 골라서 충전</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">円安の日に、安心の準備</span><span data-l="ko">엔저인 날, 미리 준비</span><span data-l="en">Stock up on a good FX day</span>
+              <span data-l="ja">円安の日に、安心の準備</span><span data-l="ko">엔저인 날, 미리 준비</span>
             </p>
           </div>
         </div>
@@ -579,18 +576,18 @@ tailwind.config = {
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
           <span data-l="ja">レートが安い日に、<br>まとめてチャージ</span>
           <span data-l="ko">환율 좋을 때,<br>미리 충전</span>
-          <span data-l="en">Top up when<br>the rate is on your side</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
           <span data-l="ja">クレカは決済の瞬間のレートで請求されるから、円安の日も避けられない。このカードなら、レートが安い日にまとめてチャージして、しばらく安心して使えます。</span>
           <span data-l="ko">신용카드는 결제하는 그 순간의 환율로 청구되니, 엔저인 날도 피할 수 없어요. 이 카드는 환율 좋은 날 미리 충전해두면, 한동안 안심하고 쓸 수 있어요.</span>
-          <span data-l="en">Credit cards bill at the moment-of-payment rate — bad-FX days are unavoidable. With this card, top up on a good day and spend in peace for a while.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:graph-up-bold" width="20"></iconify-icon>
           <span data-l="ja">自分のタイミングで、レート確定</span>
           <span data-l="ko">내 타이밍에, 환율 확정</span>
-          <span data-l="en">Top up on your terms</span>
+          
         </div>
       </div>
     </div>
@@ -602,18 +599,18 @@ tailwind.config = {
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
           <span data-l="ja">使ったらすぐ、<br>アプリで確認</span>
           <span data-l="ko">결제하면 바로,<br>앱에서 확인</span>
-          <span data-l="en">Right after you tap,<br>see the spend</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
           <span data-l="ja">クレカは数日後に明細反映、本当の支払額は請求書まで分からない。このカードは決済後数秒でアプリに反映、「いくら使ったっけ？」がなくなります。</span>
           <span data-l="ko">신용카드는 며칠 뒤에야 명세서 반영, 진짜 결제 금액은 청구서 봐야 알아요. 이 카드는 결제 직후 몇 초 만에 앱에 반영, "얼마 썼지?"가 없어집니다.</span>
-          <span data-l="en">Credit cards take days to update; you won't know the real cost until the statement. This card updates balance in your app within seconds — no more "how much did I spend?" panic.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:bell-bing-bold" width="20"></iconify-icon>
           <span data-l="ja">決済 → 数秒でアプリ反映 — 帰国後の驚き、もうない</span>
           <span data-l="ko">결제 → 몇 초 만에 앱 반영 — 귀국 후 놀랄 일, 더 이상 없음</span>
-          <span data-l="en">Tap → instant app update — no more post-trip surprise</span>
+          
         </div>
       </div>
       <div class="reveal" style="transition-delay: 120ms;">
@@ -624,11 +621,11 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:bell-bing-bold" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">決済 → 数秒でアプリ反映</span><span data-l="ko">결제 → 몇 초 만에 앱 반영</span><span data-l="en">Tap → updates in seconds</span>
+                <span data-l="ja">決済 → 数秒でアプリ反映</span><span data-l="ko">결제 → 몇 초 만에 앱 반영</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">帰国後の驚き、もうない</span><span data-l="ko">귀국 후 놀랄 일, 더 이상 없음</span><span data-l="en">No more post-trip surprise</span>
+              <span data-l="ja">帰国後の驚き、もうない</span><span data-l="ko">귀국 후 놀랄 일, 더 이상 없음</span>
             </p>
           </div>
         </div>
@@ -645,11 +642,11 @@ tailwind.config = {
             <div class="flex items-center gap-2 mb-2">
               <iconify-icon icon="solar:train-bold-duotone" width="20"></iconify-icon>
               <p class="font-display font-bold text-sm">
-                <span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span><span data-l="en">Transit built-in</span>
+                <span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span>
               </p>
             </div>
             <p class="text-xs text-white/60">
-              <span data-l="ja">決済も交通も、これ1枚</span><span data-l="ko">결제도 교통도, 이 한 장</span><span data-l="en">Pay & ride, one card</span>
+              <span data-l="ja">決済も交通も、これ1枚</span><span data-l="ko">결제도 교통도, 이 한 장</span>
             </p>
           </div>
         </div>
@@ -659,18 +656,18 @@ tailwind.config = {
         <h2 class="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight font-bold mb-6 break-keep-all">
           <span data-l="ja">地下鉄もバスも、<br>この1枚で</span>
           <span data-l="ko">지하철도 버스도,<br>이 한 장으로</span>
-          <span data-l="en">Subway, bus, shopping —<br>one card</span>
+          
         </h2>
         <p class="text-base md:text-lg text-ink-light leading-relaxed max-w-[52ch] mb-8 break-keep-all">
           <span data-l="ja">韓国でクレカは交通機関で使えないから、別途交通カードを買う必要があった。このカードは交通カード機能内蔵で、空港から地下鉄・バス・コンビニまで、全部これ1枚で完結。</span>
           <span data-l="ko">한국에서 신용카드는 교통수단에 사용 안 되니, 교통카드를 따로 사야 했죠. 이 카드는 교통카드 기능이 내장돼 있어서, 공항에서 지하철·버스·편의점까지 전부 이 한 장으로 완결.</span>
-          <span data-l="en">Foreign credit cards don't work on Korean transit, so you had to buy a separate transit card. This card has transit built in — airport subway, buses, convenience stores, all on one.</span>
+          
         </p>
         <div class="flex items-center gap-3 text-accent font-display font-bold text-sm">
           <iconify-icon icon="solar:bus-bold" width="20"></iconify-icon>
           <span data-l="ja">決済も交通も — 1枚で完結</span>
           <span data-l="ko">결제도 교통도 — 한 장으로 완결</span>
-          <span data-l="en">Pay & ride — one card</span>
+          
         </div>
       </div>
     </div>
@@ -691,29 +688,29 @@ tailwind.config = {
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:tag-price-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">海外手数料ゼロ</span><span data-l="ko">해외 수수료 0</span><span data-l="en">Zero foreign fees</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">3.85%上乗せ、なし</span><span data-l="ko">3.85% 추가 청구 없음</span><span data-l="en">No 3.85% markup</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">海外手数料ゼロ</span><span data-l="ko">해외 수수료 0</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">3.85%上乗せ、なし</span><span data-l="ko">3.85% 추가 청구 없음</span></p>
       </div>
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:bus-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span><span data-l="en">Transit built-in</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バスもこの1枚で</span><span data-l="ko">지하철·버스 한 장으로</span><span data-l="en">Subway & bus, same card</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">交通カード内蔵</span><span data-l="ko">교통카드 내장</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">地下鉄・バスもこの1枚で</span><span data-l="ko">지하철·버스 한 장으로</span></p>
       </div>
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:graph-up-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">好きなレートでチャージ</span><span data-l="ko">원하는 환율로 충전</span><span data-l="en">Lock-in rate</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">良いレートを先取り</span><span data-l="ko">유리한 환율 미리 잡기</span><span data-l="en">Pick a good day, save it</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">好きなレートでチャージ</span><span data-l="ko">원하는 환율로 충전</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">良いレートを先取り</span><span data-l="ko">유리한 환율 미리 잡기</span></p>
       </div>
       <div class="reveal text-center">
         <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-2">
           <iconify-icon icon="solar:bell-bing-bold-duotone" width="22" class="text-accent"></iconify-icon>
         </div>
-        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">数秒でアプリ反映</span><span data-l="ko">몇 초 만에 앱 반영</span><span data-l="en">Updates in seconds</span></p>
-        <p class="text-xs text-ink-muted"><span data-l="ja">決済後すぐに履歴更新</span><span data-l="ko">결제 직후 내역 업데이트</span><span data-l="en">History updates right after</span></p>
+        <p class="font-display font-bold text-sm text-ink mb-0.5"><span data-l="ja">数秒でアプリ反映</span><span data-l="ko">몇 초 만에 앱 반영</span></p>
+        <p class="text-xs text-ink-muted"><span data-l="ja">決済後すぐに履歴更新</span><span data-l="ko">결제 직후 내역 업데이트</span></p>
       </div>
     </div>
 
@@ -737,18 +734,18 @@ tailwind.config = {
         <h2 class="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight font-bold mb-4 break-keep-all text-ink">
           <span data-l="ja">次の請求書で、<br>もう驚かない。</span>
           <span data-l="ko">다음 명세서,<br>더 이상 놀랄 일 없게.</span>
-          <span data-l="en">No more surprises<br>on your next statement.</span>
+          
         </h2>
         <p class="text-base text-ink-muted mb-5 max-w-[44ch] mx-auto break-keep-all">
           <span data-l="ja">5分のアンケートに答えるだけ。回答者の中から抽選でプレゼント、インタビュー参加者には追加特典をご用意しています。</span>
           <span data-l="ko">5분 설문에 답하기만 하면 끝. 응답자 중 추첨으로 선물 증정, 인터뷰 참여자에게는 추가 보상이 준비되어 있어요.</span>
-          <span data-l="en">Just a 5-minute survey. We'll draw gifts from respondents, and interview participants get a bonus reward.</span>
+          
         </p>
         <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('survey_click', {variant:'C'})" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
-          <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span><span data-l="en">Take 5-min survey & enter drawing</span>
+          <span data-l="ja">5分のアンケート + 抽選に参加</span><span data-l="ko">5분 설문 응답하고, 추첨 응모</span>
           <iconify-icon icon="solar:arrow-right-linear" width="18" class="spring group-hover:translate-x-0.5"></iconify-icon>
         </a>
-        <p class="text-xs text-ink-muted/60 mt-4"><span data-l="ja">※ 現在、サービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span><span data-l="en">※ Not yet launched</span></p>
+        <p class="text-xs text-ink-muted/60 mt-4"><span data-l="ja">※ 現在、サービス開始前です</span><span data-l="ko">※ 아직 서비스 시작 전입니다</span></p>
 
       </div>
     </div>
@@ -762,7 +759,7 @@ tailwind.config = {
 <footer class="py-8 border-t border-black/[0.04]">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-sm text-ink-muted font-display font-medium">
-      <span data-l="ja">運営: 株式会社MOIN</span><span data-l="ko">운영: 주식회사모인</span><span data-l="en">Operated by MOIN Inc.</span>
+      <span data-l="ja">運営: 株式会社MOIN</span><span data-l="ko">운영: 주식회사모인</span>
     </p>
     <p class="text-xs text-ink-muted/60">&copy; 2026 MOIN Inc.</p>
   </div>
