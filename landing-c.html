@@ -7,7 +7,7 @@
 <meta name="description" content="韓国でのクレカ決済で、約3.85%が気づかないうちに上乗せされる。このカードは韓国発行だから、払った金額がそのまま明細に出ます。">
 <meta property="og:title" content="韓国トラベルカード — 海外手数料ゼロ">
 <meta property="og:description" content="韓国でのクレカ決済で、約3.85%が気づかないうちに上乗せされる。払った金額がそのまま明細に。">
-<meta property="og:image" content="https://picsum.photos/seed/moin-og/1200/630">
+<meta property="og:image" content="https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1200&h=630&fit=crop">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><text x='50%25' y='55%25' dominant-baseline='central' text-anchor='middle' fill='white' font-family='system-ui' font-weight='900' font-size='18'>M</text></svg>">
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -191,13 +191,6 @@ tailwind.config = {
   </filter>
 </svg>
 
-<!-- ===== HERO VERSION TOGGLE (dev only — show with ?debug=1) ===== -->
-<button id="version-toggle" onclick="toggleHeroVersion()" class="hidden fixed top-5 left-5 z-40 px-4 py-2.5 rounded-full backdrop-blur-2xl bg-black/60 text-white text-xs font-bold border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.1)] cursor-pointer spring hover:bg-black/80 min-h-[44px]">
-  V2: Photo + Gradient
-</button>
-<script>if(new URLSearchParams(location.search).get('debug')==='1'){document.getElementById('version-toggle').classList.remove('hidden');}</script>
-
-
 <!-- ===== FLOATING GLASS NAV ===== -->
 <nav class="fixed top-3 right-3 md:top-5 md:right-5 z-40 flex items-center gap-1 px-1 py-1 md:px-1.5 md:py-1.5 rounded-full backdrop-blur-2xl bg-white/85 border border-black/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out">
   <button data-lang="ja" class="lang-btn on font-display text-xs font-bold px-3 py-2 md:px-4 md:py-2.5 rounded-full spring min-h-[40px] min-w-[40px] md:min-h-[44px] md:min-w-[44px]">JP</button>
@@ -212,10 +205,7 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ===== HERO — Bright gradient + grain texture ===== -->
 <section class="relative min-h-[85dvh] md:min-h-[100dvh] flex items-center overflow-hidden">
-  <!-- V1: Gradient background (hidden by default) -->
-  <div id="hero-v1" class="absolute inset-0 bg-gradient-to-br from-blue-400 via-sky-400 to-teal-300 hidden"></div>
-  <!-- V2: Photo + overlay -->
-  <div id="hero-v2" class="absolute inset-0">
+  <div class="absolute inset-0">
     <img src="https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1920&h=1080&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover" style="filter: brightness(106%);" loading="eager">
     <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(96,165,250,1.0), rgba(56,189,248,0.7), transparent);"></div>
     <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 50%, #ffffff 100%);"></div>
@@ -751,30 +741,20 @@ tailwind.config = {
           <span data-l="ja">5分のアンケートに答えるだけ。</span>
           <span data-l="ko">5분 설문 응답이면 끝.</span>
         </p>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-7 max-w-md mx-auto">
-          <div class="flex-1 bg-accent-soft ring-1 ring-accent/15 rounded-2xl px-4 py-3.5 flex items-center gap-3 text-left">
-            <iconify-icon icon="solar:gift-bold-duotone" width="22" class="text-accent shrink-0"></iconify-icon>
-            <div class="leading-tight">
-              <p class="font-display font-bold text-sm text-ink mb-0.5">
-                <span data-l="ja">アンケート回答</span><span data-l="ko">설문 응답</span>
-              </p>
-              <p class="text-[11px] text-ink-muted">
-                <span data-l="ja">先着10名 + 抽選20名<br>Amazonギフト ¥1,000</span>
-                <span data-l="ko">선착순 10명 + 추첨 20명<br>Amazon 기프트 ¥1,000</span>
-              </p>
-            </div>
+        <div class="flex flex-col items-center gap-2 mb-7 text-sm">
+          <div class="flex items-center gap-2.5 text-ink-muted">
+            <iconify-icon icon="solar:gift-bold-duotone" width="18" class="text-accent shrink-0"></iconify-icon>
+            <span>
+              <span data-l="ja"><span class="font-bold text-ink">アンケート回答</span> · 先着10名+抽選20名にAmazonギフト¥1,000</span>
+              <span data-l="ko"><span class="font-bold text-ink">설문 응답</span> · 선착순 10명+추첨 20명에게 Amazon 기프트 ¥1,000</span>
+            </span>
           </div>
-          <div class="flex-1 bg-accent-soft ring-1 ring-accent/15 rounded-2xl px-4 py-3.5 flex items-center gap-3 text-left">
-            <iconify-icon icon="solar:microphone-3-bold-duotone" width="22" class="text-accent shrink-0"></iconify-icon>
-            <div class="leading-tight">
-              <p class="font-display font-bold text-sm text-ink mb-0.5">
-                <span data-l="ja">インタビュー参加</span><span data-l="ko">인터뷰 참여</span>
-              </p>
-              <p class="text-[11px] text-ink-muted">
-                <span data-l="ja">Amazonギフト ¥2,000</span>
-                <span data-l="ko">Amazon 기프트 ¥2,000</span>
-              </p>
-            </div>
+          <div class="flex items-center gap-2.5 text-ink-muted">
+            <iconify-icon icon="solar:microphone-3-bold-duotone" width="18" class="text-accent shrink-0"></iconify-icon>
+            <span>
+              <span data-l="ja"><span class="font-bold text-ink">インタビュー参加</span> · Amazonギフト¥2,000</span>
+              <span data-l="ko"><span class="font-bold text-ink">인터뷰 참여</span> · Amazon 기프트 ¥2,000</span>
+            </span>
           </div>
         </div>
         <a href="https://forms.gle/PLACEHOLDER" target="_blank" id="survey-link" onclick="track('survey_click', {variant:'C'})" class="group inline-flex items-center gap-3 bg-accent text-white font-display font-bold text-lg px-8 py-4 rounded-full spring hover:scale-[1.02] active:scale-[0.98] hover:bg-accent-dark shadow-[0_4px_16px_rgba(2,132,199,0.25)]">
@@ -803,25 +783,6 @@ tailwind.config = {
 
 
 <script>
-// Hero version toggle
-let heroVersion = 2;
-function toggleHeroVersion() {
-  const v1 = document.getElementById('hero-v1');
-  const v2 = document.getElementById('hero-v2');
-  const btn = document.getElementById('version-toggle');
-  if (heroVersion === 2) {
-    v2.classList.add('hidden');
-    v1.classList.remove('hidden');
-    btn.textContent = 'V1: Gradient';
-    heroVersion = 1;
-  } else {
-    v1.classList.add('hidden');
-    v2.classList.remove('hidden');
-    btn.textContent = 'V2: Photo + Gradient';
-    heroVersion = 2;
-  }
-}
-
 // Language switching
 const langBtns = document.querySelectorAll('.lang-btn');
 langBtns.forEach(btn => {
